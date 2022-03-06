@@ -190,6 +190,7 @@ public class FocalPoint : MonoBehaviour
     /// to the original target
     /// </summary>
     public void Remove() {
+        cm.GetCamera().orthographicSize = def_cameraSize;
         cm.SetTargetTransform(formerTarget);
         Destroy(gameObject);
     }

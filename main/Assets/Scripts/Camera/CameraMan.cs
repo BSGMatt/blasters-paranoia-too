@@ -58,6 +58,9 @@ public class CameraMan : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             TestFocalPoint();
         }
+        else if (Input.GetKeyDown(KeyCode.Delete)) {
+            focalPoint.GetComponent<FocalPoint>().Remove();
+        }
     }
 
     // Update is called once per frame

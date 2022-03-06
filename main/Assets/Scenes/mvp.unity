@@ -196,8 +196,8 @@ MonoBehaviour:
   cameraTransform: {fileID: 519420032}
   playerTransform: {fileID: 1253233079}
   cam: {fileID: 519420031}
-  camSpeed: 1
-  limit: 0.2
+  camSpeed: 3
+  limit: 0.33
   rectWidth: 1920
   rectHeight: 1080
 --- !u!20 &519420031
