@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 2194876945
+    locked: 0
+  - name: Building
+    uniqueID: 784336135
+    locked: 0
+  - name: Character
+    uniqueID: 3199332939
+    locked: 0
+  - name: HUD
+    uniqueID: 959288303
+    locked: 0
+  - name: HUDBorder
+    uniqueID: 2392219979
+    locked: 0
