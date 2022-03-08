@@ -49,12 +49,15 @@ public class ShopManager : MonoBehaviour
                 break;
         }
 
-        for (int i = nextItem; i < itemsToDisplay.Length + nextItem; i++) {
-            itemsToDisplay[i - nextItem].shopItem = listToDisplay[i];
-            itemsToDisplay[i - nextItem].DisplayItem();
+        for (int i = nextItem; i < itemsToDisplay.Length + nextItem && i < listToDisplay.Count; i++) {
+            Debug.Log("i: " + i);
+            Debug.Log("(i - nextItem) % listToDisplay.Count: " + (i - nextItem) % listToDisplay.Count);
+            itemsToDisplay[(i - nextItem)].shopItem = listToDisplay[i];
+            itemsToDisplay[(i - nextItem)].DisplayItem();
         }
 
         nextItem = (nextItem + itemsToDisplay.Length) % listToDisplay.Count;
+        Debug.Log("Next Item: " + nextItem);
 
         itemDescriptionText.text = defaultDescString;
     }
@@ -80,13 +83,14 @@ public class ShopManager : MonoBehaviour
                 break;
         }
 
-        for (int i = nextItem; i < itemsToDisplay.Length + nextItem; i++) {
-            itemsToDisplay[i - nextItem].shopItem = listToDisplay[i];
-            itemsToDisplay[i - nextItem].DisplayItem();
+        for (int i = nextItem; i < itemsToDisplay.Length + nextItem && i < listToDisplay.Count; i++) {
+            itemsToDisplay[(i - nextItem)].shopItem = listToDisplay[i];
+            itemsToDisplay[(i - nextItem)].DisplayItem();
         }
 
         nextItem = (nextItem - itemsToDisplay.Length) % listToDisplay.Count;
-        if (nextItem < 0) nextItem = listToDisplay.Count + nextItem;
+        if (nextItem < 0) nextItem *= -1;
+        Debug.Log("Next Item: " + nextItem);
 
         itemDescriptionText.text = defaultDescString;
     }

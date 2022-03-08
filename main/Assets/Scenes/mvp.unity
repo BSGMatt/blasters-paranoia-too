@@ -183,6 +183,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 53ad87221f2440f458b888becbe78635, type: 2}
   - {fileID: 11400000, guid: 16343a1e23558c548ab57a241a2838a2, type: 2}
   - {fileID: 11400000, guid: 19a4a7f9ec90fed4db4676ed71f04005, type: 2}
+  - {fileID: 11400000, guid: ff2452b88f95c51459c7a9b6a889b5b6, type: 2}
   weaponsForSale: []
   powerupsForSale: []
   itemsToDisplay:
@@ -666,7 +667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 75, y: 75}
+  m_AnchoredPosition: {x: 285, y: 75}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568003630
@@ -814,7 +815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -75, y: 75}
+  m_AnchoredPosition: {x: -285, y: 75}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600996993
