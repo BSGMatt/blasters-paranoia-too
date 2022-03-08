@@ -9,9 +9,11 @@ using UnityEngine;
  * a reference to the prefab that the gameobject will created from. 
  * 
  */
-public class Card : ScriptableObject
+public abstract class Card : ScriptableObject
 {
     public int unlockPrice; //Price to unlcock from the shop
+    public new string name;
     public GameObject prefab; //The gameobject that this card will create. 
 
+    public abstract string infoText();
 }
