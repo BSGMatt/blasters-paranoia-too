@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         timerDisplay.text = "Time: " + time.ToString();
 
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.F)) {
             ActivateShop();
         }
 

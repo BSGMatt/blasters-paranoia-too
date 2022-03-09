@@ -33,7 +33,17 @@ public class ShopManager : MonoBehaviour
         selectedItem = itemsToDisplay[0].shopItem;
     }
 
-    public void SwitchItemTypeToDisplay(itemType type) {
+    public void ShowBuildingsForSale() {
+        SwitchItemTypeToDisplay(itemType.BUILDINGS);
+    }
+    public void ShowWeaponsForSale() {
+        SwitchItemTypeToDisplay(itemType.WEAPONS);
+    }
+    public void ShowPowerUpsForSale() {
+        SwitchItemTypeToDisplay(itemType.POWERUPS);
+    }
+
+    private void SwitchItemTypeToDisplay(itemType type) {
 
         List<ShopItem> listToDisplay;
 
@@ -52,23 +62,34 @@ public class ShopManager : MonoBehaviour
         for (int i = nextItem; i < itemsToDisplay.Length + nextItem && i < listToDisplay.Count; i++) {
             Debug.Log("i: " + i);
             Debug.Log("(i - nextItem) % listToDisplay.Count: " + (i - nextItem) % listToDisplay.Count);
+            itemsToDisplay[(i - nextItem)].gameObject.SetActive(true);
             itemsToDisplay[(i - nextItem)].shopItem = listToDisplay[i];
             itemsToDisplay[(i - nextItem)].DisplayItem();
         }
 
-        nextItem = (nextItem + itemsToDisplay.Length) % listToDisplay.Count;
+        nextItem += itemsToDisplay.Length;
+        if (nextItem >= listToDisplay.Count) nextItem = 0;
         Debug.Log("Next Item: " + nextItem);
 
         itemDescriptionText.text = defaultDescString;
     }
 
     public void NextPage() {
-        SwitchItemTypeToDisplay(itemTypeDisplay);
 
+        for (int i = 0; i < itemsToDisplay.Length; i++) {
+            itemsToDisplay[i].gameObject.SetActive(false);
+        }
+
+        SwitchItemTypeToDisplay(itemTypeDisplay);
         itemDescriptionText.text = defaultDescString;
     }
 
     public void PreviousPage() {
+
+        for (int i = 0; i < itemsToDisplay.Length; i++) {
+            itemsToDisplay[i].gameObject.SetActive(false);
+        }
+
         List<ShopItem> listToDisplay;
 
         switch (itemTypeDisplay) {
@@ -84,12 +105,13 @@ public class ShopManager : MonoBehaviour
         }
 
         for (int i = nextItem; i < itemsToDisplay.Length + nextItem && i < listToDisplay.Count; i++) {
+            itemsToDisplay[(i - nextItem)].gameObject.SetActive(true);
             itemsToDisplay[(i - nextItem)].shopItem = listToDisplay[i];
             itemsToDisplay[(i - nextItem)].DisplayItem();
         }
 
-        nextItem = (nextItem - itemsToDisplay.Length) % listToDisplay.Count;
-        if (nextItem < 0) nextItem *= -1;
+        nextItem -= itemsToDisplay.Length;
+        if (nextItem < 0) nextItem = listToDisplay.Count - 1;
         Debug.Log("Next Item: " + nextItem);
 
         itemDescriptionText.text = defaultDescString;

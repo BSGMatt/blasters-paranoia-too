@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New PowerUp Card", menuName = "Card/PowerUp Card")]
 public class PowerUpCard : Card
 {
     public PWEffect effect;
     public float amount;
     public float duration;
+    public Sprite hotbarSprite;
 
     public override string infoText() {
         StringBuilder sb = new StringBuilder();
