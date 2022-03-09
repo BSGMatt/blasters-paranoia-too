@@ -6,6 +6,8 @@ using System.Text;
 [CreateAssetMenu(fileName = "New Weapon Card", menuName = "Card/Weapon Card")]
 public class WeaponCard : Card
 {
+    public GameObject pelletType;
+
     public int maxAmmo;
     public int dmgPerPellet;
     public int pelletCount;

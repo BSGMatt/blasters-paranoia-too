@@ -11,7 +11,11 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField] protected CharacterController2D c2d;
     [SerializeField] protected Rigidbody2D rb;
-    
+    public BoxCollider2D surfaceCollider;
+    public CircleCollider2D nonSurfaceCollider;
+
+
+    public Weapon currentWeapon;
 
     //List all of the Character properties and their default values;
     #region DEFAULT_PROPERTY_VALUES
@@ -40,6 +44,11 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     [SerializeField] protected float dmgTaken = def_dmg_taken;
 
+    /// <summary>
+    /// The amount of sheild points the character has. 
+    /// </summary>
+    protected int sheilds;
+    
     /// <summary>
     /// The amount of hit points the character has. 
     /// </summary>
@@ -84,9 +93,13 @@ public abstract class Character : MonoBehaviour
 
     public void TakeDamage(int damage) {
 
-        int value = Mathf.RoundToInt(damage * dmgTaken);
-
-        hp -= value;
+        if (sheilds > 0) {
+            sheilds -= damage;
+            if (sheilds < 0) sheilds = 0;
+        }
+        else {
+            hp -= damage;
+        }
 
 
         //Debug.Log("Current HP: " + hp);
@@ -98,6 +111,14 @@ public abstract class Character : MonoBehaviour
 
     public abstract void Die();
     public abstract void Init();
+
+    /// <summary>
+    /// A method to be used alongside Die(). Contains the operations that most characters will use when they die. 
+    /// </summary>
+    public void CommonDieMethod() {
+        if (currentWeapon != null) Destroy(currentWeapon.gameObject);
+        Destroy(gameObject);
+    }
 
     public void SetHP(int hp) {
         this.hp = hp;
