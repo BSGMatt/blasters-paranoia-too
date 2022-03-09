@@ -8,6 +8,9 @@ using UnityEngine.UI;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    public const int MAX_CASH = 99999999;
+
+
     public GameObject shop;
     public Phase phase = Phase.IDLE;
     public int bossWave = 5;

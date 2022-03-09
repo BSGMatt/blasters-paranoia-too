@@ -16,7 +16,12 @@ public class ShopButton : MonoBehaviour
 
     public void DisplayItem() {
         button.image.sprite = shopItem.displaySprite;
-        if (shopItem.sold) button.image.color = new Color(0.5f, 0.5f, 0.5f);
+        if (shopItem.sold) {
+            button.image.color = new Color(0.5f, 0.5f, 0.5f);
+        }
+        else {
+            button.image.color = new Color(1, 1, 1);
+        }
         button.GetComponentInChildren<Text>().text = shopItem.card.name;
     }
 }

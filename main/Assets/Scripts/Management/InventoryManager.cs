@@ -13,11 +13,11 @@ public class InventoryManager : MonoBehaviour
     public HotbarSlot[] powerupHotBar;
 
     public void Start() {
-        
+        powerups = new Inventory<PowerUpCard>();
     }
 
     public void Update() {
-        //UpdateInventoryDisplay();
+        UpdateInventoryDisplay();
     }
 
     //Display all of the inventory's information onto the hotbar. 
@@ -32,6 +32,7 @@ public class InventoryManager : MonoBehaviour
             else {
                 //Make the hotbar blank if slot is empty. 
                 powerupHotBar[i].hotbarIcon.sprite = null;
+                powerupHotBar[i].hotbarIcon.color = new Color(1, 1, 1, 0);
                 powerupHotBar[i].counterText.text = "";
             }
             
@@ -42,7 +43,7 @@ public class InventoryManager : MonoBehaviour
         weaponCards.Add(wc);
     }
 
-    public void AddToBuidlings(BuildingCard bc) {
+    public void AddToBuildlings(BuildingCard bc) {
         buildingCards.Add(bc);
     }
 
