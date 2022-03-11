@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public const int MAX_CASH = 99999999;
 
 
-    public GameObject shop;
+    public GameObject shopUI;
+    public GameObject mainUI;
     public Phase phase = Phase.IDLE;
     public int bossWave = 5;
     public int wave = 1;
@@ -85,7 +86,8 @@ public class GameManager : MonoBehaviour
     private void ToIdlePhase() {
         phase = Phase.IDLE;
         shopEnabled = false;
-        shop.SetActive(shopEnabled);
+        shopUI.SetActive(shopEnabled);
+        mainUI.SetActive(!shopEnabled);
     }
 
     private void Idle() {
@@ -130,7 +132,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void ActivateShop() {
-        shop.SetActive(!shopEnabled);
+        mainUI.SetActive(shopEnabled);
+        shopUI.SetActive(!shopEnabled);
         shopEnabled = !shopEnabled;
 
         if (movementEnabled) {

@@ -22,5 +22,6 @@ public class Dummy : Character {
 
     public override void Init() {
         isEnemy = true;
+        hp = maxHP;
     }
 }

@@ -11,29 +11,13 @@ public class FriendlyPistol : Weapon
     {
         canFire = true;
         isEnemy = false;
-        ammo = card.maxAmmo;
-        cam = FindObjectOfType<CameraMan>().GetCamera();
-        host.currentWeapon = this;
+        CommonStart();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.position = host.GetRigidBody().position;
-
-        AimWithMouse();
-
-        //Check if the player pressed the reload key. 
-        if (Input.GetKeyDown(KeyCode.R)) {
-            if (reloading != null) {
-                reloading = StartCoroutine(Reload());
-            }
-        }
-
-        //Fire a pellet if player left-clicks. 
-        if (Input.GetMouseButtonDown(0)) {
-            if (canFire && ammo > 0) Fire();
-        }
+        CommonUpdate();
     }
 
     //Launches a pellet. 

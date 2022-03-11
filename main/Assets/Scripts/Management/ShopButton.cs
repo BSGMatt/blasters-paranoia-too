@@ -11,7 +11,7 @@ public class ShopButton : MonoBehaviour
     public void SelectShopItem() {
         ShopManager s = FindObjectOfType<ShopManager>();
         s.selectedItem = shopItem;
-        s.itemDescriptionText.text = shopItem.description + "\n" + shopItem.card.infoText();
+        s.itemDescriptionText.text = shopItem.description + "\n\n" + shopItem.card.infoText();
     }
 
     public void DisplayItem() {

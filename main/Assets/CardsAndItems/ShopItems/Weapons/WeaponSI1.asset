@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4aea3f141a7f354da84246e6272e060, type: 3}
+  m_Name: WeaponSI1
+  m_EditorClassIdentifier: 
+  card: {fileID: 11400000, guid: a9426e8a4f9eb184e8958089048b2ef9, type: 2}
+  displaySprite: {fileID: 21300000, guid: 0e12c06ae81660748a1ecc66bfb4e2bd, type: 3}
+  description: 'This is a nifty shotgun. '
+  sold: 0

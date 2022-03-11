@@ -33,6 +33,9 @@ public class Pellet : MonoBehaviour
                 collision.gameObject.GetComponent<Character>().TakeDamage(damage);
             }
         }
+        else if (collision.gameObject.CompareTag("Pellet")) {
+            return; //Don't destroy if colliding with another pellet. 
+        }
 
         Destroy(gameObject);
     }

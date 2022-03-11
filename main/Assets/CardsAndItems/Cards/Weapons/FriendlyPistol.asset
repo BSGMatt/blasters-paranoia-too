@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: FriendlyPistol
   m_EditorClassIdentifier: 
   unlockPrice: 0
-  name: Pistol
+  name: The "Pe-Pew"
   prefab: {fileID: 1461239006274505847, guid: 5696e13871474694298370519788e089, type: 3}
   pelletType: {fileID: 7632431803512875838, guid: b3d2fa814e2a32c4bac91f0c046fca6f, type: 3}
-  maxAmmo: 100
+  maxAmmo: 20
   dmgPerPellet: 10
   pelletCount: 1
   minSpread: 0

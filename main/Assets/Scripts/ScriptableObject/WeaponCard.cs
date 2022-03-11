@@ -26,7 +26,7 @@ public class WeaponCard : Card
         sb.Append("Pellet Count: " + pelletCount + "\n");
         
         if (minSpread == maxSpread) {
-            sb.Append("Spread: " + minSpread);
+            sb.Append("Spread: " + minSpread + "\n");
         }
         else {
             sb.Append("Spread Range: " + minSpread + " - " + maxSpread);

@@ -27,6 +27,7 @@ public class InventoryManager : MonoBehaviour
             if (powerups.CountOfSlot(i) > 0) {
                 //Add the powerup's icon and count in the inventory. 
                 powerupHotBar[i].hotbarIcon.sprite = powerups.Peek(i).hotbarSprite;
+                powerupHotBar[i].hotbarIcon.color = new Color(1, 1, 1, 1);
                 powerupHotBar[i].counterText.text = powerups.CountOfSlot(i).ToString();
             }
             else {
@@ -41,6 +42,9 @@ public class InventoryManager : MonoBehaviour
 
     public void AddToWeapons(WeaponCard wc) {
         weaponCards.Add(wc);
+        if (weaponCards.Count == 1) {
+            FindObjectOfType<WeaponLoader>().Init();
+        }
     }
 
     public void AddToBuildlings(BuildingCard bc) {

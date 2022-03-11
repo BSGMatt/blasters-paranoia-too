@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Surface
   - Character
+  - Pellet
   layers:
   - Default
   - TransparentFX

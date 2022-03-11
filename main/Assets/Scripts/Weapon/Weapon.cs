@@ -12,17 +12,17 @@ public abstract class Weapon : MonoBehaviour
 
     public bool isEnemy;
 
+    /// <summary>
+    /// The amount of ammo the weapon currently has. 
+    /// </summary>
+    public int ammo;
+
     private Vector2 mousePos;
 
     /// <summary>
     /// Whether the weapon can fire or not. 
     /// </summary>
-    protected bool canFire;
-
-    /// <summary>
-    /// The amount of ammo the weapon currently has. 
-    /// </summary>
-    protected int ammo;
+    public bool canFire;
 
     /// <summary>
     /// The angle at which the weapon is being held at. 
@@ -102,8 +102,39 @@ public abstract class Weapon : MonoBehaviour
     }
 
     /// <summary>
+    /// An update method containing the common operations that most weapons will use. 
+    /// </summary>
+    public void CommonUpdate() {
+        rb.position = host.GetRigidBody().position;
+
+        AimWithMouse();
+
+        //Check if the player pressed the reload key. 
+        if (Input.GetKeyDown(KeyCode.R)) {
+            if (reloading == null) {
+                reloading = StartCoroutine(Reload());
+            }
+        }
+
+        //Fire a pellet if player left-clicks. 
+        if (Input.GetMouseButtonDown(0)) {
+            if (canFire && ammo > 0) Fire();
+        }
+    }
+
+    /// <summary>
+    /// An start method containing the common operations that most weapons will use. 
+    /// </summary>
+    public void CommonStart() {
+        cam = FindObjectOfType<CameraMan>().GetCamera();
+        host.currentWeapon = this;
+    }
+
+    /// <summary>
     /// Fire a weapon. A weapon can a fire a weapon is differnt ways, so this function is left 
     /// for the children to implement. 
     /// </summary>
     protected abstract void Fire();
+
+
 }

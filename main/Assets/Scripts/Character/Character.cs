@@ -93,6 +93,8 @@ public abstract class Character : MonoBehaviour
 
     public void TakeDamage(int damage) {
 
+        Debug.Log("Damage Dealt: " + damage);
+
         if (sheilds > 0) {
             sheilds -= damage;
             if (sheilds < 0) sheilds = 0;

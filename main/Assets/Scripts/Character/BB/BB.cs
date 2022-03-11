@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BB : Character
 {
+    public WeaponLoader wLoader;
 
     // Start is called before the first frame update
     Vector2 movingDirection;
@@ -18,6 +19,8 @@ public class BB : Character
     void Update()
     {
         DetermineDirection();
+
+        WeaponInventory();
     }
 
     private void DetermineDirection() {
@@ -27,6 +30,16 @@ public class BB : Character
         float moveY = Convert.ToInt32(Input.GetKey(KeyCode.W)) - Convert.ToInt32(Input.GetKey(KeyCode.S));
 
         movingDirection = new Vector2(moveX, moveY);
+    }
+
+    private void WeaponInventory() {
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            wLoader.PreviousWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E)) {
+            wLoader.NextWeapon();
+        }
     }
 
     private void FixedUpdate() {
