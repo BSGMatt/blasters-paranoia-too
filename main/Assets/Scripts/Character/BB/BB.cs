@@ -6,9 +6,14 @@ using UnityEngine;
 public class BB : Character
 {
     public WeaponLoader wLoader;
+    public float def_dashForce = 5f;
+    public float dashDuration = 1f;
+
+    private Coroutine dash = null;
+    private float dashForce = 0;
 
     // Start is called before the first frame update
-    Vector2 movingDirection;
+    private Vector2 movingDirection;
 
     void Start()
     {
@@ -20,7 +25,7 @@ public class BB : Character
     {
         DetermineDirection();
 
-        WeaponInventory();
+        if (wLoader.isInit) WeaponInventory();
     }
 
     private void DetermineDirection() {
@@ -30,6 +35,11 @@ public class BB : Character
         float moveY = Convert.ToInt32(Input.GetKey(KeyCode.W)) - Convert.ToInt32(Input.GetKey(KeyCode.S));
 
         movingDirection = new Vector2(moveX, moveY);
+
+        //If player wants to dash
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            if (dash == null && stamina >= minStaminaToDash) dash = StartCoroutine(Dash());
+        }
     }
 
     private void WeaponInventory() {
@@ -42,6 +52,36 @@ public class BB : Character
         }
     }
 
+    private IEnumerator Dash() {
+
+        float dashTime = 0;
+
+        //The mult and i make it so that the dash accelerates to a maxium and then
+        //decreases smoothly, making a smoother looking dash. 
+        float mult = Mathf.PI / (dashDuration / 0.1f);
+        int i = 0;
+
+        SpriteRenderer sp = GetComponent<SpriteRenderer>();
+
+        sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 0.5f);
+        while (dashTime < dashDuration) {
+            dashForce = def_dashForce * Mathf.Sin(mult * i);
+
+            dashTime += 0.1f;
+            i++;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 1f);
+
+        stamina -= dashCost;
+
+        dash = null;
+
+        yield return 0;
+    }
+
     private void FixedUpdate() {
         PlayerMovement();
     }
@@ -49,6 +89,10 @@ public class BB : Character
     //Method for reading input and making the player move. 
     private void PlayerMovement() {
         if (movementEnabled) c2d.Move(movingDirection, maxSpeed);
+
+        if (dash != null) {
+            rb.AddForce(movingDirection * dashForce, ForceMode2D.Force);
+        }
     }
 
     public override void Die() {

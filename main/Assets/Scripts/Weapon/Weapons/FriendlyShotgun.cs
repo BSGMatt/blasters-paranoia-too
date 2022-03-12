@@ -19,6 +19,10 @@ public class FriendlyShotgun : Weapon
         CommonUpdate();
     }
 
+    public void FixedUpdate() {
+        CommonFixedUpdate();
+    }
+
     protected override void Fire() {
 
         float currentAngle = angle - card.maxSpread;

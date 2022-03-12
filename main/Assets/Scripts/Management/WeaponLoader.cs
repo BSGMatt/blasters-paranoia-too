@@ -33,7 +33,7 @@ public class WeaponLoader : MonoBehaviour
 
     public void Update() {
         if (loadedWeapon != null) {
-            ammoCounterText.text = loadedWeapon.GetComponent<Weapon>().ammo.ToString() + " / " + loadedWeapon.GetComponent<Weapon>().card.maxAmmo;
+            ammoCounterText.text = loadedWeapon.GetComponent<Weapon>().ammo.ToString() + "/" + loadedWeapon.GetComponent<Weapon>().card.maxAmmo;
         }
         else {
             ammoCounterText.text = "";

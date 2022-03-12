@@ -105,9 +105,6 @@ public abstract class Weapon : MonoBehaviour
     /// An update method containing the common operations that most weapons will use. 
     /// </summary>
     public void CommonUpdate() {
-        rb.position = host.GetRigidBody().position;
-
-        AimWithMouse();
 
         //Check if the player pressed the reload key. 
         if (Input.GetKeyDown(KeyCode.R)) {
@@ -120,6 +117,12 @@ public abstract class Weapon : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
             if (canFire && ammo > 0) Fire();
         }
+    }
+
+    public void CommonFixedUpdate() {
+        rb.position = host.GetRigidBody().position;
+
+        AimWithMouse();
     }
 
     /// <summary>

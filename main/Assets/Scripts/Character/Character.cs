@@ -9,20 +9,21 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
 
+    public const int minStaminaToDash = 25;
+    public const int dashCost = 10; //The amount of stamina used to perform a dash. 
+
     [SerializeField] protected CharacterController2D c2d;
     [SerializeField] protected Rigidbody2D rb;
     public BoxCollider2D surfaceCollider;
     public CircleCollider2D nonSurfaceCollider;
 
+    //These values are only used by BB, the player character, but since weapons have references
+    //to only Character objects, not BB objects, I decided to put them here. 
+    public int xp;
+    public int stamina;
+
 
     public Weapon currentWeapon;
-
-    //List all of the Character properties and their default values;
-    #region DEFAULT_PROPERTY_VALUES
-    protected const float def_maxSpeed = 10f;
-    protected const int def_maxHP = 200;
-    protected const float def_dmg_taken = 1f;
-    #endregion
 
     /// <summary>
     /// <para>The maximum speed the character will move without any modifiers applied.
@@ -31,18 +32,18 @@ public abstract class Character : MonoBehaviour
     /// this value. </para>
     /// 
     /// </summary>
-    [SerializeField] protected float maxSpeed = def_maxSpeed;
+    [SerializeField] protected float maxSpeed = 10f;
 
     /// <summary>
     /// The maximum amount of damage the character can take. 
     /// </summary>
-    [SerializeField] protected int maxHP = def_maxHP;
+    [SerializeField] protected int maxHP = 200;
 
     /// <summary>
     /// <para>A percente determining how much of the incoming damage that the
     /// character will take. </para>
     /// </summary>
-    [SerializeField] protected float dmgTaken = def_dmg_taken;
+    [SerializeField] protected float dmgTaken;
 
     /// <summary>
     /// The amount of sheild points the character has. 
@@ -75,9 +76,8 @@ public abstract class Character : MonoBehaviour
     /// <para>Variables for storing the modifier values. Did this to avoid having to make a reference to
     /// the old speed/dmgtaken/hp values and check again when the effect is over to set back to the old values, etc. </para>
     /// </summary>
-    protected float currentSpeedModValue = 1f;
-    protected float currentDmgTakenModValue = 1f;
-    protected float currentMaxHPModValue = 1f;
+    public float currentSpeedModValue = 1f;
+    public float currentDmgDealtModValue = 1f;
 
     // Start is called before the first frame update
     void Start()

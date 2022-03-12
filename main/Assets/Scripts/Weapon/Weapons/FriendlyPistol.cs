@@ -20,6 +20,10 @@ public class FriendlyPistol : Weapon
         CommonUpdate();
     }
 
+    public void FixedUpdate() {
+        CommonFixedUpdate();
+    }
+
     //Launches a pellet. 
     protected override void Fire() {
         CreatePellet(card, angle);
