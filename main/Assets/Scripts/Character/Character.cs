@@ -10,12 +10,13 @@ public abstract class Character : MonoBehaviour
 {
 
     public const int minStaminaToDash = 25;
-    public const int dashCost = 10; //The amount of stamina used to perform a dash. 
+    public const int dashCost = 10; //The amount of stamina used to perform a dash.
 
     [SerializeField] protected CharacterController2D c2d;
     [SerializeField] protected Rigidbody2D rb;
     public BoxCollider2D surfaceCollider;
     public CircleCollider2D nonSurfaceCollider;
+    public StatsManager statsManager;
 
     //These values are only used by BB, the player character, but since weapons have references
     //to only Character objects, not BB objects, I decided to put them here. 
@@ -35,25 +36,24 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float maxSpeed = 10f;
 
     /// <summary>
-    /// The maximum amount of damage the character can take. 
+    /// The amount of stamina the character has. Stamina affects the players ability to move. 
     /// </summary>
-    [SerializeField] protected int maxHP = 200;
+    public int maxStamina = 100;
 
     /// <summary>
-    /// <para>A percente determining how much of the incoming damage that the
-    /// character will take. </para>
+    /// The maximum amount of damage the character can take. 
     /// </summary>
-    [SerializeField] protected float dmgTaken;
+    public int maxHP = 200;
 
     /// <summary>
     /// The amount of sheild points the character has. 
     /// </summary>
-    protected int sheilds;
+    public int sheilds;
     
     /// <summary>
     /// The amount of hit points the character has. 
     /// </summary>
-    protected int hp;
+    public int hp;
 
     /// <summary>
     /// Is this Character an enemy?
@@ -120,10 +120,6 @@ public abstract class Character : MonoBehaviour
     public void CommonDieMethod() {
         if (currentWeapon != null) Destroy(currentWeapon.gameObject);
         Destroy(gameObject);
-    }
-
-    public void SetHP(int hp) {
-        this.hp = hp;
     }
 
     public Rigidbody2D GetRigidBody() {

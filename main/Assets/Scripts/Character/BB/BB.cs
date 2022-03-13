@@ -100,7 +100,7 @@ public class BB : Character
     }
 
     public override void Init() {
-        SetHP(maxHP);
+        hp = maxHP;
         isEnemy = false;
     }
 
