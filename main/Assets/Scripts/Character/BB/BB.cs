@@ -26,6 +26,8 @@ public class BB : Character
         DetermineDirection();
 
         if (wLoader.isInit) WeaponInventory();
+
+        CheckToUseAPowerUp();
     }
 
     private void DetermineDirection() {
@@ -49,6 +51,16 @@ public class BB : Character
 
         if (Input.GetKeyDown(KeyCode.E)) {
             wLoader.NextWeapon();
+        }
+    }
+
+    /// <summary>
+    /// Check if the player pressed on of the hotbar buttons to use an item. 
+    /// </summary>
+    private void CheckToUseAPowerUp() {
+        int pcSlot = FindObjectOfType<InventoryManager>().HotBarButtonPressed();
+        if (pcSlot != -1 && FindObjectOfType<StatsManager>().ApplyPWEffect(FindObjectOfType<InventoryManager>().powerups.Peek(pcSlot))) {
+            FindObjectOfType<InventoryManager>().powerups.Pop(pcSlot);
         }
     }
 
@@ -100,7 +112,7 @@ public class BB : Character
     }
 
     public override void Init() {
-        hp = maxHP;
+        hp = maxHP / 2;
         isEnemy = false;
     }
 

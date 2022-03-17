@@ -58,7 +58,8 @@ public class InventoryManager : MonoBehaviour
     /// <summary>
     /// Iterates through each hotbar to check if the player pressed a key associated with one of them. 
     /// </summary>
-    /// <returns>The slot that the hotbar's key was associated with. </returns>
+    /// <returns>The slot that the hotbar's key was associated with. For example, if the key to use an item in slot 1 is Numpad 1, then 
+    /// the method will return 1 if if Numpad 1 is pressed. </returns>
     public int HotBarButtonPressed() {
 
         for (int i = 0; i < powerupHotBar.Length; i++) {
