@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// A base class used containing all of the methods and references shared between Character types
@@ -8,6 +9,9 @@ using UnityEngine;
 /// </summary>
 public abstract class Character : MonoBehaviour
 {
+
+    public const float timeToStartPassiveHeal = 2f;
+    public const int passiveHealPerSecond = 5;
 
     public const int minStaminaToDash = 25;
     public const int dashCost = 10; //The amount of stamina used to perform a dash.
@@ -22,6 +26,9 @@ public abstract class Character : MonoBehaviour
     //to only Character objects, not BB objects, I decided to put them here. 
     public int xp;
     public int stamina;
+    public int level;
+
+    public UnityEvent takenDamage;
 
 
     public Weapon currentWeapon;
@@ -79,6 +86,10 @@ public abstract class Character : MonoBehaviour
     public float currentSpeedModValue = 1f;
     public float currentDmgDealtModValue = 1f;
 
+    public void Awake() {
+        takenDamage = new UnityEvent();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +103,8 @@ public abstract class Character : MonoBehaviour
     }
 
     public void TakeDamage(int damage) {
+
+        takenDamage.Invoke();
 
         Debug.Log("Damage Dealt: " + damage);
 

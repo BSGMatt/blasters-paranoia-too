@@ -15,7 +15,7 @@ MonoBehaviour:
   unlockPrice: 50
   name: Health in a Can
   prefab: {fileID: 0}
-  effect: 0
+  effect: 2
   amount: 200
-  duration: 0
+  duration: 8
   hotbarSprite: {fileID: 21300000, guid: dd584f53ff77f6e469dff671056c4fa5, type: 3}

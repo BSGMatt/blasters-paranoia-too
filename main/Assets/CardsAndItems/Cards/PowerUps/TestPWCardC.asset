@@ -17,5 +17,5 @@ MonoBehaviour:
   prefab: {fileID: 0}
   effect: 5
   amount: 1.5
-  duration: 30
+  duration: 5
   hotbarSprite: {fileID: 21300000, guid: 44e3d73e98eb8bb49a3ef3c353d67f5a, type: 3}

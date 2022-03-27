@@ -59,6 +59,7 @@ public class BB : Character
     /// </summary>
     private void CheckToUseAPowerUp() {
         int pcSlot = FindObjectOfType<InventoryManager>().HotBarButtonPressed();
+        //Check if the stats manager actually applied the status effect before removing the item from the inventory. 
         if (pcSlot != -1 && FindObjectOfType<StatsManager>().ApplyPWEffect(FindObjectOfType<InventoryManager>().powerups.Peek(pcSlot))) {
             FindObjectOfType<InventoryManager>().powerups.Pop(pcSlot);
         }
@@ -100,7 +101,7 @@ public class BB : Character
 
     //Method for reading input and making the player move. 
     private void PlayerMovement() {
-        if (movementEnabled) c2d.Move(movingDirection, maxSpeed);
+        if (movementEnabled) c2d.Move(movingDirection, maxSpeed * currentSpeedModValue);
 
         if (dash != null) {
             rb.AddForce(movingDirection * dashForce, ForceMode2D.Force);
@@ -112,7 +113,7 @@ public class BB : Character
     }
 
     public override void Init() {
-        hp = maxHP / 2;
+        hp = maxHP / 2; //I have this set for testing purposes. should be hp = maxHP;
         isEnemy = false;
     }
 

@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     #region phase_methods
     private void ToPrepPhase() {
         commentary.text = "PREPARE YOUR DEFENSES";

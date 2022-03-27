@@ -66,7 +66,7 @@ public abstract class Weapon : MonoBehaviour
         Physics2D.IgnoreCollision(pellet.GetComponent<Collider2D>(), host.nonSurfaceCollider);
 
         //Set starting position and velocity. 
-        pellet.GetComponent<Pellet>().damage = card.dmgPerPellet;
+        pellet.GetComponent<Pellet>().damage = (int) (card.dmgPerPellet * host.currentDmgDealtModValue);
         pellet.GetComponent<Pellet>().isEnemy = isEnemy;
         pellet.GetComponent<Pellet>().Init(new Vector2(card.pelletSpeed * Mathf.Cos(trajectory * Mathf.Deg2Rad),
             card.pelletSpeed * Mathf.Sin(trajectory * Mathf.Deg2Rad)), rb.position);
