@@ -13,11 +13,10 @@ public abstract class Character : MonoBehaviour
     public const float timeToStartPassiveHeal = 2f;
     public const int passiveHealPerSecond = 5;
 
-    public const int minStaminaToDash = 25;
     public const int dashCost = 10; //The amount of stamina used to perform a dash.
 
-    [SerializeField] protected CharacterController2D c2d;
-    [SerializeField] protected Rigidbody2D rb;
+    public CharacterController2D c2d;
+    public Rigidbody2D rb;
     public BoxCollider2D surfaceCollider;
     public CircleCollider2D nonSurfaceCollider;
     public StatsManager statsManager;
@@ -29,6 +28,7 @@ public abstract class Character : MonoBehaviour
     public int level;
 
     public UnityEvent takenDamage;
+    public UnityEvent startedMoving;
 
 
     public Weapon currentWeapon;
@@ -88,6 +88,7 @@ public abstract class Character : MonoBehaviour
 
     public void Awake() {
         takenDamage = new UnityEvent();
+        startedMoving = new UnityEvent();
     }
 
     // Start is called before the first frame update

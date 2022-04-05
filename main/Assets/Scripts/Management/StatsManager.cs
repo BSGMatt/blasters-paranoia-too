@@ -24,9 +24,12 @@ public class StatsManager : MonoBehaviour {
     private Coroutine stam;
     private Coroutine dmgboost;
     private Coroutine spdboost;
+
     private Coroutine passiveHeal;
     private Coroutine waitToHeal;
+
     private Coroutine passiveStam;
+    private Coroutine waitToStam;
 
     /// <summary>
     /// set the min and max values of every status bar. 
@@ -49,12 +52,18 @@ public class StatsManager : MonoBehaviour {
         xpBar.maxValue = currentXPThreshold;
 
         player.takenDamage.AddListener(StopHealingPassive);
+        player.startedMoving.AddListener(StopStaminaPassive);
+
+        waitToHeal = StartCoroutine(WaitToPassivelyHeal());
+        waitToStam = StartCoroutine(WaitToRegenStamina());
     }
 
     public void Update() {
         UpdateStatusBars();
 
         AddXP();
+
+        Debug.Log(player.GetRigidBody().velocity);
     }
 
     public void UpdateStatusBars() {
@@ -137,6 +146,7 @@ public class StatsManager : MonoBehaviour {
 
         while (t < duration) {
 
+            //interpolate intermediate healing values to avoid healing decimal amounts. 
             player.hp += (int) amount / (int) (duration / tickRate);
             if (ticks % countUp == 0) player.hp += 1;
 
@@ -204,10 +214,64 @@ public class StatsManager : MonoBehaviour {
     }
 
     private IEnumerator WaitToPassivelyHeal() {
+
+        bool ok = false;
+        while (!ok) {
+            
+            yield return new WaitForSeconds(Character.timeToStartPassiveHeal);
+            ok = true;
+        }
+
+        waitToHeal = null;
+
+        passiveHeal = StartCoroutine(PassiveHeal());
+
         yield return 0;
     }
 
     private IEnumerator PassiveHeal() {
+
+        while (player.hp < player.maxHP) {
+
+            player.hp += 2;
+
+            yield return new WaitForSeconds(tickRate);
+        }
+
+        passiveHeal = null;
+
+        yield return 0;
+    }
+
+
+    private IEnumerator WaitToRegenStamina() {
+
+        bool ok = false;
+        while (!ok) {
+
+            yield return new WaitForSeconds(Character.timeToStartPassiveHeal / 2);
+            ok = true;
+        }
+
+        waitToStam = null;
+
+        passiveStam = StartCoroutine(PassiveStaminaRegen());
+
+        yield return 0;
+    }
+
+
+    private IEnumerator PassiveStaminaRegen() {
+
+        while (player.stamina < player.maxStamina && player.GetRigidBody().velocity == Vector2.zero) {
+
+            player.stamina += 1;
+
+            yield return new WaitForSeconds(tickRate);
+        }
+
+        passiveStam = null;
+
         yield return 0;
     }
 
@@ -217,16 +281,33 @@ public class StatsManager : MonoBehaviour {
     public void StopHealingPassive() {
         if (passiveHeal != null) {
             StopCoroutine(passiveHeal);
+            passiveHeal = null;
         }
 
         if (waitToHeal != null) {
             StopCoroutine(waitToHeal);
+            waitToHeal = null;
         }
 
         waitToHeal = StartCoroutine(WaitToPassivelyHeal());
     }
 
-    private IEnumerator PassiveStaminaRegen() {
-        yield return 0;
+    /// <summary>
+    /// Stops the current stamina passive and starts the timer that waits to start regenerating stamina again. 
+    /// </summary>
+    public void StopStaminaPassive() {
+        if (passiveStam != null) {
+            StopCoroutine(passiveHeal);
+            passiveStam = null;
+        }
+
+        if (waitToStam != null) {
+            StopCoroutine(waitToStam);
+            waitToStam = null;
+        }
+
+        waitToStam = StartCoroutine(WaitToRegenStamina());
     }
+
+
 }

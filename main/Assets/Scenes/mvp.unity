@@ -6191,8 +6191,11 @@ MonoBehaviour:
   takenDamage:
     m_PersistentCalls:
       m_Calls: []
+  startedMoving:
+    m_PersistentCalls:
+      m_Calls: []
   currentWeapon: {fileID: 0}
-  maxSpeed: 8
+  maxSpeed: 6
   maxStamina: 100
   maxHP: 200
   sheilds: 0

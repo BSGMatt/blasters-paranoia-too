@@ -40,7 +40,7 @@ public class BB : Character
 
         //If player wants to dash
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            if (dash == null && stamina >= minStaminaToDash) dash = StartCoroutine(Dash());
+            if (dash == null && stamina > 0) dash = StartCoroutine(Dash());
         }
     }
 
@@ -89,6 +89,8 @@ public class BB : Character
         sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 1f);
 
         stamina -= dashCost;
+         
+        if (stamina < 0) stamina = 0;
 
         dash = null;
 
@@ -101,6 +103,8 @@ public class BB : Character
 
     //Method for reading input and making the player move. 
     private void PlayerMovement() {
+        if (movingDirection != Vector2.zero) startedMoving.Invoke();
+
         if (movementEnabled) c2d.Move(movingDirection, maxSpeed * currentSpeedModValue);
 
         if (dash != null) {
