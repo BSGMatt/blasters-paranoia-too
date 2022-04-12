@@ -12,6 +12,7 @@ public abstract class Character : MonoBehaviour
 
     public const float timeToStartPassiveHeal = 2f;
     public const int passiveHealPerSecond = 5;
+    public const float tickRate = 0.125f;
 
     public const int dashCost = 10; //The amount of stamina used to perform a dash.
 

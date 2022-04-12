@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject shopUI;
     public GameObject mainUI;
+    public GameObject builder;
     public Phase phase = Phase.IDLE;
     public int bossWave = 5;
     public int wave = 1;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Text timerDisplay;
     public Text commentary;
     public bool shopEnabled = false;
+    public bool builderEnabled = false;
     public bool movementEnabled = true;
 
     private int time;
@@ -61,8 +63,12 @@ public class GameManager : MonoBehaviour
 
         timerDisplay.text = "Time: " + time.ToString();
 
-        if (Input.GetKeyDown(KeyCode.F)) {
+        if (Input.GetKeyDown(KeyCode.F) && !builderEnabled) {
             ActivateShop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            ActivateBuilder();
         }
 
 
@@ -87,8 +93,10 @@ public class GameManager : MonoBehaviour
     private void ToIdlePhase() {
         phase = Phase.IDLE;
         shopEnabled = false;
+        builderEnabled = false;
         shopUI.SetActive(shopEnabled);
         mainUI.SetActive(!shopEnabled);
+        builder.SetActive(builderEnabled);
     }
 
     private void Idle() {
@@ -146,6 +154,13 @@ public class GameManager : MonoBehaviour
         }
 
         movementEnabled = !movementEnabled;
+    }
+
+    private void ActivateBuilder() {
+        mainUI.SetActive(builderEnabled);
+        builder.SetActive(!builderEnabled);
+
+        builderEnabled = !builderEnabled;
     }
 
     public void DisableAllCharacterMovement() {

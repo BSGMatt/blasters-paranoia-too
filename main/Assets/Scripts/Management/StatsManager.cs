@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class StatsManager : MonoBehaviour {
 
-    private const float tickRate = 0.125f;
     private LevelManager lm;
 
     public Character player;
@@ -142,17 +141,17 @@ public class StatsManager : MonoBehaviour {
 
         float t = 0;
         int ticks = 0;
-        int countUp = (int) amount % (int) (duration / tickRate);
+        int countUp = (int) amount % (int) (duration / Character.tickRate);
 
         while (t < duration) {
 
             //interpolate intermediate healing values to avoid healing decimal amounts. 
-            player.hp += (int) amount / (int) (duration / tickRate);
+            player.hp += (int) amount / (int) (duration / Character.tickRate);
             if (ticks % countUp == 0) player.hp += 1;
 
-            t += tickRate;
+            t += Character.tickRate;
             ticks++;
-            yield return new WaitForSeconds(tickRate);
+            yield return new WaitForSeconds(Character.tickRate);
         }
 
         heal = null;
@@ -164,16 +163,16 @@ public class StatsManager : MonoBehaviour {
 
         float t = 0;
         int ticks = 0;
-        int countUp = (int)amount % (int)(duration / tickRate);
+        int countUp = (int)amount % (int)(duration / Character.tickRate);
 
         while (t < duration) {
 
-            player.stamina += (int)amount / (int)(duration / tickRate);
+            player.stamina += (int)amount / (int)(duration / Character.tickRate);
             if (ticks % countUp == 0) player.stamina += 1;
 
-            t += tickRate;
+            t += Character.tickRate;
             ticks++;
-            yield return new WaitForSeconds(tickRate);
+            yield return new WaitForSeconds(Character.tickRate);
         }
 
         stam = null;
@@ -235,7 +234,7 @@ public class StatsManager : MonoBehaviour {
 
             player.hp += 2;
 
-            yield return new WaitForSeconds(tickRate);
+            yield return new WaitForSeconds(Character.tickRate);
         }
 
         passiveHeal = null;
@@ -267,7 +266,7 @@ public class StatsManager : MonoBehaviour {
 
             player.stamina += 1;
 
-            yield return new WaitForSeconds(tickRate);
+            yield return new WaitForSeconds(Character.tickRate);
         }
 
         passiveStam = null;
