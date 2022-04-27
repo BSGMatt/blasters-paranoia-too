@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject shopUI;
     public GameObject mainUI;
+    public GameObject builderUI;
     public GameObject builder;
     public Phase phase = Phase.IDLE;
     public int bossWave = 5;
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
         shopUI.SetActive(shopEnabled);
         mainUI.SetActive(!shopEnabled);
         builder.SetActive(builderEnabled);
+        builderUI.SetActive(builderEnabled);
     }
 
     private void Idle() {
@@ -159,6 +161,7 @@ public class GameManager : MonoBehaviour
     private void ActivateBuilder() {
         mainUI.SetActive(builderEnabled);
         builder.SetActive(!builderEnabled);
+        builderUI.SetActive(!builderEnabled);
 
         builderEnabled = !builderEnabled;
     }

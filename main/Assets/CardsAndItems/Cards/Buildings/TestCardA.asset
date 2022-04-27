@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockPrice: 100
   name: Block
-  prefab: {fileID: 0}
+  prefab: {fileID: 3557481334030994503, guid: fd7c7bc3af997b3489f212aa23ad0238, type: 3}
   buildPrice: 10
-  maxHealth: 200
+  maxHealth: 125

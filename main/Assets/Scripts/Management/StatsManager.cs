@@ -296,7 +296,7 @@ public class StatsManager : MonoBehaviour {
     /// </summary>
     public void StopStaminaPassive() {
         if (passiveStam != null) {
-            StopCoroutine(passiveHeal);
+            StopCoroutine(passiveStam);
             passiveStam = null;
         }
 
