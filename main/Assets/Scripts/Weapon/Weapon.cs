@@ -106,6 +106,12 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     public void CommonUpdate() {
 
+        //Don't do anything if the player is trying to access the shop. 
+        if (FindObjectOfType<GameManager>().shopEnabled) {
+            return;
+        }
+
+
         //Check if the player pressed the reload key. 
         if (Input.GetKeyDown(KeyCode.R)) {
             if (reloading == null) {
