@@ -139,8 +139,12 @@ public abstract class Weapon : MonoBehaviour
         host.currentWeapon = this;
     }
 
+    protected void GrabHostTarget() {
+        target = ((Enemy)host).aiController.target.transform;
+    }
+
     /// <summary>
-    /// Fire a weapon. A weapon can a fire a weapon is differnt ways, so this function is left 
+    /// Fire a weapon. A weapon can a fire a weapon is different ways, so this function is left 
     /// for the children to implement. 
     /// </summary>
     protected abstract void Fire();
