@@ -14,10 +14,11 @@ public class Builder : MonoBehaviour {
     public InventoryManager im;
     public GameObject buildingPreview;
     public Text modeDisplayText;
+    public Tilemap mapGeometery;
 
     private int buildingListIndex;
 
-    private bool touchingBuilding = false;
+    private RaycastHit2D[] hits;
 
     public Camera cam; //Camera used to update its position, usually the camera that follows the player. 
 
@@ -41,12 +42,12 @@ public class Builder : MonoBehaviour {
         }
 
         if (mode) {
-            Debug.Log("You're now in Deploy mode.");
+            //Debug.Log("You're now in Deploy mode.");
             modeDisplayText.text = "DEPLOY MODE";
             DeployMode();
         }
         else {
-            Debug.Log("You're now in Edit mode.");
+            //Debug.Log("You're now in Edit mode.");
             modeDisplayText.text = "EDIT MODE";
             EditMode();
         }
@@ -73,9 +74,28 @@ public class Builder : MonoBehaviour {
         buildingPreview.GetComponent<SpriteRenderer>().sprite = buildlingToDeploy.prefab.GetComponent<SpriteRenderer>().sprite;
         buildingPreview.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
 
+        Vector3Int offset = new Vector3Int(-1, -1, 0);
+
+        //Check if there is a map geometery tile or a building under the builder. 
+        if (mapGeometery.GetTile(BSGUtility.ToVectorInt(transform.position, false) + offset) != null) {
+            return;
+        }
+
+        //Clear the hits array and fill it with new collider data
+        hits = new RaycastHit2D[10];
+        Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits);
+
+        //Check if the builder is on top of any existing buildings
+        foreach (RaycastHit2D hit in hits) {
+            Debug.Log("Hit: " + hit.collider);
+            if (hit && hit.collider.gameObject.GetComponent<Building>() != null) {
+                return;
+            }
+        }
+
         //Attempt deploy on left-click. 
         if (Input.GetMouseButtonDown(0)) {
-            if (FindObjectOfType<GameManager>().cash >= buildlingToDeploy.buildPrice && !touchingBuilding) {
+            if (FindObjectOfType<GameManager>().cash >= buildlingToDeploy.buildPrice) {
                 FindObjectOfType<GameManager>().cash -= buildlingToDeploy.buildPrice;
 
                 GameObject b = GameObject.Instantiate(buildlingToDeploy.prefab, transform.position, Quaternion.identity);
@@ -102,18 +122,11 @@ public class Builder : MonoBehaviour {
 
     //Check if the builder object is near a deployed building
     public void OnTriggerEnter2D(Collider2D collision) {
-        Building b = collision.gameObject.GetComponent<Building>();
-        if (b != null) {
-            Debug.Log(b.card.infoText());
-            touchingBuilding = true;
-        }
+
     }
 
     public void OnTriggerExit2D(Collider2D collision) {
-        Building b = collision.gameObject.GetComponent<Building>();
-        if (b != null) {
-            touchingBuilding = false;
-        }
+
     }
 
 

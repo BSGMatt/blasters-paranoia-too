@@ -62,7 +62,7 @@ public class StatsManager : MonoBehaviour {
 
         AddXP();
 
-        Debug.Log(player.GetRigidBody().velocity);
+        //Debug.Log(player.GetRigidBody().velocity);
     }
 
     public void UpdateStatusBars() {

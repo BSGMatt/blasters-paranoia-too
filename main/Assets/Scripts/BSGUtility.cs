@@ -52,8 +52,13 @@ public static class BSGUtility
     /// </summary>
     /// <param name="vec"></param>
     /// <returns></returns>
-    public static Vector3Int ToVectorInt(Vector3 vec) {
-        return new Vector3Int(BSGUtility.Round(vec.x), BSGUtility.Round(vec.y), BSGUtility.Round(vec.z));
+    public static Vector3Int ToVectorInt(Vector3 vec, bool round) {
+
+        if (round) {
+            return new Vector3Int(BSGUtility.Round(vec.x), BSGUtility.Round(vec.y), BSGUtility.Round(vec.z));
+        }
+
+        return new Vector3Int((int) vec.x, (int) vec.y, (int) vec.z);
     }
 
     /// <summary>

@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
             ActivateShop();
         }
 
-        if (Input.GetKeyDown(KeyCode.B)) {
+        if (Input.GetKeyDown(KeyCode.B) && !shopEnabled) {
             ActivateBuilder();
         }
 
