@@ -14,6 +14,10 @@ public abstract class Character : MonoBehaviour
     public const int passiveHealPerSecond = 5;
     public const float tickRate = 0.125f;
 
+    public const int s_move = 0;
+    public const int s_attack = 1;
+    public const int s_both = 2;
+
     public const int dashCost = 10; //The amount of stamina used to perform a dash.
 
     public CharacterController2D c2d;
