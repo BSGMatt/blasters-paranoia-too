@@ -30,6 +30,7 @@ public abstract class Weapon : MonoBehaviour
     protected float angle;
 
     protected Coroutine reloading;
+    protected Coroutine firing;
 
     /// <summary>
     /// Angle the weapon based on where the mouse is on screen. 
@@ -125,6 +126,20 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Similar to CommonUpdate(), but for weapons held by enemies. 
+    /// </summary>
+    public void CommonEnemyUpdate()
+    {
+        //Don't do anything if the player is trying to access the shop. 
+        if (FindObjectOfType<GameManager>().shopEnabled)
+        {
+            return;
+        }
+
+        if (canFire && ammo > 0) Fire();
+    }
+
     public void CommonFixedUpdate() {
         rb.position = host.GetRigidBody().position;
 
@@ -136,6 +151,7 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     public void CommonStart() {
         cam = FindObjectOfType<CameraMan>().GetCamera();
+        ammo = card.maxAmmo;
         host.currentWeapon = this;
     }
 
@@ -149,5 +165,27 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     protected abstract void Fire();
 
+    /// <summary>
+    /// Coroutine to automatically fire a weapon. 
+    /// </summary>
+    /// <returns></returns>
+    protected IEnumerator FireCoroutine()
+    {
+        
+        while (ammo > 0)
+        {
+            Fire();
+            yield return new WaitForSeconds(card.fireRate);
+        }
 
+        //Reload Ammo
+
+        yield return new WaitForSeconds(card.reloadSpeed);
+
+        ammo = card.maxAmmo;
+
+        firing = null;
+
+        yield return null;
+    }
 }

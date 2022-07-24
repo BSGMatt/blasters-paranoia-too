@@ -10,28 +10,64 @@ public class Enemy : Character, IComparable<Enemy>
     public int state;
     public int difficulty;
     public int targetType; //0 - Player, 1 - Building
+    public GameObject weaponObj;
+    public Approach approach;
 
     // Start is called before the first frame update
     void Start() {
         aiController = GetComponent<AIController>();
         state = 0; //Set state to move;
         aiController.InitPath(targetType);
+
+        //initialize the enemy's weapon. 
+        currentWeapon = GameObject.Instantiate(weaponObj, transform.position, Quaternion.identity).GetComponent<Weapon>();
+        currentWeapon.host = this;
+
         if (currentWeapon != null) currentWeapon.canFire = false;
         movementEnabled = true;
+
+        //set initial state based on its approach
+        switch(approach)
+        {
+            default:
+                state = Character.s_move;
+                currentWeapon.canFire = false;
+                break;
+            case Approach.AGGRO:
+                state = Character.s_both;
+                currentWeapon.canFire = true;
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update() {
-
+        
     }
 
     void FixedUpdate() {
+
+        //Keep following path until the end has been reached. 
         if (!aiController.reachedEndOfPath && movementEnabled) {
-            aiController.RunPath();
+            aiController.RunPath();        
         }
 
-        if (aiController.reachedEndOfPath) {
-            aiController.InitPath(targetType);
+        if (aiController.reachedEndOfPath)
+        {
+            currentWeapon.canFire = true;
+            state = Character.s_attack;
+
+            if (Vector2.Distance(transform.position, aiController.target.position) >= aiController.maxDistance)
+            {
+                aiController.InitPath(targetType);
+                state = Character.s_both;
+
+                if (approach == Approach.PASSIVE)
+                {
+                    currentWeapon.canFire = false;
+                    state = Character.s_move;
+                }
+            }
         }
     }
 
@@ -66,10 +102,5 @@ public class Enemy : Character, IComparable<Enemy>
     public override void Init() {
         Debug.LogWarning("This init function doesn't do anything. ");
     }
-
-    public void Attack() {
-        currentWeapon.canFire = true;
-    }
-
 
 }

@@ -5,9 +5,11 @@ using Pathfinding;
 
 public class AIController : MonoBehaviour
 {
-    public Transform target;
-    public Enemy enemy;
+    public Transform target; //The target the enemy will move towards. 
+    public Enemy enemy; //The enemy that this controller belongs to. 
     public bool reachedEndOfPath = false;
+    public float minDistance; //The minimum distance the enemy will be from the target before stopping. 
+    public float maxDistance; //The maximum distance the enemy will be from the target before it starts moving again.
 
     private Path path;
     private int currentWaypoint = 0;
@@ -26,14 +28,17 @@ public class AIController : MonoBehaviour
             default:
                 return FindObjectOfType<BB>().transform;
             case 1:
+
+                //Find the nearest building to target. 
+
                 Building[] b = FindObjectsOfType<Building>();
-                if (b.Length == 0) return FindObjectOfType<BB>().transform;
+                if (b.Length == 0) return FindObjectOfType<BB>().transform; //default to player if no buildings are present.
                 Transform ret = null;
-                float minDistance = 10000000;
+                float distFromBldg = 10000000;
                 for (int i = 0; i < b.Length; i++) {
                     float dist = Vector2.Distance(transform.position, b[i].transform.position);
-                    if (dist < minDistance) {
-                        minDistance = dist;
+                    if (dist < distFromBldg) {
+                        distFromBldg = dist;
                         ret = b[i].transform;
                     }
                 }
@@ -62,6 +67,7 @@ public class AIController : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count) {
             reachedEndOfPath = true;
+            enemy.c2d.StopMoving();
             return;
         }
         else {
@@ -74,10 +80,16 @@ public class AIController : MonoBehaviour
 
         enemy.c2d.Move(direction, enemy.GetMaxSpeed() * enemy.currentSpeedModValue);
 
-        float distance = Vector2.Distance(enemy.GetRigidBody().position, path.vectorPath[currentWaypoint]);
+        //Check if minDistance is reached. if so, set current waypoint to the last waypoint of the path. 
+        if (Vector2.Distance(enemy.GetRigidBody().position, target.position) <= minDistance) {
+            currentWaypoint = path.vectorPath.Count;
+        }
+        else  {
+            float distance = Vector2.Distance(enemy.GetRigidBody().position, path.vectorPath[currentWaypoint]);
 
-        if (distance < nextWaypointDistance) {
-            currentWaypoint++;
+            if (distance < nextWaypointDistance) {
+                currentWaypoint++;
+            }      
         }
     }
 
