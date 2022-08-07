@@ -33,25 +33,32 @@ public abstract class Weapon : MonoBehaviour
     protected Coroutine firing;
 
     /// <summary>
-    /// Angle the weapon based on where the mouse is on screen. 
+    /// Aims the weapon based on the mouse position, 
+    /// changing the rotation and angle in the process. 
     /// </summary>
-    protected void AimWithMouse() {
+    /// <returns>the angle of the weapon's rotation.</returns>
+    protected float AimWithMouse() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 lookDir = mousePos - rb.position;
 
         angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
+
+        return angle;
     }
 
     /// <summary>
-    /// Angles the weapon such that it points to the current target. 
+    /// Aims the weapon at its target, changing the rotation and angle in the process. 
     /// </summary>
-    protected void AimAtTarget() {
+    /// <returns>the angle of the weapon's rotation. </returns>
+    protected float AimAtTarget() {
         Vector2 lookDir = (Vector2)target.position - rb.position;
 
         angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
+
+        return angle;
     }
 
     /// <summary>
@@ -157,6 +164,20 @@ public abstract class Weapon : MonoBehaviour
 
     protected void GrabHostTarget() {
         target = ((Enemy)host).aiController.target.transform;
+    }
+
+    /// <summary>
+    /// Generates a random value in the range [-maxSpread, -minSpread]U[minSpread, maxSpread].
+    /// Used to create spread that varies between shots. 
+    /// </summary>
+    /// <returns>The randomly generated spread value.</returns>
+    protected float RandomSpreadValue() {
+        int rand = (int)Mathf.Round(Random.value);
+
+        if (rand == 1)
+            return Random.Range(card.minSpread, card.maxSpread);
+        else
+            return Random.Range(-card.maxSpread, -card.minSpread);
     }
 
     /// <summary>

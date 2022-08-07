@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public bool builderEnabled = false;
     public bool movementEnabled = true;
 
+    public SpawnManager spawnManager;
+
     private int time;
     private Coroutine timer; 
 
@@ -72,15 +74,21 @@ public class GameManager : MonoBehaviour
             ActivateBuilder();
         }
 
-
+        //Press the enter key to go to next phase. 
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            StopCoroutine(timer);
+            timer = null;
+        }
     }
 
-    private void ToSwarmPhase() {
-
+    private void ToSwarmPhase() {      
+        spawnManager.ActivateSpawner();
+        phase = Phase.SWARM;
     }
 
     private void Swarm() {
-
+        timerDisplay.text = "FIGHT!";
+        commentary.text = spawnManager.enemiesLeft + " ENEMIES LEFT";
     }
 
     private void ToBossPhase() {

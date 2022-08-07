@@ -42,7 +42,7 @@ public class Enemy : Character, IComparable<Enemy>
 
     // Update is called once per frame
     void Update() {
-        
+        if (aiController.target == null) aiController.ResetPath();
     }
 
     void FixedUpdate() {
@@ -83,6 +83,8 @@ public class Enemy : Character, IComparable<Enemy>
 
     public override void Die() {
         CommonDieMethod();
+
+        FindObjectOfType<SpawnManager>().enemiesLeft--;
     }
 
     public override void DisableMovement() {

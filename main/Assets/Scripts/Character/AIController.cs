@@ -98,4 +98,9 @@ public class AIController : MonoBehaviour
         path = null;
     }
 
+    public void ResetPath() {
+        StopPath();
+        InitPath(enemy.targetType);
+    }
+
 }
