@@ -28,9 +28,16 @@ public class Pellet : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
+
         if (collision.gameObject.CompareTag("Character")) {
-            if (isEnemy != collision.gameObject.GetComponent<Character>().IsEnemy()) {
-                collision.gameObject.GetComponent<Character>().TakeDamage(damage);
+
+            Character c = collision.gameObject.GetComponent<Character>();
+
+            if (c.invincible) return;
+
+            //Have the character take damage if the pellet has the opposite affiliation
+            if (isEnemy != c.IsEnemy()) {
+                c.TakeDamage(damage);
             }
         }
         else if (collision.gameObject.CompareTag("Pellet")) {

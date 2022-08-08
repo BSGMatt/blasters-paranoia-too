@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject builder;
     public Phase phase = Phase.IDLE;
     public int bossWave = 5;
-    public int wave = 1;
+    public int wave = 0;
     public int preptime = 300;
     public int cash = 0;
     public Text timerDisplay;
@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void ToIdlePhase() {
+        wave++;
+        if (wave > 1) FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
         phase = Phase.IDLE;
         shopEnabled = false;
         builderEnabled = false;
@@ -146,7 +148,7 @@ public class GameManager : MonoBehaviour
         yield return 0;
     }
 
-    private bool IsBossWave() {
+    public bool IsBossWave() {
         return wave % bossWave == 0;
     }
 

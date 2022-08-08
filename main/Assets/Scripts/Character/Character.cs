@@ -80,7 +80,7 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     protected int prefferedApproach;
 
-    ///
+    public bool invincible = false;
 
     protected bool movementEnabled = true;
 

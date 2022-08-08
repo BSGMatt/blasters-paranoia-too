@@ -79,56 +79,77 @@ public class FocalPoint : MonoBehaviour
         Vector3 objBViewport = camera.WorldToViewportPoint(secondary.position);
 
         //Find the distance between the two objects relative to the viewport. 
-        viewportDistance = Vector3.Distance(objAViewport, objBViewport);
+        viewportDistance = objAViewport.y - objBViewport.y;
 
-        //Check if the objects are too far apart for the camera. 
-        if (viewportDistance > 1 - cm.GetLimit()){
-            if (sizeAdjuster != null) StopCoroutine(sizeAdjuster);
-            sizeAdjuster = StartCoroutine(AdjustScreenSize(true));
-        }
 
-        //Check if the camera is zoomed out too much. 
-        if (viewportDistance <= 1 - Mathf.Pow(2, 0.5f)*cm.GetLimit() && camera.orthographicSize > def_cameraSize) {
-            if (sizeAdjuster != null) StopCoroutine(sizeAdjuster);
-            sizeAdjuster = StartCoroutine(AdjustScreenSize(false));
+        if (!BSGUtility.Within(camera.orthographicSize, viewportDistance / 2, 0.1f)) {
+            if (sizeAdjuster == null) StartCoroutine(AdjustScreenSize());
         }
 
     }
 
-    public IEnumerator AdjustScreenSize(bool increase) {
+    public IEnumerator AdjustScreenSize(bool increase) {  
 
         //If we need to zoom out, zoom out. If not, zoom in. 
         if (increase) {
+           
+
             //Zoom out by increasing camera's ortho size. 
-            while (viewportDistance > 1 - cm.GetLimit()) {
+            while (camera.orthographicSize < viewportDistance / 2) {
                 //If its close enough to 1 - the limit, round and stop. 
-                if (BSGUtility.Within(viewportDistance, 1 - cm.GetLimit(), 0.1f)) {
+                if (BSGUtility.Within(camera.orthographicSize, viewportDistance / 2, 0.1f)) {
                     camera.orthographicSize = BSGUtility.RoundToDigit(camera.orthographicSize, 2);
                     break;
                 }
-                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize,
-                camera.orthographicSize + 0.1f * (cm.GetCameraSpeed() * cm.GetCameraSpeed()), Time.deltaTime * cm.GetCameraSpeed());
-                yield return new WaitForEndOfFrame();
+
+                camera.orthographicSize += Time.deltaTime;
+
+                yield return new WaitForSeconds(0.25f);
             }
+
+            /*float amountToZoom = viewportDistance / 2 - camera.orthographicSize;
+
+            while (camer)
+
+            camera.orthographicSize = amountToZoom;*/
+
+            
         }
         else {
-            while (viewportDistance <= 1 - Mathf.Pow(2,0.5f)*cm.GetLimit() && camera.orthographicSize > def_cameraSize) {
+
+            while (camera.orthographicSize >= viewportDistance / 2 && camera.orthographicSize > def_cameraSize) {
                 //Snap camera back to the default size once its close enough. 
                 if (BSGUtility.Within(camera.orthographicSize, def_cameraSize, 0.1f)) {
                     camera.orthographicSize = def_cameraSize;
                     break;
                 }
-                else if (BSGUtility.Within(viewportDistance, 1 - Mathf.Pow(2, 0.5f) * cm.GetLimit(), 0.1f)) {
-                    camera.orthographicSize = BSGUtility.RoundToDigit(camera.orthographicSize, 2);
-                    break;
-                }
-                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize,
-                camera.orthographicSize - 0.1f * (cm.GetCameraSpeed() * cm.GetCameraSpeed()), Time.deltaTime * cm.GetCameraSpeed());
-                yield return new WaitForEndOfFrame();
+
+                camera.orthographicSize -= Time.deltaTime;
+
+                yield return new WaitForSeconds(0.25f);
             }
         }
 
         
+    }
+
+    private IEnumerator AdjustScreenSize() {
+
+        while (!BSGUtility.Within(camera.orthographicSize, viewportDistance / 2, 0.1f)) {
+
+            if (camera.orthographicSize < viewportDistance / 2) {
+                camera.orthographicSize += cm.GetCameraSpeed() * 0.1f;
+            }
+            else if (camera.orthographicSize > viewportDistance / 2){
+                camera.orthographicSize -= cm.GetCameraSpeed() * 0.1f;
+            }
+
+            yield return new WaitForSeconds(0.25f);
+        }
+
+
+        sizeAdjuster = null;
+        yield return null;
     }
 
     /// <summary>

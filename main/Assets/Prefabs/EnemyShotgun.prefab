@@ -122,6 +122,6 @@ MonoBehaviour:
   rb: {fileID: 5050569894837694053}
   cam: {fileID: 0}
   target: {fileID: 0}
-  isEnemy: 0
+  isEnemy: 1
   ammo: 0
   canFire: 1

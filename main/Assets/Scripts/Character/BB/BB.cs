@@ -76,6 +76,10 @@ public class BB : Character
 
         SpriteRenderer sp = GetComponent<SpriteRenderer>();
 
+        stamina -= dashCost;
+
+        invincible = true;
+
         sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 0.5f);
         while (dashTime < dashDuration) {
             dashForce = def_dashForce * Mathf.Sin(mult * i);
@@ -86,10 +90,9 @@ public class BB : Character
             yield return new WaitForSeconds(0.1f);
         }
 
+        invincible = false;
         sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, 1f);
 
-        stamina -= dashCost;
-         
         if (stamina < 0) stamina = 0;
 
         dash = null;

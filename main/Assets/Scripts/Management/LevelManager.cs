@@ -21,17 +21,28 @@ public class LevelManager
         }
     }
 
+    /// <summary>
+    /// Increases player level and adjusts stats accordingly. 
+    /// </summary>
+    /// <returns></returns>
     public int NextLevel() {
-        currentLevel++;
 
-        AssignValuesToLevel();
+        //If there is more xp reward than what was need to level up, 
+        //add the remaining xp after leveling up. 
+        int leftoverXP = player.xp - xpThresholds[currentLevel];
+        currentLevel++;
+        AssignValuesToLevel(leftoverXP);
 
         return xpThresholds[currentLevel];
     }
 
-    private void AssignValuesToLevel() {
+    /// <summary>
+    /// modifies the player's stats based on the current level. 
+    /// </summary>
+    /// <param name="remainder">the amount of xp that needs to be added back after leveling up.</param>
+    private void AssignValuesToLevel(int remainder) {
         player.level = currentLevel;
-        player.xp = 0;
+        player.xp = remainder;
     }
 
 }

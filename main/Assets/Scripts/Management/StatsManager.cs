@@ -60,9 +60,9 @@ public class StatsManager : MonoBehaviour {
     public void Update() {
         UpdateStatusBars();
 
-        AddXP();
-
-        //Debug.Log(player.GetRigidBody().velocity);
+        if (player.xp >= currentXPThreshold) {
+            LevelUp();
+        }
     }
 
     public void UpdateStatusBars() {
@@ -71,16 +71,6 @@ public class StatsManager : MonoBehaviour {
         sheildsBar.value = player.sheilds;
         xpBar.value = player.xp;
         levelCounterText.text = "Level: " + (player.level + 1);
-    }
-
-    private void AddXP() {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            player.xp += 100;
-        }
-
-        if (player.xp >= currentXPThreshold) {
-            LevelUp();
-        }
     }
 
     public void LevelUp() {
