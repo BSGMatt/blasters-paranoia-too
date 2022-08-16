@@ -106,21 +106,24 @@ public class ShopManager : MonoBehaviour
             im.AddToBuildlings((BuildingCard)selectedItem.card);
             gm.cash -= selectedItem.card.unlockPrice;
             selectedItem.sold = true;
+            FindObjectOfType<StatsManager>().AddXP(XPBonusManager.xpBonusForBuying);
         }
         else if (selectedItem.card.GetType() == typeof(WeaponCard)) {
             Debug.Log("Purchased: " + selectedItem.card.ToString());
             im.AddToWeapons((WeaponCard)selectedItem.card);
             gm.cash -= selectedItem.card.unlockPrice;
             selectedItem.sold = true;
+            FindObjectOfType<StatsManager>().AddXP(XPBonusManager.xpBonusForBuying);
         }
         else {
             //Check if there is room for the powerup to be added to the inventory. 
             if (im.AddPowerUp((PowerUpCard) selectedItem.card) != -1) {
                 Debug.Log("Purchased: " + selectedItem.card.ToString());
                 gm.cash -= selectedItem.card.unlockPrice;
+                FindObjectOfType<StatsManager>().AddXP(XPBonusManager.xpBonusForBuying);
             }
             else {
-                Debug.Log("You're ineventory is full!");
+                Debug.Log("You're inventory is full!");
             }
         }
 

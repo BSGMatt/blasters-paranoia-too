@@ -9,6 +9,7 @@ public class CameraMan : MonoBehaviour {
     //to be in focus. 
     public GameObject focalPointPrefab; //The prefab refrence to the FocalPoint object. 
     private GameObject focalPoint; //The instance that is created from the prefab. 
+    private GameObject secondary;
 
 
     //Used for the player and camera positions
@@ -60,6 +61,8 @@ public class CameraMan : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.Delete)) {
             focalPoint.GetComponent<FocalPoint>().Remove();
+            Destroy(secondary);
+            secondary = null;
         }
     }
 
@@ -148,9 +151,7 @@ public class CameraMan : MonoBehaviour {
     }
 
     public void TestFocalPoint() {
-        GameObject s = GameObject.Find("secondary");
-        if (s != null) Destroy(s);
-        GameObject secondary = new GameObject("secondary");
+        secondary = new GameObject("secondary");
         secondary.transform.position = playerTransform.position;
         if (focalPoint != null) focalPoint.GetComponent<FocalPoint>().Remove();
         CreateFocalPoint(playerTransform, secondary.transform, 0.5f);

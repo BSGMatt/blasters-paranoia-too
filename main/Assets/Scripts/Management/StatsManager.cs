@@ -79,8 +79,16 @@ public class StatsManager : MonoBehaviour {
 
         currentXPThreshold = lm.NextLevel();
 
-        xpBar.maxValue = 0;
+        xpBar.minValue = player.xp;
         xpBar.maxValue = currentXPThreshold;
+    }
+
+    /// <summary>
+    /// Adds xp to the assigned character
+    /// </summary>
+    /// <param name="amount"></param>
+    public void AddXP(int amount) {
+        player.xp += amount;
     }
 
     /// <summary>

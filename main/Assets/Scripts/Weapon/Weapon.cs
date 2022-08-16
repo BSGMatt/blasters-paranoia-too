@@ -115,7 +115,7 @@ public abstract class Weapon : MonoBehaviour
     public void CommonUpdate() {
 
         //Don't do anything if the player is trying to access the shop. 
-        if (FindObjectOfType<GameManager>().shopEnabled) {
+        if (FindObjectOfType<GameManager>().shopEnabled || FindObjectOfType<GameManager>().builderEnabled) {
             return;
         }
 
@@ -139,8 +139,7 @@ public abstract class Weapon : MonoBehaviour
     public void CommonEnemyUpdate()
     {
         //Don't do anything if the player is trying to access the shop. 
-        if (FindObjectOfType<GameManager>().shopEnabled)
-        {
+        if (FindObjectOfType<GameManager>().shopEnabled || FindObjectOfType<GameManager>().builderEnabled) {
             return;
         }
 

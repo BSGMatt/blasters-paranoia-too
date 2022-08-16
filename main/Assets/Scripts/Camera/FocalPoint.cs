@@ -8,8 +8,7 @@ using UnityEngine;
  * a primary subject of focus and a secondary subject. 
  * 
  * */
-public class FocalPoint : MonoBehaviour
-{
+public class FocalPoint : MonoBehaviour {
     private new Camera camera;
     private CameraMan cm;
 
@@ -19,7 +18,7 @@ public class FocalPoint : MonoBehaviour
     /// The subject that the camera will piortize. The camera will follow 
     /// the primary subject more than the secondary. 
     /// </summary>
-    [SerializeField] private Transform primary; 
+    [SerializeField] private Transform primary;
 
     /// <summary>
     /// The subject that camera will NOT prioritzie. The camera will 
@@ -49,8 +48,7 @@ public class FocalPoint : MonoBehaviour
     private Coroutine sizeAdjuster = null;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         cm = FindObjectOfType<CameraMan>();
         camera = cm.GetCamera();
 
@@ -75,78 +73,40 @@ public class FocalPoint : MonoBehaviour
         //Set the position of the focal point.  
         transform.position = TargetPosition();
 
-        Vector3 objAViewport = camera.WorldToViewportPoint(primary.position);
-        Vector3 objBViewport = camera.WorldToViewportPoint(secondary.position);
+        Vector3 objAViewport = primary.position;
+        Vector3 objBViewport = secondary.position;
 
         //Find the distance between the two objects relative to the viewport. 
-        viewportDistance = objAViewport.y - objBViewport.y;
-
+        viewportDistance = Vector3.Distance(objBViewport, objAViewport);
 
         if (!BSGUtility.Within(camera.orthographicSize, viewportDistance / 2, 0.1f)) {
-            if (sizeAdjuster == null) StartCoroutine(AdjustScreenSize());
-        }
+            if (sizeAdjuster != null) {
+                StopCoroutine(sizeAdjuster);
+                sizeAdjuster = null;
+            }
 
+            sizeAdjuster = StartCoroutine(AdjustScreenSize(viewportDistance / 2));
+        }
     }
 
-    public IEnumerator AdjustScreenSize(bool increase) {  
+    private IEnumerator AdjustScreenSize(float targetSize) {
 
-        //If we need to zoom out, zoom out. If not, zoom in. 
-        if (increase) {
-           
+        Debug.Log("Starting Coroutine");
+        Debug.Log("Target Size: " + targetSize);
 
-            //Zoom out by increasing camera's ortho size. 
-            while (camera.orthographicSize < viewportDistance / 2) {
-                //If its close enough to 1 - the limit, round and stop. 
-                if (BSGUtility.Within(camera.orthographicSize, viewportDistance / 2, 0.1f)) {
-                    camera.orthographicSize = BSGUtility.RoundToDigit(camera.orthographicSize, 2);
-                    break;
-                }
+        if (targetSize < def_cameraSize) targetSize = def_cameraSize;
 
-                camera.orthographicSize += Time.deltaTime;
+        while (!BSGUtility.Within(camera.orthographicSize, targetSize, 0.1f)) {
 
-                yield return new WaitForSeconds(0.25f);
+            if (camera.orthographicSize < targetSize) {
+                camera.orthographicSize += Time.deltaTime * cm.camSpeed;
+            }
+            else if (camera.orthographicSize > targetSize) {
+                camera.orthographicSize -= Time.deltaTime * cm.camSpeed;
             }
 
-            /*float amountToZoom = viewportDistance / 2 - camera.orthographicSize;
-
-            while (camer)
-
-            camera.orthographicSize = amountToZoom;*/
-
-            
+            yield return new WaitForEndOfFrame();
         }
-        else {
-
-            while (camera.orthographicSize >= viewportDistance / 2 && camera.orthographicSize > def_cameraSize) {
-                //Snap camera back to the default size once its close enough. 
-                if (BSGUtility.Within(camera.orthographicSize, def_cameraSize, 0.1f)) {
-                    camera.orthographicSize = def_cameraSize;
-                    break;
-                }
-
-                camera.orthographicSize -= Time.deltaTime;
-
-                yield return new WaitForSeconds(0.25f);
-            }
-        }
-
-        
-    }
-
-    private IEnumerator AdjustScreenSize() {
-
-        while (!BSGUtility.Within(camera.orthographicSize, viewportDistance / 2, 0.1f)) {
-
-            if (camera.orthographicSize < viewportDistance / 2) {
-                camera.orthographicSize += cm.GetCameraSpeed() * 0.1f;
-            }
-            else if (camera.orthographicSize > viewportDistance / 2){
-                camera.orthographicSize -= cm.GetCameraSpeed() * 0.1f;
-            }
-
-            yield return new WaitForSeconds(0.25f);
-        }
-
 
         sizeAdjuster = null;
         yield return null;

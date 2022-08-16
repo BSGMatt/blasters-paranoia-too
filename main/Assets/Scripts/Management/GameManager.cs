@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainUI;
     public GameObject builderUI;
     public GameObject builder;
+    public GameObject eventDisplay;
     public Phase phase = Phase.IDLE;
     public int bossWave = 5;
     public int wave = 0;
@@ -22,11 +23,13 @@ public class GameManager : MonoBehaviour
     public int cash = 0;
     public Text timerDisplay;
     public Text commentary;
+    public Text waveText;
     public bool shopEnabled = false;
     public bool builderEnabled = false;
     public bool movementEnabled = true;
 
     public SpawnManager spawnManager;
+    public InventoryManager im;
 
     private int time;
     private Coroutine timer; 
@@ -64,18 +67,29 @@ public class GameManager : MonoBehaviour
     private void Prep() {
         if (timer == null) ToSwarmPhase();
 
-        timerDisplay.text = "Time: " + time.ToString();
+        timerDisplay.text = "TIME: " + time.ToString();
+        waveText.text = "WAVE: " + wave.ToString();
 
         if (Input.GetKeyDown(KeyCode.F) && !builderEnabled) {
-            ActivateShop();
+            ToggleShop();
         }
 
         if (Input.GetKeyDown(KeyCode.B) && !shopEnabled) {
-            ActivateBuilder();
+            ToggleBuilder();
         }
 
         //Press the enter key to go to next phase. 
         if (Input.GetKeyDown(KeyCode.Return)) {
+
+            //Don't let player continue to next phase unless they have a weapon.
+            if (im.weaponCards.Count == 0) {
+                StartCoroutine(ShowEventText("GET A WEAPON FIRST!!", 2f));
+                return;
+            }
+
+            if (shopEnabled) ToggleShop();
+            if (builderEnabled) ToggleBuilder();
+
             StopCoroutine(timer);
             timer = null;
         }
@@ -100,8 +114,6 @@ public class GameManager : MonoBehaviour
     }
 
     private void ToIdlePhase() {
-        wave++;
-        if (wave > 1) FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
         phase = Phase.IDLE;
         shopEnabled = false;
         builderEnabled = false;
@@ -109,6 +121,10 @@ public class GameManager : MonoBehaviour
         mainUI.SetActive(!shopEnabled);
         builder.SetActive(builderEnabled);
         builderUI.SetActive(builderEnabled);
+        waveText.text = "";
+        eventDisplay.SetActive(false);
+        wave++;
+        if (wave > 1) FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
     }
 
     private void Idle() {
@@ -148,11 +164,24 @@ public class GameManager : MonoBehaviour
         yield return 0;
     }
 
+    /// <summary>
+    /// Displays a message over the commentary bar for a period of time.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    private IEnumerator ShowEventText(string message, float time) {
+        eventDisplay.SetActive(true);
+        eventDisplay.GetComponentInChildren<Text>().text = message;
+        yield return new WaitForSeconds(time);
+        eventDisplay.GetComponentInChildren<Text>().text = "";
+        eventDisplay.SetActive(false);
+    }
+
     public bool IsBossWave() {
         return wave % bossWave == 0;
     }
 
-    private void ActivateShop() {
+    private void ToggleShop() {
         mainUI.SetActive(shopEnabled);
         shopUI.SetActive(!shopEnabled);
         shopEnabled = !shopEnabled;
@@ -168,7 +197,7 @@ public class GameManager : MonoBehaviour
         movementEnabled = !movementEnabled;
     }
 
-    private void ActivateBuilder() {
+    private void ToggleBuilder() {
         mainUI.SetActive(builderEnabled);
         builder.SetActive(!builderEnabled);
         builderUI.SetActive(!builderEnabled);

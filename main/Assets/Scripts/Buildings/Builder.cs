@@ -100,6 +100,7 @@ public class Builder : MonoBehaviour {
 
                 GameObject b = GameObject.Instantiate(buildlingToDeploy.prefab, transform.position, Quaternion.identity);
                 buildingsDeployed.Add(b.GetComponent<Building>());
+
             }
             else {
                 Debug.Log("Player could not afford to deploy " + buildlingToDeploy.name);

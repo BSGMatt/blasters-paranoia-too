@@ -15,6 +15,10 @@ public class Enemy : Character, IComparable<Enemy>
 
     // Start is called before the first frame update
     void Start() {
+
+        hp = maxHP;
+        isEnemy = true;
+
         aiController = GetComponent<AIController>();
         state = 0; //Set state to move;
         aiController.InitPath(targetType);
@@ -43,6 +47,7 @@ public class Enemy : Character, IComparable<Enemy>
     // Update is called once per frame
     void Update() {
         if (aiController.target == null) aiController.ResetPath();
+        if (hp <= 0) Die();
     }
 
     void FixedUpdate() {

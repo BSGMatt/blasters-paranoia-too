@@ -1,0 +1,2 @@
+G:\Projects\Games\Blasters Pandemonium Plus\Paranoia\blasters-paranoia-too\main\obj\Debug\PackageToolsEditor.csproj.AssemblyReference.cache
+G:\Projects\Games\Blasters Pandemonium Plus\Paranoia\blasters-paranoia-too\main\obj\Debug\PackageToolsEditor.csproj.CoreCompileInputs.cache
