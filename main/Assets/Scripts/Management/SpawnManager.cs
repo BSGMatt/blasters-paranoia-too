@@ -50,6 +50,7 @@ public class SpawnManager : MonoBehaviour
     private int currentLevel;
     private GameManager gm;
     private Coroutine spawning;
+    private int enemiesInSpawnQueue;
 
     // Start is called before the first frame update
     void Start()
@@ -59,10 +60,10 @@ public class SpawnManager : MonoBehaviour
         enemySpawnOrder = new Stack<int>();
     }
 
-    // Update is called once per frame
+    //Keep track of the current number of enemies in field. 
     void Update()
     {
-        
+        enemiesLeft = FindObjectsOfType<Enemy>().Length + enemiesInSpawnQueue;
     }
 
     /// <summary>
@@ -146,11 +147,14 @@ public class SpawnManager : MonoBehaviour
     public IEnumerator SpawnEnemies() {
 
         //Spawn an enemy at one of the spawnpoints in the game field. 
-        //Keep going un
+        //Keep going until all enemies have been spawned. 
         int i = 0;
+        enemiesInSpawnQueue = enemySpawnOrder.Count;
         while (enemySpawnOrder.Count > 0) {
             GameObject enemy = Instantiate<GameObject>(waveSpawnPool[enemySpawnOrder.Pop()], 
                 spawnpoints[i % spawnpoints.Length].position, Quaternion.identity);
+
+            enemiesInSpawnQueue--;
 
             //Wait to spawn another enemy. spawn rate will increase as game progresses. 
             yield return new WaitForSeconds(startingSpawnRate - ((startingSpawnRate - endingSpawnRate) / 30 * gm.wave));

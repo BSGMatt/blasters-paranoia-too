@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private Coroutine timer; 
 
     public void Start() {
+        eventDisplay.SetActive(false);
         ToIdlePhase();
     }
 
@@ -103,6 +104,16 @@ public class GameManager : MonoBehaviour
     private void Swarm() {
         timerDisplay.text = "FIGHT!";
         commentary.text = spawnManager.enemiesLeft + " ENEMIES LEFT";
+
+        if (spawnManager.allEnemiesDead()) {
+            if (IsBossWave()) {
+                ToBossPhase();
+            }
+            else {
+                StartCoroutine(ShowEventText("YOU SURVIVED!", 2));
+                ToIdlePhase();
+            }
+        }
     }
 
     private void ToBossPhase() {
@@ -122,7 +133,7 @@ public class GameManager : MonoBehaviour
         builder.SetActive(builderEnabled);
         builderUI.SetActive(builderEnabled);
         waveText.text = "";
-        eventDisplay.SetActive(false);
+        timerDisplay.text = "TIME: " + preptime;
         wave++;
         if (wave > 1) FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
     }
@@ -173,6 +184,22 @@ public class GameManager : MonoBehaviour
         eventDisplay.SetActive(true);
         eventDisplay.GetComponentInChildren<Text>().text = message;
         yield return new WaitForSeconds(time);
+        eventDisplay.GetComponentInChildren<Text>().text = "";
+        eventDisplay.SetActive(false);
+    }
+
+    /// <summary>
+    /// Displays a series of messages over the commentary bar for a period of time. 
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    private IEnumerator ShowEventText(string[] messages, float time) {
+        eventDisplay.SetActive(true);
+
+        foreach(string m in messages) {
+            eventDisplay.GetComponentInChildren<Text>().text = m;
+            yield return new WaitForSeconds(time);
+        }
         eventDisplay.GetComponentInChildren<Text>().text = "";
         eventDisplay.SetActive(false);
     }
