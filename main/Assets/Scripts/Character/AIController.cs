@@ -44,6 +44,9 @@ public class AIController : MonoBehaviour
                 }
 
                 return ret;
+
+            case 2:
+                return FindObjectOfType<Crystal>().transform;
         }
     }
 

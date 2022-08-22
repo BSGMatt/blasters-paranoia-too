@@ -9,7 +9,7 @@ public class Enemy : Character, IComparable<Enemy>
     public Healthbar hbar;
     public int state;
     public int difficulty;
-    public int targetType; //0 - Player, 1 - Building
+    public int targetType; //0 - Player, 1 - Building, 2 - Crystal
     public GameObject weaponObj;
     public Approach approach;
 
@@ -18,6 +18,8 @@ public class Enemy : Character, IComparable<Enemy>
 
         hp = maxHP;
         isEnemy = true;
+        isLevelable = false;
+        onlyHasHealth = true;
 
         aiController = GetComponent<AIController>();
         state = 0; //Set state to move;

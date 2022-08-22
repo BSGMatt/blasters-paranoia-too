@@ -17,7 +17,7 @@ MonoBehaviour:
   prefab: {fileID: 5050569894837694049, guid: fbb164fc94e900a47b581ca497ac70d0, type: 3}
   pelletType: {fileID: 7632431803512875838, guid: b3d2fa814e2a32c4bac91f0c046fca6f, type: 3}
   maxAmmo: 8
-  dmgPerPellet: 7
+  dmgPerPellet: 14
   pelletCount: 10
   minSpread: 25
   maxSpread: 25

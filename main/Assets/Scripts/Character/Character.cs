@@ -13,6 +13,7 @@ public abstract class Character : MonoBehaviour
     public const float timeToStartPassiveHeal = 2f;
     public const int passiveHealPerSecond = 5;
     public const float tickRate = 0.125f;
+    public bool dead = false;
 
     public const int s_move = 0;
     public const int s_attack = 1;
@@ -31,6 +32,8 @@ public abstract class Character : MonoBehaviour
     public int xp;
     public int stamina;
     public int level;
+
+
 
     public UnityEvent takenDamage;
     public UnityEvent startedMoving;
@@ -83,6 +86,16 @@ public abstract class Character : MonoBehaviour
     public bool invincible = false;
 
     protected bool movementEnabled = true;
+
+    /// <summary>
+    /// Can this Character level up?
+    /// </summary>
+    public bool isLevelable = true;
+
+    /// <summary>
+    /// Is health the only stat that this Character has?
+    /// </summary>
+    public bool onlyHasHealth = false;
 
     /// <summary>
     /// <para>Variables for storing the modifier values. Did this to avoid having to make a reference to

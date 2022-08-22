@@ -27,12 +27,16 @@ public class GameManager : MonoBehaviour
     public bool shopEnabled = false;
     public bool builderEnabled = false;
     public bool movementEnabled = true;
+    public bool bossDefeated = false;
 
     public SpawnManager spawnManager;
     public InventoryManager im;
+    public Crystal crystal;
+    public Boss boss;
 
     private int time;
     private Coroutine timer; 
+
 
     public void Start() {
         eventDisplay.SetActive(false);
@@ -116,12 +120,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets up the boss phase of a wave.
+    /// </summary>
     private void ToBossPhase() {
-
+        boss = spawnManager.SpawnBoss();
+        StartCoroutine(ShowEventText("LARGE HOSTILE INCOMING!", 2));
+        timerDisplay.text = "DEFEAT THE BOSS!";
+        bossDefeated = false;
     }
 
     private void Boss() {
-
+        if (boss.dead) {
+            StartCoroutine(ShowEventText("THAT'LL TEACH 'EM!", 2));
+            Destroy(boss);
+            ToIdlePhase();
+        }
     }
 
     private void ToIdlePhase() {
@@ -132,6 +146,13 @@ public class GameManager : MonoBehaviour
         mainUI.SetActive(!shopEnabled);
         builder.SetActive(builderEnabled);
         builderUI.SetActive(builderEnabled);
+
+        if (crystal.dead) {
+            crystal.ReviveCrystal();
+        }
+
+        crystal.hp = crystal.maxHP;
+
         waveText.text = "";
         timerDisplay.text = "TIME: " + preptime;
         wave++;

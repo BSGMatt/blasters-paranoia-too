@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828808d3babd2564691cacc73a83cdfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
   c2d: {fileID: 3390347684773251071}
   rb: {fileID: 3390347684773251066}
   surfaceCollider: {fileID: 3390347684773251065}
@@ -167,13 +168,16 @@ MonoBehaviour:
   maxHP: 200
   sheilds: 0
   hp: 0
+  invincible: 0
+  isLevelable: 1
+  onlyHasHealth: 0
   currentSpeedModValue: 1
   currentDmgDealtModValue: 1
   aiController: {fileID: 0}
   hbar: {fileID: 0}
   state: 0
   difficulty: 100
-  targetType: 0
+  targetType: 2
   weaponObj: {fileID: 5050569894837694049, guid: 05691871478c4a0468fc9c2b55ea2983, type: 3}
   approach: 0
 --- !u!114 &3390347684773251071

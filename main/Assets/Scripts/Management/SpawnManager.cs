@@ -37,11 +37,17 @@ public class SpawnManager : MonoBehaviour
     private List<GameObject> waveSpawnPool;
 
     /// <summary>
+    /// 
+    /// </summary>
+    public List<GameObject> bosses;
+
+    /// <summary>
     /// <para>A stack containing the indices of waveSpawnPool in a randomized order.</para>
     /// </summary>
     private Stack<int> enemySpawnOrder;
 
     public Transform[] spawnpoints;
+    public Transform bossSpawnpoint;
 
 
     public int totalEnemiesInWave;
@@ -73,6 +79,11 @@ public class SpawnManager : MonoBehaviour
         GenerateEnemyPool();
 
         spawning = StartCoroutine(SpawnEnemies());
+    }
+
+    public Boss SpawnBoss() {
+        GameObject boss = Instantiate<GameObject>(bosses[0], bossSpawnpoint.position, Quaternion.identity);
+        return boss.GetComponent<Boss>();
     }
 
     public bool allEnemiesDead() {
@@ -157,6 +168,7 @@ public class SpawnManager : MonoBehaviour
             enemiesInSpawnQueue--;
 
             //Wait to spawn another enemy. spawn rate will increase as game progresses. 
+            i++;
             yield return new WaitForSeconds(startingSpawnRate - ((startingSpawnRate - endingSpawnRate) / 30 * gm.wave));
         }
 

@@ -18,6 +18,9 @@ public class StatsManager : MonoBehaviour {
     public int currentXPThreshold;
     public int playerLevel;
 
+    public int healSpeed = 2;
+    public int staminaSpeed = 1;
+
     //Over time coroutines
     private Coroutine heal;
     private Coroutine stam;
@@ -39,34 +42,41 @@ public class StatsManager : MonoBehaviour {
         currentXPThreshold = lm.xpThresholds[lm.currentLevel];
 
         healthBar.minValue = 0;
-        staminaBar.minValue = 0;
-
         healthBar.maxValue = player.maxHP;
-        staminaBar.maxValue = player.maxStamina;
 
-        sheildsBar.minValue = 0;
-        sheildsBar.maxValue = player.maxHP;
+        //Only do the following if the character referenced uses the non-health stats.
+        if (!player.onlyHasHealth) {
+            staminaBar.minValue = 0;
+            staminaBar.maxValue = player.maxStamina;
 
-        xpBar.maxValue = 0;
-        xpBar.maxValue = currentXPThreshold;
+            sheildsBar.minValue = 0;
+            sheildsBar.maxValue = player.maxHP;
+
+            xpBar.maxValue = 0;
+            xpBar.maxValue = currentXPThreshold;
+
+            player.startedMoving.AddListener(StopStaminaPassive);
+            waitToStam = StartCoroutine(WaitToRegenStamina());
+        }
 
         player.takenDamage.AddListener(StopHealingPassive);
-        player.startedMoving.AddListener(StopStaminaPassive);
-
         waitToHeal = StartCoroutine(WaitToPassivelyHeal());
-        waitToStam = StartCoroutine(WaitToRegenStamina());
+
     }
 
     public void Update() {
         UpdateStatusBars();
 
-        if (player.xp >= currentXPThreshold) {
+        if (player.xp >= currentXPThreshold && player.isLevelable) {
             LevelUp();
         }
     }
 
     public void UpdateStatusBars() {
         healthBar.value = player.hp;
+
+        if (player.onlyHasHealth) return;
+
         staminaBar.value = player.stamina;
         sheildsBar.value = player.sheilds;
         xpBar.value = player.xp;
@@ -230,7 +240,7 @@ public class StatsManager : MonoBehaviour {
 
         while (player.hp < player.maxHP) {
 
-            player.hp += 2;
+            player.hp += healSpeed;
 
             yield return new WaitForSeconds(Character.tickRate);
         }
@@ -262,7 +272,7 @@ public class StatsManager : MonoBehaviour {
 
         while (player.stamina < player.maxStamina && player.GetRigidBody().velocity == Vector2.zero) {
 
-            player.stamina += 1;
+            player.stamina += staminaSpeed;
 
             yield return new WaitForSeconds(Character.tickRate);
         }

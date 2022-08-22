@@ -29,6 +29,7 @@ public class LevelManager
 
         //If there is more xp reward than what was need to level up, 
         //add the remaining xp after leveling up. 
+
         int leftoverXP = player.xp - xpThresholds[currentLevel];
         currentLevel++;
         AssignValuesToLevel(leftoverXP);
