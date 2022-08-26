@@ -44,6 +44,7 @@ public class Pellet : MonoBehaviour
             return; //Don't destroy if colliding with another pellet. 
         }
 
+        StopAllCoroutines();
         Destroy(gameObject);
     }
 }

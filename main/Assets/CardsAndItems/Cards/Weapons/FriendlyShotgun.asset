@@ -23,4 +23,4 @@ MonoBehaviour:
   maxSpread: 25
   pelletSpeed: 10
   fireRate: 10
-  reloadSpeed: 2
+  reloadSpeed: 0.5

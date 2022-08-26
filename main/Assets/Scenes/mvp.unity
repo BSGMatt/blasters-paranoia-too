@@ -187,8 +187,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19a4a7f9ec90fed4db4676ed71f04005, type: 2}
   - {fileID: 11400000, guid: f752af431bb4a2a4ba218e034e1a11dd, type: 2}
   weaponsForSale:
-  - {fileID: 11400000, guid: 2ce5ad311dcbb9f42a82ba050734ffc1, type: 2}
   - {fileID: 11400000, guid: 40ad42f155785c541a604281a017effc, type: 2}
+  - {fileID: 11400000, guid: 2ce5ad311dcbb9f42a82ba050734ffc1, type: 2}
+  - {fileID: 11400000, guid: 4c2819cfd51fed1479da113e7e3a6465, type: 2}
+  - {fileID: 11400000, guid: 9d866fe5e3ddbb64f91d884ea0d81ae9, type: 2}
+  - {fileID: 11400000, guid: bb044395223c3bc4a9b2d62c27678d8c, type: 2}
   powerupsForSale:
   - {fileID: 11400000, guid: 538cbb8ffc6d844478e66c4cb527715f, type: 2}
   - {fileID: 11400000, guid: 6fa470cea4d8a6e44bb9d0b9a3d66ca9, type: 2}

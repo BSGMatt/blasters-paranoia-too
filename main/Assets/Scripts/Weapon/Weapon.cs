@@ -157,7 +157,6 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     public void CommonStart() {
         cam = FindObjectOfType<CameraMan>().GetCamera();
-        ammo = card.maxAmmo;
         host.currentWeapon = this;
     }
 

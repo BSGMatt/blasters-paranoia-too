@@ -7,7 +7,7 @@ public class WeaponLoader : MonoBehaviour
 {
     public int currentIndex;
     public bool isInit = false; //Value to check 
-    private Dictionary<string, int> lastAmmoValues;
+    public Dictionary<string, int> lastAmmoValues;
     public Character host;
     public GameObject loadedWeapon;
     public Text ammoCounterText;
@@ -22,8 +22,10 @@ public class WeaponLoader : MonoBehaviour
 
         //Create the weapon
         loadedWeapon = Instantiate<GameObject>(im.weaponCards[0].prefab);
+        loadedWeapon.GetComponent<Weapon>().card = im.weaponCards[0]; //Assign card's value to prefab
         loadedWeapon.GetComponent<Weapon>().host = host;
         loadedWeapon.GetComponent<Weapon>().ammo = loadedWeapon.GetComponent<Weapon>().card.maxAmmo;
+
 
         //Save the the last ammo value of the newly created weapon in the dictionary. 
         lastAmmoValues.Add(im.weaponCards[0].name, im.weaponCards[0].maxAmmo);
@@ -68,24 +70,31 @@ public class WeaponLoader : MonoBehaviour
 
     private void LoadNewWeapon() {
         //Save the ammo of the current weapon. 
+        Debug.Log(loadedWeapon.GetComponent<Weapon>().card.name + ", " + lastAmmoValues[loadedWeapon.GetComponent<Weapon>().card.name]);
         lastAmmoValues[loadedWeapon.GetComponent<Weapon>().card.name] = loadedWeapon.GetComponent<Weapon>().ammo;
 
         //Destroy the loaded weapon and create a new one in its place. 
         Destroy(loadedWeapon);
-        GameObject newWeapon = Instantiate<GameObject>(im.weaponCards[currentIndex].prefab);
-        newWeapon.GetComponent<Weapon>().host = host;
-        newWeapon.GetComponent<Weapon>().rb.position = host.GetRigidBody().position;
+        GameObject newWeapObj = Instantiate<GameObject>(im.weaponCards[currentIndex].prefab);
+        Weapon newWeapon = newWeapObj.GetComponent<Weapon>();
+
+        newWeapon.card = im.weaponCards[currentIndex];
+        newWeapon.host = host;
+        newWeapon.rb.position = host.GetRigidBody().position;
 
         //Check if the weapon's name was added to the dictionary, if not, add it, if so, set weapon's ammo to ammo stored in dictionary. 
-        if (lastAmmoValues.ContainsKey(newWeapon.GetComponent<Weapon>().card.name)) {
-            newWeapon.GetComponent<Weapon>().ammo = lastAmmoValues[newWeapon.GetComponent<Weapon>().card.name];
+        if (lastAmmoValues.ContainsKey(newWeapon.card.name)) {
+            Debug.Log("Key: " + newWeapon.card.name + " is a dictionary key");
+            Debug.Log("Setting ammo to: " + lastAmmoValues[newWeapon.card.name]);
+            newWeapon.ammo = lastAmmoValues[newWeapon.card.name];
         }
         else {
-            lastAmmoValues.Add(newWeapon.GetComponent<Weapon>().card.name, newWeapon.GetComponent<Weapon>().card.maxAmmo);
-            newWeapon.GetComponent<Weapon>().ammo = newWeapon.GetComponent<Weapon>().card.maxAmmo;
+            Debug.Log("Key: " + newWeapon.card.name + " isn't a dictionary key");
+            lastAmmoValues.Add(newWeapon.card.name, newWeapon.card.maxAmmo);
+            newWeapon.ammo = newWeapon.card.maxAmmo;
         }
 
-        loadedWeapon = newWeapon;
+        loadedWeapon = newWeapObj;
     }
 
     public void DisableWeapon() {
