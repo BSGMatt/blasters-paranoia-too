@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Boss : Character
 {
     public int state;
     public float[] stateDurations;
-    public GameObject[] weapons;
+    public WeaponCard[] weapons;
     protected AIController aiController;
+
+    public UnityEvent bossDied;
+
+    protected void Awake() {
+        bossDied = new UnityEvent();
+    }
 
     protected IEnumerator RunThroughStates() {
         
@@ -23,6 +30,8 @@ public abstract class Boss : Character
     protected void Start() {
         aiController = GetComponent<AIController>();
         state = -1;
+        hp = maxHP;
+        isEnemy = true;
         StartCoroutine(RunThroughStates());
     }
 

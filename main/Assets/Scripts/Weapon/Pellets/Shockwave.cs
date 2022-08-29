@@ -26,8 +26,8 @@ public class Shockwave : Pellet
         int shocks = 0;
         while (t < duration && shocks < numShocks) {
 
-            Instantiate<GameObject>(hazardCard.prefab, transform.position, Quaternion.identity);
-
+            Hazard h = Instantiate<GameObject>(hazardCard.prefab, transform.position, Quaternion.identity).GetComponent<Hazard>();
+            h.card = hazardCard;
             t += timeBetweenShocks;
             shocks++;
             Debug.Log("t: " + t);

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -1095634357
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 86c548d0ed75f6f47bbcdc3964ea9b7a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a85be8909fd817e4f97119f31a82a794, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f45b1823d8095a44adfb082d0d42a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
   c2d: {fileID: 0}
   rb: {fileID: 3557481334030994496}
   surfaceCollider: {fileID: 3557481334030994497}
@@ -118,6 +119,9 @@ MonoBehaviour:
   maxHP: 200
   sheilds: 0
   hp: 0
+  invincible: 0
+  isLevelable: 1
+  onlyHasHealth: 0
   currentSpeedModValue: 1
   currentDmgDealtModValue: 1
   card: {fileID: 11400000, guid: 526e348dd7404d24da900d7e317828db, type: 2}
@@ -162,7 +166,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

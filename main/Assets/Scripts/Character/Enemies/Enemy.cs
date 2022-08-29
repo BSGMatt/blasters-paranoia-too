@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class Enemy : Character, IComparable<Enemy>
 {
-    public AIController aiController;
     public Healthbar hbar;
     public int state;
     public int difficulty;
-    public int targetType; //0 - Player, 1 - Building, 2 - Crystal
     public GameObject weaponObj;
     public Approach approach;
 

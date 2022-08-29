@@ -24,7 +24,7 @@ public class EnemyShotgun : Weapon
 
         if (!canFire)
         {
-            StopCoroutine(firing);
+            if (firing != null) StopCoroutine(firing);
             firing = null;
         }
     }

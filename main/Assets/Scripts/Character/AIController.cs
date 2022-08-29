@@ -6,7 +6,7 @@ using Pathfinding;
 public class AIController : MonoBehaviour
 {
     public Transform target; //The target the enemy will move towards. 
-    public Enemy enemy; //The enemy that this controller belongs to. 
+    public Character character; //The character that this controller belongs to. 
     public bool reachedEndOfPath = false;
     public float minDistance; //The minimum distance the enemy will be from the target before stopping. 
     public float maxDistance; //The maximum distance the enemy will be from the target before it starts moving again.
@@ -54,7 +54,7 @@ public class AIController : MonoBehaviour
         seeker = GetComponent<Seeker>();
         target = FindTargetOfType(targetType);
 
-        seeker.StartPath(enemy.GetRigidBody().position, target.position, OnPathComplete);
+        seeker.StartPath(character.GetRigidBody().position, target.position, OnPathComplete);
         reachedEndOfPath = false;
     }
 
@@ -70,7 +70,7 @@ public class AIController : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count) {
             reachedEndOfPath = true;
-            enemy.c2d.StopMoving();
+            character.c2d.StopMoving();
             return;
         }
         else {
@@ -79,16 +79,16 @@ public class AIController : MonoBehaviour
 
         Debug.Log("Attempting to move along path...");
 
-        Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - enemy.GetRigidBody().position).normalized;
+        Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - character.GetRigidBody().position).normalized;
 
-        enemy.c2d.Move(direction, enemy.GetMaxSpeed() * enemy.currentSpeedModValue);
+        character.c2d.Move(direction, character.GetMaxSpeed() * character.currentSpeedModValue);
 
         //Check if minDistance is reached. if so, set current waypoint to the last waypoint of the path. 
-        if (Vector2.Distance(enemy.GetRigidBody().position, target.position) <= minDistance) {
+        if (Vector2.Distance(character.GetRigidBody().position, target.position) <= minDistance) {
             currentWaypoint = path.vectorPath.Count;
         }
         else  {
-            float distance = Vector2.Distance(enemy.GetRigidBody().position, path.vectorPath[currentWaypoint]);
+            float distance = Vector2.Distance(character.GetRigidBody().position, path.vectorPath[currentWaypoint]);
 
             if (distance < nextWaypointDistance) {
                 currentWaypoint++;
@@ -97,13 +97,13 @@ public class AIController : MonoBehaviour
     }
 
     public void StopPath() {
-        enemy.c2d.StopMoving();
+        character.c2d.StopMoving();
         path = null;
     }
 
     public void ResetPath() {
         StopPath();
-        InitPath(enemy.targetType);
+        InitPath(character.targetType);
     }
 
 }

@@ -125,17 +125,20 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void ToBossPhase() {
         boss = spawnManager.SpawnBoss();
+        boss.bossDied.AddListener(BossDefeated);
         StartCoroutine(ShowEventText("LARGE HOSTILE INCOMING!", 2));
-        timerDisplay.text = "DEFEAT THE BOSS!";
+        commentary.text = "DEFEAT THE BOSS!";
         bossDefeated = false;
+        phase = Phase.BOSS;
     }
 
     private void Boss() {
-        if (boss.dead) {
-            StartCoroutine(ShowEventText("THAT'LL TEACH 'EM!", 2));
-            Destroy(boss);
-            ToIdlePhase();
-        }
+        timerDisplay.text = "BOSS HP: " + boss.hp + " / " + boss.maxHP;
+    }
+
+    private void BossDefeated() {
+        StartCoroutine(ShowEventText("THAT'LL TEACH 'EM!", 2));
+        ToIdlePhase();
     }
 
     private void ToIdlePhase() {

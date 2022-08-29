@@ -57,6 +57,7 @@ public class SpawnManager : MonoBehaviour
     private GameManager gm;
     private Coroutine spawning;
     private int enemiesInSpawnQueue;
+    private int currentBoss = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -82,7 +83,8 @@ public class SpawnManager : MonoBehaviour
     }
 
     public Boss SpawnBoss() {
-        GameObject boss = Instantiate<GameObject>(bosses[0], bossSpawnpoint.position, Quaternion.identity);
+        GameObject boss = Instantiate<GameObject>(bosses[currentBoss], bossSpawnpoint.position, Quaternion.identity);
+        currentBoss++;
         return boss.GetComponent<Boss>();
     }
 

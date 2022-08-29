@@ -116,6 +116,8 @@ public abstract class Weapon : MonoBehaviour
 
         //Don't do anything if the player is trying to access the shop. 
         if (FindObjectOfType<GameManager>().shopEnabled || FindObjectOfType<GameManager>().builderEnabled) {
+            if (firing != null) StopCoroutine(firing);
+            firing = null;
             return;
         }
 
@@ -128,8 +130,17 @@ public abstract class Weapon : MonoBehaviour
         }
 
         //Fire a pellet if player left-clicks. 
-        if (Input.GetMouseButtonDown(0)) {
-            if (canFire && ammo > 0) Fire();
+        if (Input.GetMouseButton(0)) {
+            Debug.Log("Mouse is held down");
+            if (canFire && firing == null) {
+                firing = StartCoroutine(PlayerFireCoroutine());
+            }
+        }
+
+        //Stop Firing coroutine if canFire is disabled.
+        if (!canFire && firing != null) {
+            StopCoroutine(firing);
+            firing = null;
         }
     }
 
@@ -156,17 +167,19 @@ public abstract class Weapon : MonoBehaviour
     /// An start method containing the common operations that most weapons will use. 
     /// </summary>
     public void CommonStart() {
+        if (card.sprite != null) GetComponent<SpriteRenderer>().sprite = card.sprite;
         cam = FindObjectOfType<CameraMan>().GetCamera();
         host.currentWeapon = this;
+        firing = null;
     }
 
     protected void GrabHostTarget() {
-        target = ((Enemy)host).aiController.target.transform;
+        target = host.aiController.target.transform;
     }
 
     /// <summary>
     /// Generates a random value in the range [-maxSpread, -minSpread]U[minSpread, maxSpread].
-    /// Used to create spread that varies between shots. 
+    /// Used to create angles that vary between shots. 
     /// </summary>
     /// <returns>The randomly generated spread value.</returns>
     protected float RandomSpreadValue() {
@@ -195,6 +208,29 @@ public abstract class Weapon : MonoBehaviour
         {
             Fire();
             yield return new WaitForSeconds(card.fireRate);
+        }
+
+        //Reload Ammo
+
+        yield return new WaitForSeconds(card.reloadSpeed);
+
+        ammo = card.maxAmmo;
+
+        firing = null;
+
+        yield return null;
+    }
+
+    protected IEnumerator PlayerFireCoroutine() {
+
+        
+        while (ammo > 0) {
+            Debug.Log("Inside main firing loop");
+            Fire();
+            yield return new WaitForSeconds(card.fireRate);
+
+            //Pause Firing until the player presses the button again.
+            while (!Input.GetMouseButton(0)) yield return null;
         }
 
         //Reload Ammo

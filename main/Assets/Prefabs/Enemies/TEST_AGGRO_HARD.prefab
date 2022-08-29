@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  enemy: {fileID: 3390347684773251067}
+  character: {fileID: 3390347684773251067}
   reachedEndOfPath: 0
   minDistance: 4
   maxDistance: 6
@@ -162,7 +162,9 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  aiController: {fileID: 3390347684773251056}
   currentWeapon: {fileID: 0}
+  targetType: 2
   maxSpeed: 6.2
   maxStamina: 100
   maxHP: 200
@@ -173,11 +175,9 @@ MonoBehaviour:
   onlyHasHealth: 0
   currentSpeedModValue: 1
   currentDmgDealtModValue: 1
-  aiController: {fileID: 0}
   hbar: {fileID: 0}
   state: 0
   difficulty: 100
-  targetType: 2
   weaponObj: {fileID: 5050569894837694049, guid: 05691871478c4a0468fc9c2b55ea2983, type: 3}
   approach: 0
 --- !u!114 &3390347684773251071

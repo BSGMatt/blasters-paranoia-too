@@ -15,12 +15,13 @@ MonoBehaviour:
   unlockPrice: 100
   name: The "Shock-Gun"
   prefab: {fileID: 5050569894837694049, guid: fbb164fc94e900a47b581ca497ac70d0, type: 3}
+  sprite: {fileID: 21300000, guid: fb8e2f5ffb7340149b9ff55a6ea977be, type: 3}
   pelletType: {fileID: 7632431803512875838, guid: 68c7e602eedefea42ad3840b8d95e963, type: 3}
   maxAmmo: 8
-  dmgPerPellet: 14
-  pelletCount: 8
+  dmgPerPellet: 5
+  pelletCount: 3
   minSpread: 180
   maxSpread: 180
   pelletSpeed: 5
-  fireRate: 10
+  fireRate: 5
   reloadSpeed: 0.5

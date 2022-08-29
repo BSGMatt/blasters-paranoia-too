@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WeaponSI4
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: b8c156e0b1219c4409e804859319fc99, type: 2}
-  displaySprite: {fileID: 21300000, guid: 6d11b3fed33021947ae85397d233543b, type: 3}
+  displaySprite: {fileID: 21300000, guid: fb8e2f5ffb7340149b9ff55a6ea977be, type: 3}
   description: This powerful weapon launches shockwaves in multiple directions
   sold: 0

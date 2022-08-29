@@ -9,7 +9,7 @@ using UnityEngine.Events;
 /// </summary>
 public abstract class Character : MonoBehaviour
 {
-
+    
     public const float timeToStartPassiveHeal = 2f;
     public const int passiveHealPerSecond = 5;
     public const float tickRate = 0.125f;
@@ -38,8 +38,9 @@ public abstract class Character : MonoBehaviour
     public UnityEvent takenDamage;
     public UnityEvent startedMoving;
 
-
+    public AIController aiController;
     public Weapon currentWeapon;
+    public int targetType; //0 - Player, 1 - Building, 2 - Crystal
 
     /// <summary>
     /// <para>The maximum speed the character will move without any modifiers applied.

@@ -26,7 +26,7 @@ public class FriendlyPistol : Weapon
 
     //Launches a pellet. 
     protected override void Fire() {
-        CreatePellet(card, angle);
+        CreatePellet(card, angle + RandomSpreadValue());
         ammo--;
     }
 }

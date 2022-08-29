@@ -14,6 +14,7 @@ public abstract class Card : ScriptableObject
     public int unlockPrice; //Price to unlcock from the shop
     public new string name;
     public GameObject prefab; //The gameobject that this card will create. 
+    public Sprite sprite;
 
     public abstract string infoText();
 }
