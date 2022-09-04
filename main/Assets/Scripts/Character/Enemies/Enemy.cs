@@ -8,8 +8,8 @@ public class Enemy : Character, IComparable<Enemy>
     public Healthbar hbar;
     public int state;
     public int difficulty;
-    public GameObject weaponObj;
     public Approach approach;
+    public WeaponCard weaponCard;
 
     // Start is called before the first frame update
     void Start() {
@@ -24,8 +24,9 @@ public class Enemy : Character, IComparable<Enemy>
         aiController.InitPath(targetType);
 
         //initialize the enemy's weapon. 
-        currentWeapon = GameObject.Instantiate(weaponObj, transform.position, Quaternion.identity).GetComponent<Weapon>();
+        currentWeapon = GameObject.Instantiate(weaponCard.prefab, transform.position, Quaternion.identity).GetComponent<Weapon>();
         currentWeapon.host = this;
+        currentWeapon.card = weaponCard;
 
         if (currentWeapon != null) currentWeapon.canFire = false;
         movementEnabled = true;

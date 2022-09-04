@@ -53,6 +53,9 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     /// <returns>the angle of the weapon's rotation. </returns>
     protected float AimAtTarget() {
+
+        Debug.Log("Target: " + target);
+
         Vector2 lookDir = (Vector2)target.position - rb.position;
 
         angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
@@ -174,6 +177,7 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected void GrabHostTarget() {
+        Debug.Log("Grabbing target: " + host.aiController.target);
         target = host.aiController.target.transform;
     }
 

@@ -32,6 +32,7 @@ public class EnemyShotgun : Weapon
     void FixedUpdate()
     {
         rb.position = host.GetRigidBody().position;
+        //Debug.Log("Enemy Shotgun angle: " + AimAtTarget());
         AimAtTarget();
     }
 

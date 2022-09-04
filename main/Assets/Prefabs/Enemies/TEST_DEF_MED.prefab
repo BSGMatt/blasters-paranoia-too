@@ -178,8 +178,8 @@ MonoBehaviour:
   hbar: {fileID: 0}
   state: 0
   difficulty: 50
-  weaponObj: {fileID: 5050569894837694049, guid: 05691871478c4a0468fc9c2b55ea2983, type: 3}
   approach: 0
+  weaponCard: {fileID: 11400000, guid: a9426e8a4f9eb184e8958089048b2ef9, type: 2}
 --- !u!114 &3390347684773251071
 MonoBehaviour:
   m_ObjectHideFlags: 0

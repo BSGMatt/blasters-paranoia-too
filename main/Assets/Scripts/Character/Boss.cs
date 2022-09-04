@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public abstract class Boss : Character
 {
     public int state;
+    protected int prevState;
     public float[] stateDurations;
     public WeaponCard[] weapons;
     protected AIController aiController;
@@ -14,12 +15,14 @@ public abstract class Boss : Character
 
     protected void Awake() {
         bossDied = new UnityEvent();
+        
     }
 
     protected IEnumerator RunThroughStates() {
         
         //Keep looping until boss is dead
         while (hp > 0) {
+            prevState = state;
             state = (state + 1) % stateDurations.Length;
             yield return new WaitForSeconds(stateDurations[state]);
         }
@@ -32,6 +35,8 @@ public abstract class Boss : Character
         state = -1;
         hp = maxHP;
         isEnemy = true;
+        onlyHasHealth = true;
+        isLevelable = false;
         StartCoroutine(RunThroughStates());
     }
 

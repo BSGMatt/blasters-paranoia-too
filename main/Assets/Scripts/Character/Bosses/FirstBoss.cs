@@ -36,6 +36,8 @@ public class FirstBoss : Boss
     }
 
     public override void CalmState() {
+
+        if (!movementEnabled) EnableMovement();
         if (aiController.target == null) aiController.ResetPath();
 
         //Keep following path until the end has been reached. 
@@ -48,6 +50,22 @@ public class FirstBoss : Boss
             if (Vector2.Distance(transform.position, aiController.target.position) >= aiController.maxDistance) {
                 aiController.InitPath(targetType);
             }
+        }
+
+        //if we're returning to our calm state, reset anything we changed in the previous state. 
+        if (prevState != -1) {
+            Destroy(currentWeapon.gameObject);
+            currentWeapon = Instantiate<GameObject>(weapons[0].prefab, transform.position, Quaternion.identity).GetComponent<Weapon>();
+            currentWeapon.card = weapons[0];
+            currentWeapon.host = this;
+
+            /*Debug.Log(currentWeapon.host);
+            Debug.Log(currentWeapon.card);*/
+
+            currentWeapon.canFire = true;
+            currentWeapon.ammo = currentWeapon.card.maxAmmo;
+            Debug.Log(currentWeapon.target);
+            prevState = -1;
         }
     }
 
@@ -75,8 +93,8 @@ public class FirstBoss : Boss
         Debug.Log(currentWeapon.host);
         Debug.Log(currentWeapon.card);
 
-        EnableMovement();
         currentWeapon.canFire = true;
+        chargingInit = false;
     }
 
     public override void Die() {
@@ -91,7 +109,10 @@ public class FirstBoss : Boss
     }
 
     public override void EnableMovement() {
-        if (aiController.reachedEndOfPath) aiController.InitPath(0);
+        if (!aiController.reachedEndOfPath) {
+            aiController.StopPath();
+        }
+        aiController.InitPath(0);
 
         //Check if the enemy was allowed to fire their weapon before stopping
         if (state != 1) currentWeapon.canFire = true;

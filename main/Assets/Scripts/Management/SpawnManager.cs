@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
 {
     /// <summary>
     /// An array containing the min and max difficulties allowed at a specific level.
-    /// NOTE: Level does mean wave; Each level is 6 waves long (with 30 waves, this is 5 levels in all). 
+    /// NOTE: Level does not mean wave; Each level is 6 waves long (with 30 waves, this is 5 levels in all). 
     /// </summary>
     public readonly int[,] diffRangeAtLevel = { { 1, 20 }, { 1, 40 }, { 21, 80 }, { 61, 100 }, { 81, 100 } };
 
@@ -53,11 +53,15 @@ public class SpawnManager : MonoBehaviour
     public int totalEnemiesInWave;
     public int enemiesLeft;
 
+    public int minEnemiesPerWave = 10;
+
     private int currentLevel;
     private GameManager gm;
     private Coroutine spawning;
     private int enemiesInSpawnQueue;
     private int currentBoss = 0;
+
+    private int maxIdx, minIdx;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +69,9 @@ public class SpawnManager : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         waveSpawnPool = new List<GameObject>();
         enemySpawnOrder = new Stack<int>();
+
+        //Sort enemy pool by difficulty
+        globalSpawnPool.Sort(SortByDifficulty);
     }
 
     //Keep track of the current number of enemies in field. 
@@ -77,9 +84,32 @@ public class SpawnManager : MonoBehaviour
     /// Activates the enemy spawner. 
     /// </summary>
     public void ActivateSpawner() {
+        //Check if the min and max indeces need to be updated. 
+        int oldCurrentLevel = currentLevel;
+        currentLevel = gm.wave / 6;
+        if (oldCurrentLevel != currentLevel) UpdateSpawnSelectionRange();
+
         GenerateEnemyPool();
 
         spawning = StartCoroutine(SpawnEnemies());
+    }
+
+    /// <summary>
+    /// Updates the min and max indeces of the global spawn pool such that all enemies between the indeces 
+    /// are within the difficulty range of the current level. 
+    /// </summary>
+    private void UpdateSpawnSelectionRange() {
+        //Get the lowest index that contains an enemy within the current difficulty range. 
+        minIdx = 0;
+        while (minIdx < globalSpawnPool.Count &&
+            globalSpawnPool[minIdx].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 0]) {
+            //Debug.Log(globalSpawnPool[i]);
+            minIdx++;
+        }
+
+        //Get the highest index that contains an enemy within the current difficulty range. 
+        for (maxIdx = minIdx + 1; maxIdx < globalSpawnPool.Count
+            && globalSpawnPool[maxIdx].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 1]; maxIdx++) ;
     }
 
     public Boss SpawnBoss() {
@@ -93,11 +123,8 @@ public class SpawnManager : MonoBehaviour
     }
 
     private void GenerateEnemyPool() {
-        //Sort enemy pool by difficulty
-        globalSpawnPool.Sort(SortByDifficulty);
-
         //Find the first index that's within the minimum difficulty.
-        int i = 0;
+        /*int i = 0;
         while (i < globalSpawnPool.Count && globalSpawnPool[i].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 0]) {
             //Debug.Log(globalSpawnPool[i]);
             i++;
@@ -109,6 +136,12 @@ public class SpawnManager : MonoBehaviour
         while (i < globalSpawnPool.Count && globalSpawnPool[i].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 1]) {
             waveSpawnPool.Add(globalSpawnPool[i]);
             i++;
+            if (Random.va)
+        }*/
+
+        //Generate a random selection of enemies to spawn during the swarm phase. 
+        for (int i = 0; i < minEnemiesPerWave + (gm.wave / 3); i++) {
+            waveSpawnPool.Add(globalSpawnPool[Random.Range(minIdx, maxIdx - 1)]);
         }
 
         totalEnemiesInWave = waveSpawnPool.Count;

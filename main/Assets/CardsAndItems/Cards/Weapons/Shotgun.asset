@@ -18,8 +18,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: fb8e2f5ffb7340149b9ff55a6ea977be, type: 3}
   pelletType: {fileID: 7632431803512875838, guid: b3d2fa814e2a32c4bac91f0c046fca6f, type: 3}
   maxAmmo: 8
-  dmgPerPellet: 14
-  pelletCount: 8
+  dmgPerPellet: 35
+  pelletCount: 5
   minSpread: 20
   maxSpread: 20
   pelletSpeed: 10
