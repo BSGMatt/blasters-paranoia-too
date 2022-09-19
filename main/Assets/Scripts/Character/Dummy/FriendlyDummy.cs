@@ -5,7 +5,7 @@ using UnityEngine;
 public class FriendlyDummy : Character {
 
     public void Start() {
-        Init();
+        isEnemy = false;
     }
 
     public override void Die() {
@@ -19,9 +19,5 @@ public class FriendlyDummy : Character {
 
     public override void EnableMovement() {
         throw new System.NotImplementedException();
-    }
-
-    public override void Init() {
-        isEnemy = false;
     }
 }

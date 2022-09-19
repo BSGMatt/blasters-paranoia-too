@@ -9,13 +9,11 @@ public abstract class Boss : Character
     protected int prevState;
     public float[] stateDurations;
     public WeaponCard[] weapons;
-    protected AIController aiController;
 
     public UnityEvent bossDied;
 
-    protected void Awake() {
+    protected new void Awake() {
         bossDied = new UnityEvent();
-        
     }
 
     protected IEnumerator RunThroughStates() {

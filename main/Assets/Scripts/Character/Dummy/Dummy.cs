@@ -5,7 +5,8 @@ using UnityEngine;
 public class Dummy : Character {
 
     public void Start() {
-        Init();
+        isEnemy = true;
+        hp = maxHP;
     }
 
     public override void Die() {
@@ -18,10 +19,5 @@ public class Dummy : Character {
 
     public override void EnableMovement() {
         throw new System.NotImplementedException();
-    }
-
-    public override void Init() {
-        isEnemy = true;
-        hp = maxHP;
     }
 }

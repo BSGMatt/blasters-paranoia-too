@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4aea3f141a7f354da84246e6272e060, type: 3}
   m_Name: TestShopItemA
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 526e348dd7404d24da900d7e317828db, type: 2}
-  displaySprite: {fileID: 21300000, guid: 86c548d0ed75f6f47bbcdc3964ea9b7a, type: 3}
-  description: 'This is a block from Blasters: Pandemonium. '
+  card: {fileID: 11400000, guid: aec041caee94f164f8776f7ef07f99c3, type: 2}
+  displaySprite: {fileID: 21300000, guid: 0a7e4e2af1fe79041a0b237b90be3015, type: 3}
+  description: This building mines gold. More gold means more money. More money means
+    more POWER!
   sold: 0

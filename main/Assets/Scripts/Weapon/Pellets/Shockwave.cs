@@ -9,7 +9,7 @@ public class Shockwave : Pellet
     public float timeBetweenShocks;
     public float duration;
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
         StartCoroutine(CreateShocks());

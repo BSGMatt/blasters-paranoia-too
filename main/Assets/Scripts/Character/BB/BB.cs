@@ -17,7 +17,8 @@ public class BB : Character
 
     void Start()
     {
-        Init();
+        hp = maxHP; //I have this set for testing purposes. should be hp = maxHP;
+        isEnemy = false;
     }
 
     // Update is called once per frame
@@ -117,11 +118,6 @@ public class BB : Character
 
     public override void Die() {
         Debug.Log("BB is dead.");
-    }
-
-    public override void Init() {
-        hp = maxHP / 2; //I have this set for testing purposes. should be hp = maxHP;
-        isEnemy = false;
     }
 
     public override void DisableMovement() {

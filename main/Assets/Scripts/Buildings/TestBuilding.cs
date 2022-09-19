@@ -8,13 +8,6 @@ using UnityEngine;
 public class TestBuilding : Building
 {
 
-
-    public override void Init() {
-        Debug.Log("I live!");
-
-        BaseInit();
-    }
-
     public override void Passive() {
         
     }
@@ -22,7 +15,7 @@ public class TestBuilding : Building
     // Start is called before the first frame update
     void Start()
     {
-        Init();
+        BaseInit();
     }
 
     // Update is called once per frame

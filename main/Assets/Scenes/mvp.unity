@@ -5993,7 +5993,7 @@ MonoBehaviour:
   builder: {fileID: 29311540}
   eventDisplay: {fileID: 82345147}
   phase: 0
-  bossWave: 5
+  bossWave: 1
   wave: 0
   preptime: 300
   cash: 1000
@@ -6008,6 +6008,8 @@ MonoBehaviour:
   im: {fileID: 1081411879}
   crystal: {fileID: 777233631}
   boss: {fileID: 0}
+  cameraMan: {fileID: 519420030}
+  player: {fileID: 1253233077}
 --- !u!114 &1081411879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6060,6 +6062,7 @@ MonoBehaviour:
   bossSpawnpoint: {fileID: 821095228}
   totalEnemiesInWave: 0
   enemiesLeft: 0
+  minEnemiesPerWave: 10
 --- !u!114 &1081411881
 MonoBehaviour:
   m_ObjectHideFlags: 0

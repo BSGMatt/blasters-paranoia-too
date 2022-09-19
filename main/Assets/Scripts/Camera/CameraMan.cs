@@ -140,6 +140,12 @@ public class CameraMan : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="primary"></param>
+    /// <param name="secondary"></param>
+    /// <param name="priority"></param>
     public void CreateFocalPoint(Transform primary, Transform secondary, float priority) {
         if (focalPoint != null) focalPoint.GetComponent<FocalPoint>().Remove();
         focalPoint = Instantiate(focalPointPrefab); //Create an object of FocalPoint GameObject. 
@@ -148,6 +154,15 @@ public class CameraMan : MonoBehaviour {
         focalPoint.GetComponent<FocalPoint>().SetPrimary(primary);
         focalPoint.GetComponent<FocalPoint>().SetSecondary(secondary);
         focalPoint.GetComponent<FocalPoint>().SetPriority(priority);
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void DestroyLastFocalPoint() {
+        if (focalPoint == null) return;
+        focalPoint.GetComponent<FocalPoint>().Remove();
     }
 
     public void TestFocalPoint() {

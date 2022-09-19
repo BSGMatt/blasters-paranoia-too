@@ -41,8 +41,4 @@ public class Crystal : Character
         
     }
 
-    public override void Init() {
-        hp = maxHP;
-    }
-
 }

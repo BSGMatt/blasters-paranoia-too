@@ -28,26 +28,35 @@ public class AIController : MonoBehaviour
             default:
                 return FindObjectOfType<BB>().transform;
             case 1:
-
-                //Find the nearest building to target. 
-
                 Building[] b = FindObjectsOfType<Building>();
                 if (b.Length == 0) return FindObjectOfType<BB>().transform; //default to player if no buildings are present.
-                Transform ret = null;
-                float distFromBldg = 10000000;
-                for (int i = 0; i < b.Length; i++) {
-                    float dist = Vector2.Distance(transform.position, b[i].transform.position);
-                    if (dist < distFromBldg) {
-                        distFromBldg = dist;
-                        ret = b[i].transform;
-                    }
-                }
-
-                return ret;
+                return BestBuildingToKill(b);
 
             case 2:
                 return FindObjectOfType<Crystal>().transform;
         }
+    }
+
+    private Transform BestBuildingToKill(Building[] buildings) {
+
+        /**
+         * Rank the list of enemies based on their "moment importance",
+         * which is equal to:
+         * building's importance - building's distance from character. 
+         */
+        int maxImportance = -10000000;
+        Building best = null;
+        foreach (Building b in buildings) {
+            int bImportance = b.card.importance - 
+                (int) Vector2.Distance(b.transform.position, character.transform.position);
+
+            if (bImportance > maxImportance) {
+                maxImportance = bImportance;
+                best = b;
+            }
+        }
+
+        return best.transform;
     }
 
     public void InitPath(int targetType) {
@@ -79,7 +88,12 @@ public class AIController : MonoBehaviour
 
         Debug.Log("Attempting to move along path...");
 
-        Vector2 direction = ((Vector2) path.vectorPath[currentWaypoint] - character.GetRigidBody().position).normalized;
+        MoveAlongPath();
+
+    }
+
+    private void MoveAlongPath() {
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - character.GetRigidBody().position).normalized;
 
         character.c2d.Move(direction, character.GetMaxSpeed() * character.currentSpeedModValue);
 
@@ -87,12 +101,12 @@ public class AIController : MonoBehaviour
         if (Vector2.Distance(character.GetRigidBody().position, target.position) <= minDistance) {
             currentWaypoint = path.vectorPath.Count;
         }
-        else  {
+        else {
             float distance = Vector2.Distance(character.GetRigidBody().position, path.vectorPath[currentWaypoint]);
 
             if (distance < nextWaypointDistance) {
                 currentWaypoint++;
-            }      
+            }
         }
     }
 

@@ -145,7 +145,6 @@ public abstract class Character : MonoBehaviour
 
 
     public abstract void Die();
-    public abstract void Init();
 
     /// <summary>
     /// A method to be used alongside Die(). Contains the operations that most characters will use when they die. 

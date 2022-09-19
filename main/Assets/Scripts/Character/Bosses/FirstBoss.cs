@@ -7,13 +7,12 @@ public class FirstBoss : Boss
     // Start is called before the first frame update
 
     private bool chargingInit = false;
-    private bool releaseInit = false;
 
-    private void Awake() {
+    private new void Awake() {
         base.Awake();
     }
 
-    void Start()
+    private new void Start()
     {
         base.Start();
         aiController.InitPath(0);
@@ -28,7 +27,7 @@ public class FirstBoss : Boss
     }
 
     // Update is called once per frame
-    void Update()
+    private new void Update()
     {
         base.Update();
         
@@ -117,10 +116,6 @@ public class FirstBoss : Boss
         //Check if the enemy was allowed to fire their weapon before stopping
         if (state != 1) currentWeapon.canFire = true;
         movementEnabled = true;
-    }
-
-    public override void Init() {
-        
     }
   
 }

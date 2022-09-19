@@ -98,8 +98,10 @@ public class Builder : MonoBehaviour {
             if (FindObjectOfType<GameManager>().cash >= buildlingToDeploy.buildPrice) {
                 FindObjectOfType<GameManager>().cash -= buildlingToDeploy.buildPrice;
 
+                //Place the building down. 
                 GameObject b = GameObject.Instantiate(buildlingToDeploy.prefab, transform.position, Quaternion.identity);
                 buildingsDeployed.Add(b.GetComponent<Building>());
+                b.GetComponent<Building>().card = buildlingToDeploy;
 
             }
             else {

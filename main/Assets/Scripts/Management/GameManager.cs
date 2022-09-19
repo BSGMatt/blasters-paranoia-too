@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject builder;
     public GameObject eventDisplay;
     public Phase phase = Phase.IDLE;
-    public int bossWave = 5;
+    public int bossWave = 1;
     public int wave = 0;
     public int preptime = 300;
     public int cash = 0;
@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public InventoryManager im;
     public Crystal crystal;
     public Boss boss;
+    public CameraMan cameraMan;
+    public Character player;
 
     private int time;
     private Coroutine timer; 
@@ -126,6 +128,7 @@ public class GameManager : MonoBehaviour
     private void ToBossPhase() {
         boss = spawnManager.SpawnBoss();
         boss.bossDied.AddListener(BossDefeated);
+        cameraMan.CreateFocalPoint(player.transform, boss.transform, 0.5f);
         StartCoroutine(ShowEventText("LARGE HOSTILE INCOMING!", 2));
         commentary.text = "DEFEAT THE BOSS!";
         bossDefeated = false;
@@ -138,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     private void BossDefeated() {
         StartCoroutine(ShowEventText("THAT'LL TEACH 'EM!", 2));
+        cameraMan.DestroyLastFocalPoint();
         ToIdlePhase();
     }
 

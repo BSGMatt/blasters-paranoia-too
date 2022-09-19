@@ -5,7 +5,7 @@ using UnityEngine;
 public class StandardPellet : Pellet
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         base.Start();
     }

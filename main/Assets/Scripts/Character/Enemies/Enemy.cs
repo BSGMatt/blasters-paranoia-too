@@ -105,8 +105,4 @@ public class Enemy : Character, IComparable<Enemy>
         movementEnabled = true;
     }
 
-    public override void Init() {
-        Debug.LogWarning("This init function doesn't do anything. ");
-    }
-
 }
