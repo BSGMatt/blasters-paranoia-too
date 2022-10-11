@@ -25,6 +25,8 @@ public class CameraMan : MonoBehaviour {
     private float xSpeed;
     private float ySpeed;
 
+    public float yConstant;
+
     //How close to the bounds of screen the player must be before the camera start moving. 
     //Think of these values like a percentage; 0.2 means the player must be in the left/right 20%
     //of the screen before the camera will move. 
@@ -52,8 +54,7 @@ public class CameraMan : MonoBehaviour {
     }
 
     public void Update() {
-        //Debug.Log("Following: " + following);
-        if (following) FollowTarget();
+
 
         //Code to test CreateFocalPoint() method
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -64,6 +65,11 @@ public class CameraMan : MonoBehaviour {
             Destroy(secondary);
             secondary = null;
         }
+    }
+
+    private void FixedUpdate() {
+        //Debug.Log("Following: " + following);
+        if (following) FollowTarget();
     }
 
     // Update is called once per frame
@@ -79,14 +85,12 @@ public class CameraMan : MonoBehaviour {
         //Interpolation values for each axis
         int ignoreBounds = BSGUtility.BoolAsInt(enableBounds);
         float interpolationX = xSpeed * Time.deltaTime * CheckHorizontalBounds(playerPos.x) * ignoreBounds;
-        float interpolationY = ySpeed * Time.deltaTime * CheckVerticalBounds(playerPos.y) * ignoreBounds;
+        float interpolationY = ySpeed * yConstant * Time.deltaTime * CheckVerticalBounds(playerPos.y) * ignoreBounds;
 
         //"Smooth" the camera using lerp method. 
         Vector3 position = cameraTransform.position;
         position.y = Mathf.Lerp(cameraTransform.position.y, playerTransform.position.y, interpolationY);
-        position.x = Mathf.Lerp(cameraTransform.position.x, playerTransform.position.x, interpolationX);
-
-        
+        position.x = Mathf.Lerp(cameraTransform.position.x, playerTransform.position.x, interpolationX);   
 
         cameraTransform.position = position;
     }

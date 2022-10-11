@@ -129,7 +129,4 @@ public class BB : Character
         SetMovementEnabled(true);
     }
 
-
-
-
 }

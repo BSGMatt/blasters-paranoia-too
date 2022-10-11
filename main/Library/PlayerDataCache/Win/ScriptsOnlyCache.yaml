@@ -41,7 +41,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -51,7 +50,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
@@ -99,21 +97,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 614}
     - Class: 114
-      Script: {instanceID: 1446}
+      Script: {instanceID: 1500}
     - Class: 114
-      Script: {instanceID: 1502}
+      Script: {instanceID: 1568}
     - Class: 114
-      Script: {instanceID: 1570}
+      Script: {instanceID: 1680}
     - Class: 114
-      Script: {instanceID: 1682}
+      Script: {instanceID: 1836}
     - Class: 114
-      Script: {instanceID: 1838}
+      Script: {instanceID: 1850}
     - Class: 114
       Script: {instanceID: 1852}
     - Class: 114
-      Script: {instanceID: 1854}
+      Script: {instanceID: 1912}
     - Class: 114
-      Script: {instanceID: 1914}
+      Script: {instanceID: 1988}
     - Class: 114
       Script: {instanceID: 2052}
     - Class: 114
@@ -141,49 +139,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2900}
     - Class: 114
-      Script: {instanceID: 2940}
+      Script: {instanceID: 2926}
     - Class: 114
-      Script: {instanceID: 3108}
+      Script: {instanceID: 2942}
     - Class: 114
-      Script: {instanceID: 3122}
+      Script: {instanceID: 3110}
     - Class: 114
-      Script: {instanceID: 3166}
+      Script: {instanceID: 3124}
     - Class: 114
-      Script: {instanceID: 3276}
+      Script: {instanceID: 3168}
     - Class: 114
-      Script: {instanceID: 3298}
+      Script: {instanceID: 3278}
     - Class: 114
-      Script: {instanceID: 3320}
+      Script: {instanceID: 3300}
     - Class: 114
-      Script: {instanceID: 3430}
+      Script: {instanceID: 3322}
     - Class: 114
-      Script: {instanceID: 3774}
+      Script: {instanceID: 3432}
     - Class: 114
-      Script: {instanceID: 4118}
+      Script: {instanceID: 3776}
     - Class: 114
-      Script: {instanceID: 4300}
+      Script: {instanceID: 4122}
     - Class: 114
-      Script: {instanceID: 4500}
+      Script: {instanceID: 4304}
     - Class: 114
-      Script: {instanceID: 4696}
+      Script: {instanceID: 4504}
     - Class: 114
-      Script: {instanceID: 4764}
+      Script: {instanceID: 4700}
     - Class: 114
-      Script: {instanceID: 4918}
+      Script: {instanceID: 4768}
     - Class: 114
-      Script: {instanceID: 4970}
+      Script: {instanceID: 4922}
     - Class: 114
-      Script: {instanceID: 5122}
+      Script: {instanceID: 4974}
     - Class: 114
-      Script: {instanceID: 5130}
+      Script: {instanceID: 5126}
     - Class: 114
-      Script: {instanceID: 5156}
+      Script: {instanceID: 5134}
     - Class: 114
-      Script: {instanceID: 5246}
+      Script: {instanceID: 5160}
     - Class: 114
-      Script: {instanceID: 5336}
+      Script: {instanceID: 5250}
     - Class: 114
-      Script: {instanceID: 77974}
+      Script: {instanceID: 5340}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -211,12 +209,6 @@ ScriptsOnlyBuild:
     - Class: 1839735485
       Script: {instanceID: 0}
   scriptHashData:
-  - hash:
-      serializedVersion: 2
-      Hash: ae83e830e7a90c0aff918c4c2e520825
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: GraphicRaycaster
   - hash:
       serializedVersion: 2
       Hash: de673e1340c90424cfde9cdd2df0ab93
@@ -361,6 +353,12 @@ ScriptsOnlyBuild:
     assemblyName: AstarPathfindingProject.dll
     namespaceName: Pathfinding
     className: SimpleSmoothModifier
+  - hash:
+      serializedVersion: 2
+      Hash: 4152ee23e1ad18affd683f28c8b5f4bf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyCard
   - hash:
       serializedVersion: 2
       Hash: 2fde15209800c4e94cf99bcad8981a24
@@ -589,6 +587,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestRunner.Utils
     className: TestRunCallbackListener
+  - hash:
+      serializedVersion: 2
+      Hash: ae83e830e7a90c0aff918c4c2e520825
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: GraphicRaycaster
   - hash:
       serializedVersion: 2
       Hash: 37c4fabc9fbb06a127724867417e4fe0
@@ -1153,13 +1157,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SecondaryTarget
-  - hash:
-      serializedVersion: 2
-      Hash: 4152ee23e1ad18affd683f28c8b5f4bf
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EnemyCard
   platform: 5
   scenePathNames:
   - Assets/Scenes/mvp.unity
-  playerPath: G:/Projects/Games/Blasters Pandemonium Plus/Builds/Debug/v1z/main.exe
+  playerPath: G:/Projects/Games/Blasters Pandemonium Plus/Builds/Debug/v1x/main.exe
