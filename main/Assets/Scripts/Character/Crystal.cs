@@ -25,6 +25,7 @@ public class Crystal : Character
     /// </summary>
     public void ReviveCrystal() {
         hp = maxHP;
+        dead = false;
         GetComponent<SpriteRenderer>().color = Color.white;
     }
 

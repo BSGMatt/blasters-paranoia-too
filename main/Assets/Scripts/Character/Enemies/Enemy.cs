@@ -10,11 +10,13 @@ public class Enemy : Character, IComparable<Enemy>
     public int difficulty;
     public Approach approach;
     public WeaponCard weaponCard;
+    public EnemyCard enemyCard;
 
     // Start is called before the first frame update
     void Start() {
 
-        hp = maxHP;
+        LoadValuesFromCard();
+
         isEnemy = true;
         isLevelable = false;
         onlyHasHealth = true;
@@ -42,6 +44,18 @@ public class Enemy : Character, IComparable<Enemy>
                 state = Character.s_both;
                 currentWeapon.canFire = true;
                 break;
+        }
+    }
+    
+    private void LoadValuesFromCard() {
+        maxHP = enemyCard.maxHP;
+        hp = maxHP;
+        maxSpeed = enemyCard.speed;
+        weaponCard = enemyCard.weapon;
+        approach = enemyCard.approach;
+        targetType = enemyCard.targetType;
+        if (enemyCard.sprite != null) {
+            GetComponent<SpriteRenderer>().sprite = enemyCard.sprite;
         }
     }
 

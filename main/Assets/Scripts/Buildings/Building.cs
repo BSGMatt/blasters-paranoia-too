@@ -32,7 +32,8 @@ public abstract class Building : Character
     /// <returns></returns>
     public IEnumerator AgeBuilding() {
         while (shouldAge) {
-            yield return new WaitForSeconds(Character.tickRate);
+            //increase the age of the buildings every 6 seconds. (age 10/min) 
+            yield return new WaitForSeconds(Character.tickRate * 48);
 
             age++;
         }

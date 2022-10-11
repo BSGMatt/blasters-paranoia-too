@@ -29,12 +29,12 @@ public class SpawnManager : MonoBehaviour
     /// <summary>
     /// <para>The list of all possible enemies that can be spawned into the game field.</para>
     /// </summary>
-    public List<GameObject> globalSpawnPool;
+    public List<EnemyCard> globalSpawnPool;
 
     /// <summary>
     /// <para>The list of enemies that will spawn during the current wave</para>
     /// </summary>
-    private List<GameObject> waveSpawnPool;
+    private List<EnemyCard> waveSpawnPool;
 
     /// <summary>
     /// 
@@ -67,7 +67,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        waveSpawnPool = new List<GameObject>();
+        waveSpawnPool = new List<EnemyCard>();
         enemySpawnOrder = new Stack<int>();
 
         //Sort enemy pool by difficulty
@@ -102,14 +102,14 @@ public class SpawnManager : MonoBehaviour
         //Get the lowest index that contains an enemy within the current difficulty range. 
         minIdx = 0;
         while (minIdx < globalSpawnPool.Count &&
-            globalSpawnPool[minIdx].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 0]) {
+            globalSpawnPool[minIdx].difficulty < diffRangeAtLevel[currentLevel, 0]) {
             //Debug.Log(globalSpawnPool[i]);
             minIdx++;
         }
 
         //Get the highest index that contains an enemy within the current difficulty range. 
-        for (maxIdx = minIdx + 1; maxIdx < globalSpawnPool.Count
-            && globalSpawnPool[maxIdx].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 1]; maxIdx++) ;
+        for (maxIdx = minIdx; maxIdx < globalSpawnPool.Count
+            && globalSpawnPool[maxIdx].difficulty < diffRangeAtLevel[currentLevel, 1]; maxIdx++) ;
     }
 
     public Boss SpawnBoss() {
@@ -141,7 +141,7 @@ public class SpawnManager : MonoBehaviour
 
         //Generate a random selection of enemies to spawn during the swarm phase. 
         for (int i = 0; i < minEnemiesPerWave + (gm.wave / 3); i++) {
-            waveSpawnPool.Add(globalSpawnPool[Random.Range(minIdx, maxIdx - 1)]);
+            waveSpawnPool.Add(globalSpawnPool[Random.Range(minIdx, maxIdx)]);
         }
 
         totalEnemiesInWave = waveSpawnPool.Count;
@@ -169,10 +169,10 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private static int SortByDifficulty(GameObject x, GameObject y) {
+    private static int SortByDifficulty(EnemyCard x, EnemyCard y) {
 
-        Enemy ex = x.GetComponent<Enemy>();
-        Enemy ey = y.GetComponent<Enemy>();
+        Enemy ex = x.prefab.GetComponent<Enemy>();
+        Enemy ey = y.prefab.GetComponent<Enemy>();
 
         if (ex == null || ey == null) {
             Debug.LogError("Spawn list sorting error: object does not have enemy component");
@@ -197,8 +197,12 @@ public class SpawnManager : MonoBehaviour
         int i = 0;
         enemiesInSpawnQueue = enemySpawnOrder.Count;
         while (enemySpawnOrder.Count > 0) {
-            GameObject enemy = Instantiate<GameObject>(waveSpawnPool[enemySpawnOrder.Pop()], 
+
+            EnemyCard ec = waveSpawnPool[enemySpawnOrder.Pop()];
+
+            GameObject enemy = Instantiate<GameObject>(ec.prefab, 
                 spawnpoints[i % spawnpoints.Length].position, Quaternion.identity);
+            enemy.GetComponent<Enemy>().enemyCard = ec;
 
             enemiesInSpawnQueue--;
 

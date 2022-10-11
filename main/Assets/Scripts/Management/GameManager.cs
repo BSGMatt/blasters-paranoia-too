@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 {
     public const int MAX_CASH = 99999999;
 
-
     public GameObject shopUI;
     public GameObject mainUI;
     public GameObject builderUI;
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int wave = 0;
     public int preptime = 300;
     public int cash = 0;
+    public int cashRewardPerWave = 200;
     public Text timerDisplay;
     public Text commentary;
     public Text waveText;
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public SpawnManager spawnManager;
     public InventoryManager im;
-    public Crystal crystal;
+    public Crystal[] crystals;
     public Boss boss;
     public CameraMan cameraMan;
     public Character player;
@@ -154,16 +154,15 @@ public class GameManager : MonoBehaviour
         builder.SetActive(builderEnabled);
         builderUI.SetActive(builderEnabled);
 
-        if (crystal.dead) {
-            crystal.ReviveCrystal();
-        }
-
-        crystal.hp = crystal.maxHP;
+        ReviveAllCrystals();
 
         waveText.text = "";
         timerDisplay.text = "TIME: " + preptime;
         wave++;
-        if (wave > 1) FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
+        if (wave > 1) {
+            FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
+            cash += cashRewardPerWave;
+        }
     }
 
     private void Idle() {
@@ -177,6 +176,12 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    private void ReviveAllCrystals() {
+        foreach (Crystal c in crystals) {
+            c.ReviveCrystal();
+        }
+    }
 
     /// <summary>
     /// Runs the prep phase timer. 
@@ -208,7 +213,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>
-    private IEnumerator ShowEventText(string message, float time) {
+    public IEnumerator ShowEventText(string message, float time) {
         eventDisplay.SetActive(true);
         eventDisplay.GetComponentInChildren<Text>().text = message;
         yield return new WaitForSeconds(time);
@@ -221,7 +226,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>
-    private IEnumerator ShowEventText(string[] messages, float time) {
+    public IEnumerator ShowEventText(string[] messages, float time) {
         eventDisplay.SetActive(true);
 
         foreach(string m in messages) {

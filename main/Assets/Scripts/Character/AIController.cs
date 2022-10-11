@@ -33,7 +33,7 @@ public class AIController : MonoBehaviour
                 return BestBuildingToKill(b);
 
             case 2:
-                return FindObjectOfType<Crystal>().transform;
+                return FindClosestCrystal();
         }
     }
 
@@ -59,9 +59,31 @@ public class AIController : MonoBehaviour
         return best.transform;
     }
 
-    public void InitPath(int targetType) {
+    private Transform FindClosestCrystal() {
+        GameManager gm = FindObjectOfType<GameManager>();
+
+        float minDistance = 1000000;
+        Transform ret = gm.crystals[0].transform; //Use first crystal by default. 
+        foreach (Crystal c in gm.crystals) {
+            if (!c.dead) {
+                float distance = Vector2.Distance(c.transform.position, 
+                    character.transform.position);
+
+                Debug.Log("Distance from Crystal " + c + ": " + distance);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    ret = c.transform;
+                }
+            }
+        }
+
+        return ret;
+    }
+
+    public void InitPath(TargetType type) {
         seeker = GetComponent<Seeker>();
-        target = FindTargetOfType(targetType);
+        target = FindTargetOfType((int) type);
 
         seeker.StartPath(character.GetRigidBody().position, target.position, OnPathComplete);
         reachedEndOfPath = false;

@@ -40,7 +40,7 @@ public abstract class Character : MonoBehaviour
 
     public AIController aiController;
     public Weapon currentWeapon;
-    public int targetType; //0 - Player, 1 - Building, 2 - Crystal
+    public TargetType targetType; //0 - Player, 1 - Building, 2 - Crystal
 
     /// <summary>
     /// <para>The maximum speed the character will move without any modifiers applied.
