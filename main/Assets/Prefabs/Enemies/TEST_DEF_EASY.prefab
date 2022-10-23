@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3390347684773251066}
   - component: {fileID: 3390347684773251065}
   - component: {fileID: 3390347684773251064}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TEST_DEF_EASY
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2c0d25a77c4d439469565a7a05a32bf5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   difficulty: 1
   approach: 0
   weaponCard: {fileID: 11400000, guid: a9426e8a4f9eb184e8958089048b2ef9, type: 2}
+  enemyCard: {fileID: 0}
 --- !u!114 &3390347684773251071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3390347686175346124}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,6 +19,7 @@ MonoBehaviour:
   speed: 7
   maxHP: 175
   difficulty: 15
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 3e3bdd5b787890b42b130724997a197b, type: 2}
   approach: 2
   targetType: 0
+  color: {r: 0, g: 1, b: 0, a: 1}

@@ -22,3 +22,4 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 3e3bdd5b787890b42b130724997a197b, type: 2}
   approach: 1
   targetType: 0
+  color: {r: 0, g: 0, b: 1, a: 1}

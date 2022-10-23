@@ -72,6 +72,7 @@ public class SpawnManager : MonoBehaviour
 
         //Sort enemy pool by difficulty
         globalSpawnPool.Sort(SortByDifficulty);
+        UpdateSpawnSelectionRange();
     }
 
     //Keep track of the current number of enemies in field. 
@@ -199,6 +200,8 @@ public class SpawnManager : MonoBehaviour
         while (enemySpawnOrder.Count > 0) {
 
             EnemyCard ec = waveSpawnPool[enemySpawnOrder.Pop()];
+
+            Debug.Log(ec); //Dispay enemy info to the console. 
 
             GameObject enemy = Instantiate<GameObject>(ec.prefab, 
                 spawnpoints[i % spawnpoints.Length].position, Quaternion.identity);

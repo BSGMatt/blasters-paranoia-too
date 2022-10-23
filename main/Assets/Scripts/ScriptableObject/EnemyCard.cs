@@ -11,8 +11,9 @@ public class EnemyCard : Card
     public WeaponCard weapon;
     public Approach approach;
     public TargetType targetType;
+    public Color color = Color.white;
 
     public override string infoText() {
-        return name;
+        return "Enemy Name: " + name + ", " + difficulty;
     }
 }

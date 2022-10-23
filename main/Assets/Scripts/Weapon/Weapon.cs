@@ -64,6 +64,33 @@ public abstract class Weapon : MonoBehaviour
         return angle;
     }
 
+    private void LockOntoTarget() {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, 2f, LayerMask.GetMask("Character"));
+        float minDistance = 10000000;
+        int targetIndex = -1;
+        for (int i = 0; i < colliders.Length; i++) {
+            if (colliders[i].gameObject != host) {
+                float dist = Vector2.Distance(mousePos, colliders[i].transform.position);
+                if (dist < minDistance) {
+                    targetIndex = i;
+                    minDistance = dist;
+                }
+            }
+        }
+
+        //No other characters were found
+        if (targetIndex == -1) {
+            return;
+        }
+
+        Vector2 lookDir = (Vector2) colliders[targetIndex].transform.position - rb.position;
+
+        angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        rb.rotation = angle;
+    }
+
     /// <summary>
     /// Creates a pellet based on the given card and trajectory. 
     /// </summary>
@@ -163,8 +190,17 @@ public abstract class Weapon : MonoBehaviour
     public void CommonFixedUpdate() {
         rb.position = host.GetRigidBody().position;
 
-        AimWithMouse();
+        if (Input.GetMouseButton(1)) {
+            LockOntoTarget();
+        }
+        else {
+            AimWithMouse();
+        }
+
+
     }
+
+
 
     /// <summary>
     /// An start method containing the common operations that most weapons will use. 

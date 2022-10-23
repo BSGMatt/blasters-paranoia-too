@@ -54,8 +54,10 @@ public class Enemy : Character, IComparable<Enemy>
         weaponCard = enemyCard.weapon;
         approach = enemyCard.approach;
         targetType = enemyCard.targetType;
+        SpriteRenderer spr = GetComponent<SpriteRenderer>();
+        spr.color = enemyCard.color;
         if (enemyCard.sprite != null) {
-            GetComponent<SpriteRenderer>().sprite = enemyCard.sprite;
+            spr.sprite = enemyCard.sprite;
         }
     }
 

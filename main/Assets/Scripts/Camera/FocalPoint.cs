@@ -36,7 +36,7 @@ public class FocalPoint : MonoBehaviour {
 
     private Transform formerTarget;
 
-    [SerializeField] private float def_cameraSize = 6f;
+    [SerializeField] private float def_cameraSize = 8;
     [SerializeField] private float grad;
 
 

@@ -85,7 +85,7 @@ public class CameraMan : MonoBehaviour {
         //Interpolation values for each axis
         int ignoreBounds = BSGUtility.BoolAsInt(enableBounds);
         float interpolationX = xSpeed * Time.deltaTime * CheckHorizontalBounds(playerPos.x) * ignoreBounds;
-        float interpolationY = ySpeed * yConstant * Time.deltaTime * CheckVerticalBounds(playerPos.y) * ignoreBounds;
+        float interpolationY = ySpeed * (3 / cam.orthographicSize) * Time.deltaTime * CheckVerticalBounds(playerPos.y) * ignoreBounds;
 
         //"Smooth" the camera using lerp method. 
         Vector3 position = cameraTransform.position;
