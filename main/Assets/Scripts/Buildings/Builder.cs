@@ -9,12 +9,13 @@ public class Builder : MonoBehaviour {
     private const int SNAP = 64;
 
     public List<Building> buildingsDeployed;
-    public BuildingCard buildlingToDeploy;
-    public Building buildlingToEdit;
+    public BuildingCard buildingToDeploy;
+    public Building buildingToEdit;
     public InventoryManager im;
     public GameObject buildingPreview;
     public Text modeDisplayText;
     public Tilemap mapGeometery;
+    public BuilderWindow builderWindow;
 
     private int buildingListIndex;
 
@@ -42,6 +43,9 @@ public class Builder : MonoBehaviour {
         }
 
         if (mode) {
+            if (builderWindow.gameObject.activeSelf == true) {
+                builderWindow.gameObject.SetActive(false);
+            }
             //Debug.Log("You're now in Deploy mode.");
             modeDisplayText.text = "DEPLOY MODE";
             DeployMode();
@@ -68,10 +72,10 @@ public class Builder : MonoBehaviour {
             if (buildingListIndex < 0) buildingListIndex = im.buildingCards.Count - 1;
         }
 
-        buildlingToDeploy = im.buildingCards[buildingListIndex];
+        buildingToDeploy = im.buildingCards[buildingListIndex];
 
         //Set the preview's sprite to the buildings sprite, and the make the sprite translucent. 
-        buildingPreview.GetComponent<SpriteRenderer>().sprite = buildlingToDeploy.prefab.GetComponent<SpriteRenderer>().sprite;
+        buildingPreview.GetComponent<SpriteRenderer>().sprite = buildingToDeploy.prefab.GetComponent<SpriteRenderer>().sprite;
         buildingPreview.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
 
         Vector3Int offset = new Vector3Int(-1, -1, 0);
@@ -95,22 +99,50 @@ public class Builder : MonoBehaviour {
 
         //Attempt deploy on left-click. 
         if (Input.GetMouseButtonDown(0)) {
-            if (FindObjectOfType<GameManager>().cash >= buildlingToDeploy.buildPrice) {
-                FindObjectOfType<GameManager>().cash -= buildlingToDeploy.buildPrice;
+            if (FindObjectOfType<GameManager>().cash >= buildingToDeploy.buildPrice) {
+                FindObjectOfType<GameManager>().cash -= buildingToDeploy.buildPrice;
 
                 //Place the building down. 
-                GameObject b = GameObject.Instantiate(buildlingToDeploy.prefab, transform.position, Quaternion.identity);
+                GameObject b = GameObject.Instantiate(buildingToDeploy.prefab, transform.position, Quaternion.identity);
                 buildingsDeployed.Add(b.GetComponent<Building>());
-                b.GetComponent<Building>().card = buildlingToDeploy;
+                b.GetComponent<Building>().card = buildingToDeploy;
 
             }
             else {
-                Debug.Log("Player could not afford to deploy " + buildlingToDeploy.name);
+                Debug.Log("Player could not afford to deploy " + buildingToDeploy.name);
             }
         }
     }
 
     public void EditMode() {
+
+        // Clear the hits array and fill it with new collider data
+        hits = new RaycastHit2D[10];
+        Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits);
+
+        //Check if the builder is on top of any existing buildings
+        foreach (RaycastHit2D hit in hits) {
+            Debug.Log("Hit: " + hit.collider);
+            if (hit && hit.collider.gameObject.GetComponent<Building>() != null) {
+                buildingToEdit = hit.collider.gameObject.GetComponent<Building>();
+            }
+        }
+
+        Debug.Log("buildingToEdit: " + buildingToEdit);
+
+        if (Input.GetMouseButtonDown(0)) {
+            if (builderWindow.gameObject.activeSelf == false) {
+                builderWindow.gameObject.SetActive(true);          
+            }
+
+            builderWindow.UpdateValues(buildingToEdit);
+        }
+
+        if (Input.GetMouseButtonDown(1)) {
+            if (builderWindow.gameObject.activeSelf == true) {
+                builderWindow.gameObject.SetActive(false);
+            }
+        }
 
     }
 

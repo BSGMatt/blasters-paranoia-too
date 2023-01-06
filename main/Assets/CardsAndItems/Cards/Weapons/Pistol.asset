@@ -18,10 +18,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   pelletType: {fileID: 7632431803512875838, guid: b3d2fa814e2a32c4bac91f0c046fca6f, type: 3}
   maxAmmo: 20
-  dmgPerPellet: 50
+  dmgPerPellet: 40
   pelletCount: 1
   minSpread: 0
   maxSpread: 0
   pelletSpeed: 15
-  fireRate: 0.5
+  fireRate: 0.25
   reloadSpeed: 0.5

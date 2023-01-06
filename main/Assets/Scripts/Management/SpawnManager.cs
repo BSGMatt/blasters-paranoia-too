@@ -124,6 +124,9 @@ public class SpawnManager : MonoBehaviour
     }
 
     private void GenerateEnemyPool() {
+
+        waveSpawnPool.Clear();
+
         //Find the first index that's within the minimum difficulty.
         /*int i = 0;
         while (i < globalSpawnPool.Count && globalSpawnPool[i].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 0]) {
