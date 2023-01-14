@@ -104,6 +104,7 @@ public class Enemy : Character, IComparable<Enemy>
     }
 
     public override void Die() {
+        FindObjectOfType<Minimap>().DeleteMinimapIcon(minimapIcon);
         CommonDieMethod();
     }
 

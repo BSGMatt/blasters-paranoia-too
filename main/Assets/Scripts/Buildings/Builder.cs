@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Builder : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class Builder : MonoBehaviour {
     public Text modeDisplayText;
     public Tilemap mapGeometery;
     public BuilderWindow builderWindow;
+    public Minimap minimap;
 
     private int buildingListIndex;
 
@@ -29,6 +31,7 @@ public class Builder : MonoBehaviour {
     //then blocks will not be placed if the player
     //left-clicks. 
     private bool onMenuButton;
+
 
     public void Start() {
         
@@ -107,6 +110,7 @@ public class Builder : MonoBehaviour {
                 buildingsDeployed.Add(b.GetComponent<Building>());
                 b.GetComponent<Building>().card = buildingToDeploy;
 
+                minimap.CreateMinimapIcon(b.GetComponent<Building>(), true);
             }
             else {
                 Debug.Log("Player could not afford to deploy " + buildingToDeploy.name);

@@ -1,8 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 
+/// <summary>
+/// A script for handling the minimap. 
+/// </summary>
 public class Minimap : MonoBehaviour
 {
+
     [Header("References")]
     public RectTransform minimapPoint_1;
     public RectTransform minimapPoint_2;
@@ -10,32 +16,94 @@ public class Minimap : MonoBehaviour
     public Transform worldPoint_2;
 
     [Header("Player")]
-    public RectTransform playerMinimap;
-    public Transform playerWorld;
-    public Vector2 playerMiniMapOffset;
+    public MinimapIcon playerMinimapIcon;
+
+    [Header("Buildings")]
+    public Builder builder;
+    public Color buildingIconColor;
+
+    [Header("Enemies")]
+    public SpawnManager spawnManager;
+    public Color enemyIconColor;
+
+    public float minimapRatioX { get; private set; }
+    public float minimapRatioY { get; private set; }
 
 
-    private float minimapRatioX, minimapRatioY;
-
-
-    /**/
-
+    private List<MinimapIcon> buildingIcons;
+    private List<MinimapIcon> enemyIcons;
+    private int nextIconID = 0;
 
     private void Awake()
     {
         CalculateMapRatio();
     }
 
-
-    private void Update()
-    {
-        playerMinimap.anchoredPosition = minimapPoint_1.anchoredPosition + new Vector2((playerWorld.position.x - worldPoint_1.position.x) * minimapRatioX,
-                                         (playerWorld.position.y - worldPoint_1.position.y) * minimapRatioY)
-                                        + playerMiniMapOffset;
-
-        Debug.Log(playerMinimap.anchoredPosition);
+    public void Start() {
+        buildingIcons = new List<MinimapIcon>();
+        enemyIcons = new List<MinimapIcon>();
     }
 
+
+    public void Update()
+    {
+        playerMinimapIcon.UpdatePosition();
+
+        foreach (MinimapIcon b in buildingIcons) {
+            if (b != null) b.UpdatePosition();
+        }
+
+        foreach (MinimapIcon e in enemyIcons) {
+            if (e != null) e.UpdatePosition();
+        }
+    }
+
+    private void UpdateBuildingIcons() {
+
+    }
+
+    public void CreateMinimapIcon(Character c, bool isBuilding) {
+        GameObject newIcon = new GameObject("MinimapIcon_" + nextIconID);
+        newIcon.transform.SetParent(this.transform);
+        MinimapIcon nIComp = newIcon.AddComponent<MinimapIcon>();
+        nIComp.worldObject = c.transform;
+        nIComp.icon = newIcon.AddComponent<RectTransform>();
+        nIComp.minimap = this;
+        nIComp.image = newIcon.AddComponent<Image>();
+        nIComp.icon.localScale = new Vector3(1, 1, 1);
+        nIComp.icon.sizeDelta = new Vector2(10, 10);
+        nIComp.icon.anchorMin = new Vector2(0, 1);
+        nIComp.icon.anchorMax = new Vector2(0, 1);
+
+        if (isBuilding) {
+            nIComp.image.color = buildingIconColor;
+            buildingIcons.Add(nIComp);
+        }    
+        else {
+            nIComp.image.color = enemyIconColor;
+            enemyIcons.Add(nIComp);
+        }
+
+        c.minimapIcon = nIComp;
+    }
+
+    public void DeleteMinimapIcon(MinimapIcon mi) {
+        for (int i = 0; i < enemyIcons.Count; i++) {
+            if (enemyIcons[i] == mi) {
+                enemyIcons.RemoveAt(i);
+                Destroy(mi.gameObject);
+                return;
+            }
+        }
+
+        for (int i = 0; i < buildingIcons.Count; i++) {
+            if (buildingIcons[i] == mi) {
+                buildingIcons.RemoveAt(i);
+                Destroy(mi.gameObject);
+                return;
+            }
+        }
+    }
 
     public void CalculateMapRatio()
     {

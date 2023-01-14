@@ -28,14 +28,6 @@ public static class BSGUtility
         return val ? 1 : -1;
     }
 
-    public static Vector3 VectorAdd(Vector3 a, Vector3 b) {
-        return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
-    }
-
-    public static Vector3 VectorSubtract(Vector3 a, Vector3 b) {
-        return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
-    }
-
     //Returns a position that is equal in distance from the two Vectors. 
     public static Vector3 Midpoint(Vector3 a, Vector3 b) {
         return new Vector3(a.x + ((b.x - a.x) / 2), 
@@ -128,4 +120,17 @@ public static class BSGUtility
         return Mathf.Abs(value - target) <= e;
     }
 
+    /**
+     * Checks wether the given value is within the given boundary, inclusive. 
+     */
+    public static bool WithinBoundsOf(Vector2 vec, float left, float right, float top, float bottom) {
+        return (vec.x >= left && vec.x <= right) && (vec.y >= bottom && vec.y <= top);
+    }
+
+    /**
+    * Checks wether the given value is within the given boundary, exclusive. 
+    */
+    public static bool WithinBoundsOfEx(Vector2 vec, float left, float right, float top, float bottom) {
+        return (vec.x > left && vec.x < right) && (vec.y > bottom && vec.y < top);
+    }
 }

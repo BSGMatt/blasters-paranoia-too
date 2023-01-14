@@ -26,6 +26,7 @@ public abstract class Character : MonoBehaviour
     public BoxCollider2D surfaceCollider;
     public CircleCollider2D nonSurfaceCollider;
     public StatsManager statsManager;
+    
 
     //These values are only used by BB, the player character, but since weapons have references
     //to only Character objects, not BB objects, I decided to put them here. 
@@ -38,6 +39,7 @@ public abstract class Character : MonoBehaviour
     public UnityEvent takenDamage;
     public UnityEvent startedMoving;
 
+    public MinimapIcon minimapIcon;
     public AIController aiController;
     public Weapon currentWeapon;
     public TargetType targetType; //0 - Player, 1 - Building, 2 - Crystal

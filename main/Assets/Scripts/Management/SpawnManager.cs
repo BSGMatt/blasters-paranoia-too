@@ -57,6 +57,7 @@ public class SpawnManager : MonoBehaviour
 
     private int currentLevel;
     private GameManager gm;
+    private Minimap minimap;
     private Coroutine spawning;
     private int enemiesInSpawnQueue;
     private int currentBoss = 0;
@@ -67,6 +68,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        minimap = FindObjectOfType<Minimap>();
         waveSpawnPool = new List<EnemyCard>();
         enemySpawnOrder = new Stack<int>();
 
@@ -126,22 +128,6 @@ public class SpawnManager : MonoBehaviour
     private void GenerateEnemyPool() {
 
         waveSpawnPool.Clear();
-
-        //Find the first index that's within the minimum difficulty.
-        /*int i = 0;
-        while (i < globalSpawnPool.Count && globalSpawnPool[i].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 0]) {
-            //Debug.Log(globalSpawnPool[i]);
-            i++;
-        }
-
-        //Debug.Log("@GenerateEnemyPool: Finding enemies starting at index " + i);
-
-        //Add all enemies with difficulty range to wave spawn pool
-        while (i < globalSpawnPool.Count && globalSpawnPool[i].GetComponent<Enemy>().difficulty < diffRangeAtLevel[currentLevel, 1]) {
-            waveSpawnPool.Add(globalSpawnPool[i]);
-            i++;
-            if (Random.va)
-        }*/
 
         //Generate a random selection of enemies to spawn during the swarm phase. 
         for (int i = 0; i < minEnemiesPerWave + (gm.wave / 3); i++) {
@@ -209,6 +195,8 @@ public class SpawnManager : MonoBehaviour
             GameObject enemy = Instantiate<GameObject>(ec.prefab, 
                 spawnpoints[i % spawnpoints.Length].position, Quaternion.identity);
             enemy.GetComponent<Enemy>().enemyCard = ec;
+
+            minimap.CreateMinimapIcon(enemy.GetComponent<Enemy>(), false);
 
             enemiesInSpawnQueue--;
 

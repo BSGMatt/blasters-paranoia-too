@@ -63,9 +63,9 @@ public class FocalPoint : MonoBehaviour {
     private Vector3 TargetPosition() {
 
         //Find the distance between the subjects in the form of a vector. 
-        Vector3 distanceVector = BSGUtility.VectorSubtract(secondary.position, primary.position);
-        return BSGUtility.VectorSubtract(BSGUtility.Midpoint(primary.position, secondary.position),
-            BSGUtility.ScalarMultiply(distanceVector, priority / 2));
+        Vector3 distanceVector = secondary.position - primary.position;
+        return (BSGUtility.Midpoint(primary.position, secondary.position)
+            - distanceVector * (priority / 2));
     }
 
     public void FixedUpdate() {

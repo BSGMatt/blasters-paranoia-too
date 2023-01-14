@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BuilderWindow : MonoBehaviour
 {
+    public Builder builder;
     public Text nameText;
     public Text descriptionText;
     public Text ageValueText;
