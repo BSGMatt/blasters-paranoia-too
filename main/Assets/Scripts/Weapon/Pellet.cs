@@ -40,8 +40,8 @@ public class Pellet : MonoBehaviour
                 c.TakeDamage(damage);
             }
         }
-        else if (collision.gameObject.CompareTag("Pellet")) {
-            return; //Don't destroy if colliding with another pellet. 
+        else if (collision.gameObject.CompareTag("Pellet") || (collision.gameObject.CompareTag("DT"))) {
+            return; //Don't destroy if colliding with another pellet or detection trigger. 
         }
 
         StopAllCoroutines();

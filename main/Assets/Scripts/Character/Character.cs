@@ -153,6 +153,7 @@ public abstract class Character : MonoBehaviour
     /// </summary>
     public void CommonDieMethod() {
         if (currentWeapon != null) Destroy(currentWeapon.gameObject);
+        if (minimapIcon != null) Destroy(minimapIcon.gameObject);
         Destroy(gameObject);
     }
 

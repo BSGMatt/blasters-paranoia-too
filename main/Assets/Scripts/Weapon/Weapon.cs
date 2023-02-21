@@ -33,6 +33,14 @@ public abstract class Weapon : MonoBehaviour
     protected Coroutine firing;
 
     /// <summary>
+    /// Directly sets the weapon's target. 
+    /// </summary>
+    /// <param name="target"></param>
+    public void SetTarget(Transform target) {
+        this.target = target;
+    }
+
+    /// <summary>
     /// Aims the weapon based on the mouse position, 
     /// changing the rotation and angle in the process. 
     /// </summary>
@@ -53,8 +61,6 @@ public abstract class Weapon : MonoBehaviour
     /// </summary>
     /// <returns>the angle of the weapon's rotation. </returns>
     protected float AimAtTarget() {
-
-        Debug.Log("Target: " + target);
 
         Vector2 lookDir = (Vector2)target.position - rb.position;
 
@@ -89,6 +95,26 @@ public abstract class Weapon : MonoBehaviour
 
         angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         rb.rotation = angle;
+    }
+
+    /// <summary>
+    /// Finds the closes target within the given list. 
+    /// </summary>
+    /// <returns></returns>
+    public void GetClosestTargetInList(List<Character> characters) {
+
+        float minDist = 1000000f;
+        Transform ret = null;
+
+        foreach (Character c in characters) {
+            float dist = Vector2.Distance(transform.position, c.transform.position);
+            if (dist < minDist) {
+                ret = c.transform;
+                minDist = dist;
+            }
+        }
+
+        target = ret;
     }
 
     /// <summary>
@@ -161,7 +187,7 @@ public abstract class Weapon : MonoBehaviour
 
         //Fire a pellet if player left-clicks. 
         if (Input.GetMouseButton(0)) {
-            Debug.Log("Mouse is held down");
+            //Debug.Log("Mouse is held down");
             if (canFire && firing == null) {
                 firing = StartCoroutine(PlayerFireCoroutine());
             }
@@ -213,7 +239,6 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected void GrabHostTarget() {
-        Debug.Log("Grabbing target: " + host.aiController.target);
         target = host.aiController.target.transform;
     }
 
@@ -265,7 +290,7 @@ public abstract class Weapon : MonoBehaviour
 
         
         while (ammo > 0) {
-            Debug.Log("Inside main firing loop");
+            //Debug.Log("Inside main firing loop");
             Fire();
             yield return new WaitForSeconds(card.fireRate);
 

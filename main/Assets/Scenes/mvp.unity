@@ -33182,6 +33182,7 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  minimapIcon: {fileID: 0}
   aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
   targetType: 0
@@ -34065,6 +34066,7 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  minimapIcon: {fileID: 0}
   aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
   targetType: 0
@@ -34927,6 +34929,7 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  minimapIcon: {fileID: 0}
   aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
   targetType: 0
@@ -36645,6 +36648,7 @@ MonoBehaviour:
   worldObject: {fileID: 1253233079}
   minimap: {fileID: 1027597580}
   image: {fileID: 1096745278}
+  imageColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &1104636999
 GameObject:
   m_ObjectHideFlags: 0
@@ -38190,6 +38194,7 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  minimapIcon: {fileID: 0}
   aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
   targetType: 0
@@ -91921,6 +91926,7 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  minimapIcon: {fileID: 0}
   aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
   targetType: 0

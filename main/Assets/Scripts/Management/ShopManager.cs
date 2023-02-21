@@ -102,14 +102,14 @@ public class ShopManager : MonoBehaviour
 
 
         if (selectedItem.card.GetType() == typeof (BuildingCard)) {
-            Debug.Log("Purchased: " + selectedItem.card.ToString());
+            //Debug.Log("Purchased: " + selectedItem.card.ToString());
             im.AddToBuildlings((BuildingCard)selectedItem.card);
             gm.cash -= selectedItem.card.unlockPrice;
             selectedItem.sold = true;
             FindObjectOfType<StatsManager>().AddXP(XPBonusManager.xpBonusForBuying);
         }
         else if (selectedItem.card.GetType() == typeof(WeaponCard)) {
-            Debug.Log("Purchased: " + selectedItem.card.ToString());
+            //Debug.Log("Purchased: " + selectedItem.card.ToString());
             im.AddToWeapons((WeaponCard)selectedItem.card);
             gm.cash -= selectedItem.card.unlockPrice;
             selectedItem.sold = true;
@@ -118,7 +118,7 @@ public class ShopManager : MonoBehaviour
         else {
             //Check if there is room for the powerup to be added to the inventory. 
             if (im.AddPowerUp((PowerUpCard) selectedItem.card) != -1) {
-                Debug.Log("Purchased: " + selectedItem.card.ToString());
+                //Debug.Log("Purchased: " + selectedItem.card.ToString());
                 gm.cash -= selectedItem.card.unlockPrice;
                 FindObjectOfType<StatsManager>().AddXP(XPBonusManager.xpBonusForBuying);
             }
@@ -159,7 +159,7 @@ public class ShopManager : MonoBehaviour
 
         nextItem += itemsToDisplay.Length;
         if (nextItem >= listToDisplay.Count) nextItem = 0;
-        Debug.Log("Next Item: " + nextItem);
+        //Debug.Log("Next Item: " + nextItem);
 
         itemDescriptionText.text = defaultDescString;
     }

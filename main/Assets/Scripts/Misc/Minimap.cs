@@ -75,16 +75,20 @@ public class Minimap : MonoBehaviour
         nIComp.icon.anchorMin = new Vector2(0, 1);
         nIComp.icon.anchorMax = new Vector2(0, 1);
 
+        Debug.Log(c + ": isBuilding: " + isBuilding);
+
         if (isBuilding) {
-            nIComp.image.color = buildingIconColor;
+            nIComp.imageColor = buildingIconColor;
             buildingIcons.Add(nIComp);
         }    
         else {
-            nIComp.image.color = enemyIconColor;
+            Debug.Log(enemyIconColor);
+            nIComp.imageColor = enemyIconColor;
             enemyIcons.Add(nIComp);
         }
 
         c.minimapIcon = nIComp;
+        nextIconID++;
     }
 
     public void DeleteMinimapIcon(MinimapIcon mi) {
@@ -114,6 +118,6 @@ public class Minimap : MonoBehaviour
 
         minimapRatioX = minimapVector.x / distanceWorldVector.x;
         minimapRatioY = minimapVector.y / distanceWorldVector.y;
-        Debug.Log("Mini-Map Ratio: " + minimapRatioX + ", " + minimapRatioY);
+        //Debug.Log("Mini-Map Ratio: " + minimapRatioX + ", " + minimapRatioY);
     }
 }

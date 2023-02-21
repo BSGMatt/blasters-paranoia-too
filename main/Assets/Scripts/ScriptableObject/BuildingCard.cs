@@ -38,6 +38,11 @@ public class BuildingCard : Card
     public string resource;
 
     /// <summary>
+    /// The maximum distance that characters will be detected by this building. 
+    /// </summary>
+    public float range;
+
+    /// <summary>
     /// The weapon it will create when deployed, if applicable. 
     /// </summary>
     public WeaponCard weaponCard;

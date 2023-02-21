@@ -26,7 +26,7 @@ public class Enemy : Character, IComparable<Enemy>
         aiController.InitPath(targetType);
 
         //initialize the enemy's weapon. 
-        currentWeapon = GameObject.Instantiate(weaponCard.prefab, transform.position, Quaternion.identity).GetComponent<Weapon>();
+        currentWeapon = GameObject.Instantiate(weaponCard.prefab, transform).GetComponent<Weapon>();
         currentWeapon.host = this;
         currentWeapon.card = weaponCard;
 

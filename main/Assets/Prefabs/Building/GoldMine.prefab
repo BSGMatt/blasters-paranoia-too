@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8984571559080742674}
   m_Layer: 0
   m_Name: GoldMine
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,6 +176,7 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  minimapIcon: {fileID: 0}
   aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
   targetType: 0

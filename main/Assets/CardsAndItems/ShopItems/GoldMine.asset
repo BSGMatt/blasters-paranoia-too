@@ -16,4 +16,4 @@ MonoBehaviour:
   displaySprite: {fileID: 21300000, guid: 0a7e4e2af1fe79041a0b237b90be3015, type: 3}
   description: This building mines gold. More gold means more money. More money means
     more POWER!
-  sold: 1
+  sold: 0

@@ -10,12 +10,12 @@ public class MinimapIcon : MonoBehaviour
     public Minimap minimap; //The minimap this icon is a part of. 
     public Image image;
 
-    private Color imageColor;
+    public Color imageColor;
 
     // Start is called before the first frame update
     void Start()
     {
-        imageColor = image.color;
+        image.color = imageColor;
     }
 
     // Update is called once per frame

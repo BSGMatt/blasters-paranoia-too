@@ -69,7 +69,7 @@ public class AIController : MonoBehaviour
                 float distance = Vector2.Distance(c.transform.position, 
                     character.transform.position);
 
-                Debug.Log("Distance from Crystal " + c + ": " + distance);
+                //Debug.Log("Distance from Crystal " + c + ": " + distance);
 
                 if (distance < minDistance) {
                     minDistance = distance;
@@ -108,7 +108,7 @@ public class AIController : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        Debug.Log("Attempting to move along path...");
+        //Debug.Log("Attempting to move along path...");
 
         MoveAlongPath();
 
