@@ -21,19 +21,29 @@ public class WeaponCard : Card
         StringBuilder sb = new StringBuilder();
 
         sb.Append("Cost to Purchase: " + unlockPrice + "\n");
+        
+        sb.Append(weaponStatsOnly());
+
+        return sb.ToString();
+    }
+
+    public string weaponStatsOnly() {
+
+        StringBuilder sb = new StringBuilder();
+
         sb.Append("Max Ammo: " + maxAmmo + "\n");
         sb.Append("Damage/Pellet: " + dmgPerPellet + "\n");
         sb.Append("Pellet Count: " + pelletCount + "\n");
-        
+        sb.Append("Fire Rate: " + fireRate + "\n");
+
         if (minSpread == maxSpread) {
             sb.Append("Spread: " + minSpread + "\n");
         }
         else {
-            sb.Append("Spread Range: " + minSpread + " - " + maxSpread);
+            sb.Append("Spread Range: " + minSpread + " - " + maxSpread + "\n");
         }
 
         sb.Append("Pellet Speed: " + pelletSpeed + "\n");
-        sb.Append("Fire Rate: " + fireRate + "\n");
         sb.Append("Reload Speed: " + reloadSpeed + "\n");
 
         return sb.ToString();

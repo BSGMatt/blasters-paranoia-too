@@ -134,18 +134,10 @@ public class Builder : MonoBehaviour {
 
         Debug.Log("buildingToEdit: " + buildingToEdit);
 
-        if (Input.GetMouseButtonDown(0)) {
-            if (builderWindow.gameObject.activeSelf == false) {
-                builderWindow.gameObject.SetActive(true);          
-            }
-
+        //Toggle the builder window
+        if (buildingsDeployed.Count > 0 && Input.GetMouseButtonDown(0)) {
+            builderWindow.gameObject.SetActive(!builderWindow.gameObject.activeSelf);          
             builderWindow.UpdateValues(buildingToEdit);
-        }
-
-        if (Input.GetMouseButtonDown(1)) {
-            if (builderWindow.gameObject.activeSelf == true) {
-                builderWindow.gameObject.SetActive(false);
-            }
         }
 
     }

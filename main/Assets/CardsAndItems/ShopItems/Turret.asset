@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Turret
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: c141858e25dc6a34bbe0c1bcf43cabda, type: 2}
-  displaySprite: {fileID: 21300000, guid: 849ad880c90b2f445a0b82293fe5b849, type: 3}
+  displaySprite: {fileID: 21300000, guid: 4191207dcd7ea8b45882daad4bfabd95, type: 3}
+  displayTextColor: {r: 1, g: 1, b: 1, a: 1}
   description: 'This is a turret. It fires shots at enemies, making it a great defense
     option. '
   sold: 0

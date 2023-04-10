@@ -53,7 +53,13 @@ public class BuildingCard : Card
         sb.Append("Cost to Purchase: " + unlockPrice + "\n");
         sb.Append("Build Cost: " + buildPrice + "\n");
         sb.Append("Max Health: " + maxHealth + "\n");
-        sb.Append("Increases " + resource + "by " + resourceAmount + "per second.");
+
+        if (!resource.Equals(""))
+            sb.Append("Increases " + resource + "by " + resourceAmount + "per second.\n");
+
+        //If this building has a weapon, show its stats. 
+        if (weaponCard != null)
+            sb.Append(weaponCard.weaponStatsOnly() + "\n");
 
         return sb.ToString();
     }

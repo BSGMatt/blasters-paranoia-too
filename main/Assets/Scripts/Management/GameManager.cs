@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
         builderUI.SetActive(builderEnabled);
 
         ReviveAllCrystals();
+        player.ReplenishHPAndStamina();
 
         waveText.text = "";
         timerDisplay.text = "TIME: " + preptime;

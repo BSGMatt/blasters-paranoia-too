@@ -27,8 +27,9 @@ public class GoldMine : Building
         
     }
 
+    //Add cash to the player's balance. Increase amount as building ages. 
     public override void Passive() {
-        gm.cash += card.resourceAmount;
+        gm.cash += card.resourceAmount + (age / 10);
     }
 
     public override void Die() {

@@ -8,6 +8,7 @@ public class ShopItem : ScriptableObject
 {
     public Card card;
     public Sprite displaySprite;
+    public Color displayTextColor;
 
     [TextArea(1, 10)]
     public string description;

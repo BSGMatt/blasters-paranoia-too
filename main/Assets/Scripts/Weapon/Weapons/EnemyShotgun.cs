@@ -33,6 +33,8 @@ public class EnemyShotgun : Weapon
     {
         rb.position = host.GetRigidBody().position;
         //Debug.Log("Enemy Shotgun angle: " + AimAtTarget());
+        if (target == null)
+            GrabHostTarget();
         AimAtTarget();
     }
 

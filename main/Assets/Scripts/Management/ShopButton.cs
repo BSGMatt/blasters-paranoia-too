@@ -22,6 +22,10 @@ public class ShopButton : MonoBehaviour
         else {
             button.image.color = new Color(1, 1, 1);
         }
-        button.GetComponentInChildren<Text>().text = shopItem.card.name;
+
+        Text buttonText = button.GetComponentInChildren<Text>();
+
+        buttonText.text = shopItem.card.name;
+        buttonText.color = shopItem.displayTextColor;
     }
 }

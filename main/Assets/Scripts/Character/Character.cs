@@ -186,6 +186,11 @@ public abstract class Character : MonoBehaviour
         movementEnabled = val;
     }
 
+    public void ReplenishHPAndStamina() {
+        hp = maxHP;
+        stamina = maxStamina;
+    }
+
 
 
     public abstract void DisableMovement();
