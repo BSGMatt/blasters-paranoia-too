@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public bool movementEnabled = true;
     public bool bossDefeated = false;
 
+    public float defaultCameraSize = 5;
+
     public SpawnManager spawnManager;
     public InventoryManager im;
     public Crystal[] crystals;
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
     private int time;
     private Coroutine timer; 
 
+    private Coroutine playerWaitingToSpawn;
+
 
     public void Start() {
         eventDisplay.SetActive(false);
@@ -46,19 +50,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void Update() {
+
+        //Do all of the work related to the appropriate phase. 
         switch (phase) {
             default: //Phase.IDLE
                 Idle();
-                return;
+                break;
             case Phase.PREP:
                 Prep();
-                return;
+                break;
             case Phase.SWARM:
                 Swarm();
-                return;
+                break;
             case Phase.BOSS:
                 Boss();
-                return;
+                break;
         }
     }
 
@@ -142,6 +148,7 @@ public class GameManager : MonoBehaviour
     private void BossDefeated() {
         StartCoroutine(ShowEventText("THAT'LL TEACH 'EM!", 2));
         cameraMan.DestroyLastFocalPoint();
+        cameraMan.GetCamera().orthographicSize = defaultCameraSize;
         ToIdlePhase();
     }
 
@@ -154,16 +161,17 @@ public class GameManager : MonoBehaviour
         builder.SetActive(builderEnabled);
         builderUI.SetActive(builderEnabled);
 
-        ReviveAllCrystals();
-        player.ReplenishHPAndStamina();
+        
 
         waveText.text = "";
         timerDisplay.text = "TIME: " + preptime;
-        wave++;
-        if (wave > 1) {
+        if (wave > 0) {
             FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
             cash += cashRewardPerWave;
+            ReviveAllCrystals();
+            player.ReplenishHPAndStamina();
         }
+        wave++;
     }
 
     private void Idle() {

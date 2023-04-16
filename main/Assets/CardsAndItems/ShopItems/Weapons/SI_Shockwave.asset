@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SI_Shockwave
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: c6208cd5c3489af4496784f229d1547c, type: 2}
-  displaySprite: {fileID: 21300000, guid: 6d11b3fed33021947ae85397d233543b, type: 3}
+  displaySprite: {fileID: 21300000, guid: 49acedd75cad8cc4fa9586fc5dc68ad8, type: 3}
+  displayTextColor: {r: 0, g: 0, b: 0, a: 1}
   description: 'This powerful weapon launches shockwaves along its path. '
   sold: 0

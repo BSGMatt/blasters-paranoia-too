@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoldMine
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: aec041caee94f164f8776f7ef07f99c3, type: 2}
-  displaySprite: {fileID: 21300000, guid: af586bda9d1fe824eae1f56569990525, type: 3}
+  displaySprite: {fileID: 21300000, guid: 950ee1dfcad6d2e4d874cf77525d45cb, type: 3}
   displayTextColor: {r: 0, g: 0, b: 0, a: 1}
   description: 'Can''t profit from your beautiful park without a ticket booth!
 

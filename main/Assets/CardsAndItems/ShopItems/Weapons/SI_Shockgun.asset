@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SI_Shockgun
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: b8c156e0b1219c4409e804859319fc99, type: 2}
-  displaySprite: {fileID: 21300000, guid: fb8e2f5ffb7340149b9ff55a6ea977be, type: 3}
+  displaySprite: {fileID: 21300000, guid: 49acedd75cad8cc4fa9586fc5dc68ad8, type: 3}
+  displayTextColor: {r: 0, g: 0, b: 0, a: 1}
   description: This powerful weapon launches shockwaves in multiple directions
   sold: 0

@@ -242,14 +242,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f87fa73260aa549b172fcb9b7f89c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
   c2d: {fileID: 0}
   rb: {fileID: 177839194}
   surfaceCollider: {fileID: 177839196}
   nonSurfaceCollider: {fileID: 177839197}
+  statsManager: {fileID: 0}
+  xp: 0
+  stamina: 0
+  level: 0
+  takenDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  startedMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  minimapIcon: {fileID: 0}
+  aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
+  targetType: 0
   maxSpeed: 10
+  maxStamina: 100
   maxHP: 200
-  dmgTaken: 1
+  sheilds: 0
+  hp: 0
+  invincible: 0
+  isLevelable: 1
+  onlyHasHealth: 0
+  currentSpeedModValue: 1
+  currentDmgDealtModValue: 1
 --- !u!61 &177839196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -435,6 +456,7 @@ GameObject:
   - component: {fileID: 1160006549}
   - component: {fileID: 1160006551}
   - component: {fileID: 1160006552}
+  - component: {fileID: 1160006553}
   m_Layer: 0
   m_Name: Top
   m_TagString: Surface
@@ -554,6 +576,43 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1160006553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160006548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa7a168d2718c04cb044f7e38eb7b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopUI: {fileID: 0}
+  mainUI: {fileID: 0}
+  builderUI: {fileID: 0}
+  builder: {fileID: 0}
+  eventDisplay: {fileID: 0}
+  phase: 0
+  bossWave: 1
+  wave: 0
+  preptime: 300
+  cash: 0
+  cashRewardPerWave: 200
+  timerDisplay: {fileID: 0}
+  commentary: {fileID: 0}
+  waveText: {fileID: 0}
+  shopEnabled: 0
+  builderEnabled: 0
+  movementEnabled: 1
+  bossDefeated: 0
+  defaultCameraSize: 5
+  spawnManager: {fileID: 0}
+  im: {fileID: 0}
+  crystals: []
+  boss: {fileID: 0}
+  cameraMan: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1401506303
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +845,7 @@ MonoBehaviour:
   playerTransform: {fileID: 177839193}
   cam: {fileID: 1792929819}
   camSpeed: 1
+  yConstant: 0
   limit: 0.2
   rectWidth: 1920
   rectHeight: 1080
@@ -887,14 +947,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67bfaab93d68c004d97b1dda2633ce1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dead: 0
   c2d: {fileID: 0}
   rb: {fileID: 1843171038}
   surfaceCollider: {fileID: 1843171037}
   nonSurfaceCollider: {fileID: 1843171036}
+  statsManager: {fileID: 0}
+  xp: 0
+  stamina: 0
+  level: 0
+  takenDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  startedMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  minimapIcon: {fileID: 0}
+  aiController: {fileID: 0}
   currentWeapon: {fileID: 0}
+  targetType: 0
   maxSpeed: 10
+  maxStamina: 100
   maxHP: 200
-  dmgTaken: 1
+  sheilds: 0
+  hp: 0
+  invincible: 0
+  isLevelable: 1
+  onlyHasHealth: 0
+  currentSpeedModValue: 1
+  currentDmgDealtModValue: 1
 --- !u!58 &1843171036
 CircleCollider2D:
   m_ObjectHideFlags: 0

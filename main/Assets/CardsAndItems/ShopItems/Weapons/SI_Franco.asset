@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SI_Franco
   m_EditorClassIdentifier: 
   card: {fileID: 11400000, guid: e8d8576c6c3caea4fb6c508493b54cb4, type: 2}
-  displaySprite: {fileID: 21300000, guid: 86361902726ccf343999022a8dd88aa1, type: 3}
+  displaySprite: {fileID: 21300000, guid: 24035919cefc72241880241800e7f40a, type: 3}
+  displayTextColor: {r: 0, g: 0, b: 0, a: 1}
   description: A powerful sniper rifle. Has a low fire rate, but packs a huge punch!
   sold: 0

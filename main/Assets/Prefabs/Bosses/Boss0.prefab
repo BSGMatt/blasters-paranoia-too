@@ -461,12 +461,13 @@ MonoBehaviour:
   startedMoving:
     m_PersistentCalls:
       m_Calls: []
+  minimapIcon: {fileID: 0}
   aiController: {fileID: 6258370579459700894}
   currentWeapon: {fileID: 0}
   targetType: 0
   maxSpeed: 5
   maxStamina: 100
-  maxHP: 200
+  maxHP: 750
   sheilds: 0
   hp: 0
   invincible: 0

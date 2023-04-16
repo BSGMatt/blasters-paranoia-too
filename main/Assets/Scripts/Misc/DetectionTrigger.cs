@@ -11,11 +11,15 @@ public class DetectionTrigger : MonoBehaviour
     public CircleCollider2D trigger;
     public List<Character> characterList;
 
-    public UnityEvent listUpdateEvent; //An event that invokes whenever the character list changes. 
+    public UnityEvent listUpdateEvent; //Occurs when a character enters or leaves the trigger. 
+    public UnityEvent listAddEvent; //Occurs when a character enters the trigger.
+    public UnityEvent listRemoveEvent; //Occurs when a character leaves the trigger.
 
     public void Awake() {
         characterList = new List<Character>();
         listUpdateEvent = new UnityEvent();
+        listAddEvent = new UnityEvent();
+        listRemoveEvent = new UnityEvent();
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -23,6 +27,7 @@ public class DetectionTrigger : MonoBehaviour
         if (collision.CompareTag("Character")) {
             characterList.Add(collision.GetComponent<Character>());
             listUpdateEvent.Invoke();
+            listAddEvent.Invoke();
         }
 
         
@@ -33,6 +38,7 @@ public class DetectionTrigger : MonoBehaviour
         if (collision.CompareTag("Character")) {
             characterList.Remove(collision.GetComponent<Character>());
             listUpdateEvent.Invoke();
+            listRemoveEvent.Invoke();
         }
 
     }

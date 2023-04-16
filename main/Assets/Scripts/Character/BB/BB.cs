@@ -17,7 +17,7 @@ public class BB : Character
 
     void Start()
     {
-        hp = maxHP; //I have this set for testing purposes. should be hp = maxHP;
+        //hp = maxHP; //I have this set for testing purposes. should be hp = maxHP;
         isEnemy = false;
     }
 
@@ -60,9 +60,8 @@ public class BB : Character
     /// </summary>
     private void CheckToUseAPowerUp() {
         int pcSlot = FindObjectOfType<InventoryManager>().HotBarButtonPressed();
-        //Check if the stats manager actually applied the status effect before removing the item from the inventory. 
-        if (pcSlot != -1 && FindObjectOfType<StatsManager>().ApplyPWEffect(FindObjectOfType<InventoryManager>().powerups.Peek(pcSlot))) {
-            FindObjectOfType<InventoryManager>().powerups.Pop(pcSlot);
+        if (pcSlot != -1) {
+            statsManager.ApplyPWEffect(FindObjectOfType<InventoryManager>().powerups.Pop(pcSlot));
         }
     }
 
@@ -117,6 +116,7 @@ public class BB : Character
     }
 
     public override void Die() {
+        dead = true;
         Debug.Log("BB is dead.");
     }
 

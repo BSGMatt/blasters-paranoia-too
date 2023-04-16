@@ -10,8 +10,9 @@ public abstract class Building : Character
 
     public GameObject healthBar;
 
-    private Coroutine aging;
-
+    protected Coroutine aging;
+    protected Coroutine heal;
+ 
     //Whether the aging Coroutine should be active. 
     public bool shouldAge;
 
@@ -48,4 +49,5 @@ public abstract class Building : Character
 
         yield return 0;
     }
+
 }

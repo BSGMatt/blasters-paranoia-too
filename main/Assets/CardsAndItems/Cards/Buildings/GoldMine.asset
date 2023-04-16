@@ -18,7 +18,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: af586bda9d1fe824eae1f56569990525, type: 3}
   buildPrice: 400
   maxHealth: 250
-  importance: 100
+  importance: 75
   modifierValue: 0
   resourceAmount: 10
   resource: cash
