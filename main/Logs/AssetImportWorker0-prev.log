@@ -1,0 +1,246 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.0f1 (c7b5465681fb) revision 13088070'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19044.2846; Version 2009; 64bit' Language: 'en' Physical Memory: 16145 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.0f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+G:/Projects/Games/Blasters Pandemonium Plus/Paranoia/blasters-paranoia-too/main
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+59263
+Successfully changed project path to: G:/Projects/Games/Blasters Pandemonium Plus/Paranoia/blasters-paranoia-too/main
+G:/Projects/Games/Blasters Pandemonium Plus/Paranoia/blasters-paranoia-too/main
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 44.00 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.0f1 (c7b5465681fb)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path G:/Projects/Games/Blasters Pandemonium Plus/Paranoia/blasters-paranoia-too/main/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2060 (ID=0x1f15)
+    Vendor:   
+    VRAM:     5968 MB
+    Driver:   31.0.15.2737
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56412
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002993 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 45.07 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.297 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001396 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 38.70 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.940 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2002 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 92.6 MB.
+System memory in use after: 92.5 MB.
+
+Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 2446.
+Total: 1.830900 ms (FindLiveObjects: 0.207500 ms CreateObjectMapping: 0.090300 ms MarkObjects: 1.425800 ms  DeleteObjects: 0.106300 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/Buildings/Turret.cs
+  artifactKey: Guid(bdf6a1c31fa0e6948812cd4525e5291a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/Turret.cs using Guid(bdf6a1c31fa0e6948812cd4525e5291a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdbc667032247aba105065480e2d2faf') in 0.031752 seconds
+  Import took 0.035213 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 583.133852 seconds.
+  path: Assets/Scripts/Buildings/HealBox.cs
+  artifactKey: Guid(068d319ec484ab14992d40b3074a1318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/HealBox.cs using Guid(068d319ec484ab14992d40b3074a1318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '766e986d256854cdc3fdd2d0fa33984a') in 0.002872 seconds
+  Import took 0.021911 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001547 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.39 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.913 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.50 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1994 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 92.2 MB.
+System memory in use after: 92.2 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2451.
+Total: 2.108800 ms (FindLiveObjects: 0.233400 ms CreateObjectMapping: 0.087600 ms MarkObjects: 1.682400 ms  DeleteObjects: 0.103900 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 312.248555 seconds.
+  path: Assets/Scripts/Buildings/HealBox.cs
+  artifactKey: Guid(068d319ec484ab14992d40b3074a1318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Buildings/HealBox.cs using Guid(068d319ec484ab14992d40b3074a1318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbe513356bd41803e51b9df431934120') in 0.106768 seconds
+  Import took 0.142890 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001450 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.44 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.839 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.66 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1994 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 92.3 MB.
+System memory in use after: 92.3 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2455.
+Total: 1.825100 ms (FindLiveObjects: 0.213000 ms CreateObjectMapping: 0.090400 ms MarkObjects: 1.411700 ms  DeleteObjects: 0.109200 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 1784.947436 seconds.
+  path: Assets/Prefabs/Building/Turret 1.prefab
+  artifactKey: Guid(8c14580e26431ac42b740b43ed772327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Building/Turret 1.prefab using Guid(8c14580e26431ac42b740b43ed772327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fd4f17cd7b8a7626539a8d7eae27848') in 0.120656 seconds
+  Import took 0.161873 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.197151 seconds.
+  path: Assets/Prefabs/Building/HealBox.prefab
+  artifactKey: Guid(8c14580e26431ac42b740b43ed772327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Building/HealBox.prefab using Guid(8c14580e26431ac42b740b43ed772327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbbcd11d60fe853c79bf8729426a5d5d') in 0.010143 seconds
+  Import took 0.014441 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.000960 seconds.
+  path: Assets/CardsAndItems/Cards/PowerUps
+  artifactKey: Guid(42317597adca83c4eafac5a1f63b7e5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CardsAndItems/Cards/PowerUps using Guid(42317597adca83c4eafac5a1f63b7e5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce618cbc67b3c73608df619534c8c067') in 0.002244 seconds
+  Import took 0.016566 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003778 seconds.
+  path: Assets/CardsAndItems/Cards/PowerUps
+  artifactKey: Guid(42317597adca83c4eafac5a1f63b7e5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CardsAndItems/Cards/PowerUps using Guid(42317597adca83c4eafac5a1f63b7e5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce618cbc67b3c73608df619534c8c067') in 0.002168 seconds
+  Import took 0.005692 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.050411 seconds.
+  path: Assets/CardsAndItems/Cards/PowerUps/TestPWCardA.asset
+  artifactKey: Guid(ece21fcf99e70ae43a7f71edd6246623) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CardsAndItems/Cards/PowerUps/TestPWCardA.asset using Guid(ece21fcf99e70ae43a7f71edd6246623) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88b245ff95f314772f0e7f8441c88045') in 0.005381 seconds
+  Import took 0.056425 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/CardsAndItems/Cards/PowerUps/TestPWCardC.asset
+  artifactKey: Guid(f97a6b459c0b53445be0eaa1ecb559bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CardsAndItems/Cards/PowerUps/TestPWCardC.asset using Guid(f97a6b459c0b53445be0eaa1ecb559bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5a48c8eba74cde02472f023adfa9cfb') in 0.003993 seconds
+  Import took 0.049036 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/CardsAndItems/Cards/PowerUps/TestPWCardB.asset
+  artifactKey: Guid(7e13479cfc20ddc438fd00fb113f47b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CardsAndItems/Cards/PowerUps/TestPWCardB.asset using Guid(7e13479cfc20ddc438fd00fb113f47b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77d5c81a3f820190104644f409ae0a72') in 0.004196 seconds
+  Import took 0.007898 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 16.810110 seconds.
+  path: Assets/CardsAndItems/Cards/PowerUps/HealBoxCard.asset
+  artifactKey: Guid(d5b0a358c225b274c8d04aacc00c335e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CardsAndItems/Cards/PowerUps/HealBoxCard.asset using Guid(d5b0a358c225b274c8d04aacc00c335e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ca8e22b06ba0c65ca2cc81bc6f62349') in 0.016885 seconds
+  Import took 0.043223 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000821 seconds.
+  path: Assets/CardsAndItems/Cards/PowerUps/HealBoxCard.asset
+  artifactKey: Guid(d5b0a358c225b274c8d04aacc00c335e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CardsAndItems/Cards/PowerUps/HealBoxCard.asset using Guid(d5b0a358c225b274c8d04aacc00c335e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ca8e22b06ba0c65ca2cc81bc6f62349') in 0.002608 seconds
+  Import took 0.034583 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001811 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.37 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.812 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.43 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1994 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 95.3 MB.
+System memory in use after: 95.3 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2466.
+Total: 2.458100 ms (FindLiveObjects: 0.205500 ms CreateObjectMapping: 0.082700 ms MarkObjects: 2.007000 ms  DeleteObjects: 0.161500 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

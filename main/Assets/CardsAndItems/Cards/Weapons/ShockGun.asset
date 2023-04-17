@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5764edaea63c744ebe1143349a42830, type: 3}
+  m_Name: ShockGun
+  m_EditorClassIdentifier: 
+  unlockPrice: 100
+  name: The "Shock-Gun"
+  prefab: {fileID: 5050569894837694049, guid: fbb164fc94e900a47b581ca497ac70d0, type: 3}
+  sprite: {fileID: 21300000, guid: fb8e2f5ffb7340149b9ff55a6ea977be, type: 3}
+  pelletType: {fileID: 7632431803512875838, guid: 68c7e602eedefea42ad3840b8d95e963, type: 3}
+  maxAmmo: 8
+  dmgPerPellet: 25
+  pelletCount: 3
+  minSpread: 180
+  maxSpread: 180
+  pelletSpeed: 5
+  fireRate: 5
+  reloadSpeed: 0.5

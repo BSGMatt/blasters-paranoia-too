@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Shockwave : Pellet
+{
+    public HazardCard hazardCard;
+    public int numShocks;
+    public float timeBetweenShocks;
+    public float duration;
+    // Start is called before the first frame update
+    new void Start()
+    {
+        base.Start();
+        StartCoroutine(CreateShocks());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public IEnumerator CreateShocks() {
+        float t = 0;
+        int shocks = 0;
+        while (t < duration && shocks < numShocks) {
+
+            Hazard h = Instantiate<GameObject>(hazardCard.prefab, transform.position, Quaternion.identity).GetComponent<Hazard>();
+            h.card = hazardCard;
+            t += timeBetweenShocks;
+            shocks++;
+            Debug.Log("t: " + t);
+            yield return new WaitForSeconds(timeBetweenShocks);
+        }
+    }
+}

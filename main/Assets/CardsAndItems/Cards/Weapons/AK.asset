@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5764edaea63c744ebe1143349a42830, type: 3}
+  m_Name: AK
+  m_EditorClassIdentifier: 
+  unlockPrice: 200
+  name: The "Will-Nilly"
+  prefab: {fileID: 1461239006274505847, guid: 5696e13871474694298370519788e089, type: 3}
+  sprite: {fileID: 21300000, guid: fb8e2f5ffb7340149b9ff55a6ea977be, type: 3}
+  pelletType: {fileID: 7632431803512875838, guid: b3d2fa814e2a32c4bac91f0c046fca6f, type: 3}
+  maxAmmo: 40
+  dmgPerPellet: 20
+  pelletCount: 0
+  minSpread: 0
+  maxSpread: 10
+  pelletSpeed: 25
+  fireRate: 0.15
+  reloadSpeed: 0.75

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5764edaea63c744ebe1143349a42830, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: 
+  unlockPrice: 100
+  name: The "Borther"
+  prefab: {fileID: 5050569894837694049, guid: fbb164fc94e900a47b581ca497ac70d0, type: 3}
+  sprite: {fileID: 21300000, guid: 0e12c06ae81660748a1ecc66bfb4e2bd, type: 3}
+  pelletType: {fileID: 7632431803512875838, guid: b3d2fa814e2a32c4bac91f0c046fca6f, type: 3}
+  maxAmmo: 8
+  dmgPerPellet: 40
+  pelletCount: 5
+  minSpread: 20
+  maxSpread: 20
+  pelletSpeed: 15
+  fireRate: 0.67
+  reloadSpeed: 0.5

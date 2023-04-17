@@ -1,0 +1,6 @@
+--Journal For Blasters: Paranoia--
+This is a journal to type in changes that I made that I forget to mention when committing them. 
+
+>4/12/2022:
+	Adjusted the size of the status bars so the background and fill area align properly. 
+	Started work on builder, implemented builder mode toggle and snapping functionality. 
