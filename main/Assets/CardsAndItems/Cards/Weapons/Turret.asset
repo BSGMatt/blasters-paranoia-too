@@ -19,7 +19,7 @@ MonoBehaviour:
   pelletType: {fileID: 7632431803512875838, guid: b3d2fa814e2a32c4bac91f0c046fca6f, type: 3}
   maxAmmo: 40
   dmgPerPellet: 20
-  pelletCount: 0
+  pelletCount: 1
   minSpread: 0
   maxSpread: 10
   pelletSpeed: 25

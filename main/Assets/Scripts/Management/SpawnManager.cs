@@ -55,6 +55,10 @@ public class SpawnManager : MonoBehaviour
 
     public int minEnemiesPerWave = 10;
 
+    public int numWavesBeforeLevelIncrease = 6;
+
+    public int numWavesBeforeEnemyCountIncrease = 3;
+
     private int currentLevel;
     private GameManager gm;
     private Minimap minimap;
@@ -89,7 +93,7 @@ public class SpawnManager : MonoBehaviour
     public void ActivateSpawner() {
         //Check if the min and max indeces need to be updated. 
         int oldCurrentLevel = currentLevel;
-        currentLevel = gm.wave / 6;
+        currentLevel = gm.wave / numWavesBeforeLevelIncrease;
         if (oldCurrentLevel != currentLevel) UpdateSpawnSelectionRange();
 
         GenerateEnemyPool();
@@ -130,7 +134,7 @@ public class SpawnManager : MonoBehaviour
         waveSpawnPool.Clear();
 
         //Generate a random selection of enemies to spawn during the swarm phase. 
-        for (int i = 0; i < minEnemiesPerWave + (gm.wave / 3); i++) {
+        for (int i = 0; i < minEnemiesPerWave + (gm.wave / numWavesBeforeEnemyCountIncrease); i++) {
             waveSpawnPool.Add(globalSpawnPool[Random.Range(minIdx, maxIdx)]);
         }
 
@@ -195,6 +199,14 @@ public class SpawnManager : MonoBehaviour
             GameObject enemy = Instantiate<GameObject>(ec.prefab, 
                 spawnpoints[i % spawnpoints.Length].position, Quaternion.identity);
             enemy.GetComponent<Enemy>().enemyCard = ec;
+
+
+            //Keep moving the enemy to the right in case it's on top of a building. 
+            RaycastHit2D[] hits = new RaycastHit2D[10];
+            while (Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits) != 0) {
+                enemy.transform.position += new Vector3(4, 0, 0);    
+            }
+
 
             minimap.CreateMinimapIcon(enemy.GetComponent<Enemy>(), false);
 

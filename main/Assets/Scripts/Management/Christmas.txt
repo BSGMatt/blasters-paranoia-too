@@ -1,0 +1,20 @@
+0|0|BB|I can't believe I managed to sneak into Santa's workshop!
+0|1|BB|Now I can give every one of his elves my delicious, creamy, nog!
+0|2|BB|...
+0|3|BB|Nope! I do not regret saying that sentence out loud!
+0|4|Security System|INTRUDER ALERT! ACTIVATING MAXIMUM SECURITY PROTOCOLS!
+0|5|BB|Uh..oh...
+0|6|Security System|INTRUDER ALERT! SURRENDER TO THE ELVES OR PERISH!
+0|7|BB|Guess I'll have to put santa on my "Fear or Else" list. 
+0|8|BB|Looks I'll have to find something to defend myself with. 
+1|0|BB|Huh, neat. 
+2|0|BB|Locked! There's got to be a key somewhere. 
+2|1|BB|Or, maybe I can wedge it with that yellow circle in the corner. 
+3|2|BB|This yellow circle's got to have some use.
+4|0|Elves|You're free trial for existence has expired, and there is no chance for renewal!
+4|1|BB|I just wanted to give you my delicious, creamy, nog!
+4|2|Security System|DANGER! EGG-NOGGER IS WITHIN THE PREMISES!
+5|0|BB|Dangit! the door is locked! There's got to be a key somewhere!
+6|0|BB|Ha! This must be the key!
+7|0|Big Elf|Surrender to the elves! This is your final warning!
+7|1|BB|I will surrender to you WHEN I GIVE YOU MY NOG!

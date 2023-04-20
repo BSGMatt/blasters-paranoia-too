@@ -22,5 +22,5 @@ MonoBehaviour:
   modifierValue: 0
   resourceAmount: 0
   resource: 
-  range: 25
+  range: 8
   weaponCard: {fileID: 11400000, guid: ac61433a0df55164c9677295f1347609, type: 2}

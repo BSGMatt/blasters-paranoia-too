@@ -38,6 +38,11 @@ public class Pellet : MonoBehaviour
             //Have the character take damage if the pellet has the opposite affiliation
             if (isEnemy != c.IsEnemy()) {
                 c.TakeDamage(damage);
+                c.audioManager.SinglePlay("HitTaken");
+            }
+            else {
+                //Pass through characters of the same affiliation. 
+                return;
             }
         }
         else if (collision.gameObject.CompareTag("Pellet") || (collision.gameObject.CompareTag("DT"))) {

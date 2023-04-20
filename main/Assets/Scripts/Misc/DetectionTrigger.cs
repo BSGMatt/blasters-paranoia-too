@@ -25,6 +25,7 @@ public class DetectionTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
 
         if (collision.CompareTag("Character")) {
+            Debug.Log("Adding new character");
             characterList.Add(collision.GetComponent<Character>());
             listUpdateEvent.Invoke();
             listAddEvent.Invoke();
@@ -36,6 +37,7 @@ public class DetectionTrigger : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision) {
 
         if (collision.CompareTag("Character")) {
+            Debug.Log("Removing a character");
             characterList.Remove(collision.GetComponent<Character>());
             listUpdateEvent.Invoke();
             listRemoveEvent.Invoke();

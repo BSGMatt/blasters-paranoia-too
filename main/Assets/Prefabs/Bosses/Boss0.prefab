@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 6258370579459700894}
   - component: {fileID: 6258370579459700895}
   - component: {fileID: 6258370579459700880}
+  - component: {fileID: -6519341467482541759}
   m_Layer: 3
   m_Name: Boss0
   m_TagString: Character
@@ -451,7 +452,8 @@ MonoBehaviour:
   rb: {fileID: 6258370579459700891}
   surfaceCollider: {fileID: 6258370579459700889}
   nonSurfaceCollider: {fileID: 6258370579459700890}
-  statsManager: {fileID: 0}
+  statsManager: {fileID: 6258370579459700880}
+  audioManager: {fileID: -6519341467482541759}
   xp: 0
   stamina: 0
   level: 0
@@ -472,7 +474,7 @@ MonoBehaviour:
   hp: 0
   invincible: 0
   isLevelable: 1
-  onlyHasHealth: 0
+  onlyHasHealth: 1
   currentSpeedModValue: 1
   currentDmgDealtModValue: 1
   state: 0
@@ -591,6 +593,7 @@ MonoBehaviour:
   reachedEndOfPath: 0
   minDistance: 4
   maxDistance: 6
+  pathUpdateRate: 0.5
 --- !u!114 &6258370579459700895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +644,33 @@ MonoBehaviour:
   playerLevel: 0
   healSpeed: 2
   staminaSpeed: 1
+  passiveHealEnabled: 1
+--- !u!114 &-6519341467482541759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258370579459700870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2800b1e24f0cc0447b90dac2c7f75d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Fire
+    clip: {fileID: 8300000, guid: e1d9da03b7e24644fbf772599d7d4fd0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HitTaken
+    clip: {fileID: 8300000, guid: d3752a7c4c289ed478e323b7507a4c4a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  spatialBlend: 1
 --- !u!1 &6258370580334334624
 GameObject:
   m_ObjectHideFlags: 0

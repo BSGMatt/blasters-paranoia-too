@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles core logic, as well as the initialization and transition of phases.
@@ -15,12 +16,14 @@ public class GameManager : MonoBehaviour
     public GameObject builderUI;
     public GameObject builder;
     public GameObject eventDisplay;
+    public GameObject cashUI;
     public Phase phase = Phase.IDLE;
     public int bossWave = 1;
     public int wave = 0;
     public int preptime = 300;
     public int cash = 0;
     public int cashRewardPerWave = 200;
+    public int respawnTime = 3;
     public Text timerDisplay;
     public Text commentary;
     public Text waveText;
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public float defaultCameraSize = 5;
 
+    public AudioManager audioManager;
     public SpawnManager spawnManager;
     public InventoryManager im;
     public Crystal[] crystals;
@@ -41,7 +45,7 @@ public class GameManager : MonoBehaviour
     private int time;
     private Coroutine timer; 
 
-    private Coroutine playerWaitingToSpawn;
+    private Coroutine playerWaitingToSpawn = null;
 
 
     public void Start() {
@@ -50,6 +54,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void Update() {
+
+        cashUI.GetComponentInChildren<Text>().text = "CASH: " + cash;
+        CheckForLoseCondition();
 
         //Do all of the work related to the appropriate phase. 
         switch (phase) {
@@ -68,10 +75,61 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void CheckForLoseCondition() {
+        if (player.dead && playerWaitingToSpawn == null) {
+            //Check to see if at least one of the crystals are alive.
+            bool allCrystalsDead = true;
+            foreach (Crystal c in crystals) {
+                if (!c.dead) {
+                    allCrystalsDead = false;
+                    break;
+                }
+            }
+
+            //If all crystals are dead, restart the game. 
+            if (allCrystalsDead) {
+                SceneManager.LoadScene("mvp");
+            }
+            else {
+                playerWaitingToSpawn = StartCoroutine(WaitToSpawn((int) respawnTime));
+            }
+
+        }
+    }
+
+    private IEnumerator WaitToSpawn(int seconds) {
+
+        int timePast = 0;
+        player.transform.position = Vector3.zero;
+        player.invincible = true;
+        Color oldColor = player.GetComponent<SpriteRenderer>().color;
+        player.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        player.DisableMovement();
+
+        timePast = seconds;
+        while (timePast > 0) {
+            StartCoroutine(ShowEventText("RESPAWNING IN: " + timePast, 1f));
+
+            timePast--;
+            yield return new WaitForSeconds(1f);
+        }
+        
+        player.EnableMovement();
+        player.ReplenishHPAndStamina();
+        player.GetComponent<SpriteRenderer>().color = oldColor;
+        player.dead = false; 
+        player.invincible = false;
+        playerWaitingToSpawn = null;
+
+    }
+
 
     #region phase_methods
     private void ToPrepPhase() {
+        audioManager.StopAll();
+        audioManager.Play("Prep");
         commentary.text = "PREPARE YOUR DEFENSES";
+        cashUI.SetActive(true);
         if (timer != null) StopCoroutine(timer);
         timer = StartCoroutine(runTimer());
         phase = Phase.PREP;
@@ -108,7 +166,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ToSwarmPhase() {      
+    private void ToSwarmPhase() {
+        audioManager.StopAll();
+        audioManager.Play("Attack");    
         spawnManager.ActivateSpawner();
         phase = Phase.SWARM;
     }
@@ -132,6 +192,8 @@ public class GameManager : MonoBehaviour
     /// Sets up the boss phase of a wave.
     /// </summary>
     private void ToBossPhase() {
+        audioManager.StopAll();
+        audioManager.Play("Boss");
         boss = spawnManager.SpawnBoss();
         boss.bossDied.AddListener(BossDefeated);
         cameraMan.CreateFocalPoint(player.transform, boss.transform, 0.5f);
@@ -153,6 +215,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void ToIdlePhase() {
+        audioManager.StopAll();
         phase = Phase.IDLE;
         shopEnabled = false;
         builderEnabled = false;
@@ -160,6 +223,7 @@ public class GameManager : MonoBehaviour
         mainUI.SetActive(!shopEnabled);
         builder.SetActive(builderEnabled);
         builderUI.SetActive(builderEnabled);
+        cashUI.SetActive(false);
 
         
 
@@ -170,6 +234,7 @@ public class GameManager : MonoBehaviour
             cash += cashRewardPerWave;
             ReviveAllCrystals();
             player.ReplenishHPAndStamina();
+            audioManager.Play("Victory");
         }
         wave++;
     }
@@ -252,6 +317,7 @@ public class GameManager : MonoBehaviour
 
     private void ToggleShop() {
         mainUI.SetActive(shopEnabled);
+        cashUI.SetActive(shopEnabled);
         shopUI.SetActive(!shopEnabled);
         shopEnabled = !shopEnabled;
 
@@ -270,6 +336,9 @@ public class GameManager : MonoBehaviour
         mainUI.SetActive(builderEnabled);
         builder.SetActive(!builderEnabled);
         builderUI.SetActive(!builderEnabled);
+
+        if (builderEnabled)
+            builder.GetComponent<Builder>().builderWindow.gameObject.SetActive(!builderEnabled);
 
         builderEnabled = !builderEnabled;
     }

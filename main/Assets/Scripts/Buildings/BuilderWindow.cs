@@ -11,10 +11,23 @@ public class BuilderWindow : MonoBehaviour
     public Text ageValueText;
     public Healthbar healthbar;
 
+    public Building currentBuilding;
+
     public void UpdateValues(Building building) {
+        currentBuilding = building;
+        transform.position = building.transform.position;
         nameText.text = building.card.name;
         descriptionText.text = building.card.infoText();
         ageValueText.text = building.age.ToString();
         healthbar.UpdateValue(building.hp);
+    }
+
+    public void DestroyBuilding() {
+        builder.DestroyBuilding(currentBuilding);
+        CloseWindow();
+    }
+
+    public void CloseWindow() {
+        gameObject.SetActive(false);
     }
 }

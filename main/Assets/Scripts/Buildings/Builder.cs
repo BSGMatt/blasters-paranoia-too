@@ -9,6 +9,9 @@ public class Builder : MonoBehaviour {
 
     private const int SNAP = 64;
 
+    public float buildingRefundRate = 0.75f;
+    public int cashPerAge = 10;
+
     public List<Building> buildingsDeployed;
     public BuildingCard buildingToDeploy;
     public Building buildingToEdit;
@@ -126,20 +129,31 @@ public class Builder : MonoBehaviour {
 
         //Check if the builder is on top of any existing buildings
         foreach (RaycastHit2D hit in hits) {
-            Debug.Log("Hit: " + hit.collider);
+            //Debug.Log("Hit: " + hit.collider);
             if (hit && hit.collider.gameObject.GetComponent<Building>() != null) {
                 buildingToEdit = hit.collider.gameObject.GetComponent<Building>();
             }
         }
 
-        Debug.Log("buildingToEdit: " + buildingToEdit);
+        //Debug.Log("buildingToEdit: " + buildingToEdit);
 
         //Toggle the builder window
-        if (buildingsDeployed.Count > 0 && Input.GetMouseButtonDown(0)) {
-            builderWindow.gameObject.SetActive(!builderWindow.gameObject.activeSelf);          
+        if (buildingsDeployed.Count > 0 && 
+            Input.GetMouseButtonDown(0) && buildingToEdit != null) {
+
+            builderWindow.gameObject.SetActive(true);      
             builderWindow.UpdateValues(buildingToEdit);
         }
 
+    }
+
+    public void DestroyBuilding(Building building) {
+        buildingsDeployed.Remove(building);
+
+        FindObjectOfType<GameManager>().cash += 
+            Mathf.RoundToInt(buildingRefundRate * building.card.buildPrice + cashPerAge * building.age);
+
+        building.Die();
     }
 
     private void UpdatePosition() {

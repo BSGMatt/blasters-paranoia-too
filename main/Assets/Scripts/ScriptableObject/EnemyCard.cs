@@ -13,6 +13,10 @@ public class EnemyCard : Card
     public TargetType targetType;
     public Color color = Color.white;
 
+    public float minDistanceFromTarget = 4;
+
+    public float maxDistanceFromTarget = 6;
+
     public override string infoText() {
         return "Enemy Name: " + name + ", " + difficulty;
     }

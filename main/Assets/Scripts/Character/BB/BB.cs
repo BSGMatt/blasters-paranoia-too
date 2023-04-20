@@ -24,11 +24,14 @@ public class BB : Character
     // Update is called once per frame
     void Update()
     {
+
         DetermineDirection();
 
         if (wLoader.isInit) WeaponInventory();
 
         CheckToUseAPowerUp();
+
+
     }
 
     private void DetermineDirection() {
@@ -122,10 +125,12 @@ public class BB : Character
 
     public override void DisableMovement() {
         c2d.StopMoving();
+        if (currentWeapon != null) currentWeapon.gameObject.SetActive(false);
         SetMovementEnabled(false);
     }
 
     public override void EnableMovement() {
+        if (currentWeapon != null) currentWeapon.gameObject.SetActive(true);
         SetMovementEnabled(true);
     }
 

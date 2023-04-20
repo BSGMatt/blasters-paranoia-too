@@ -11,9 +11,13 @@ public class AIController : MonoBehaviour
     public float minDistance; //The minimum distance the enemy will be from the target before stopping. 
     public float maxDistance; //The maximum distance the enemy will be from the target before it starts moving again.
 
+    public float pathUpdateRate;
+
     private Path path;
     private int currentWaypoint = 0;
     private float nextWaypointDistance = 1f;
+
+    private Coroutine updatePath = null;
 
     Seeker seeker;
 
@@ -87,6 +91,7 @@ public class AIController : MonoBehaviour
 
         seeker.StartPath(character.GetRigidBody().position, target.position, OnPathComplete);
         reachedEndOfPath = false;
+        if (updatePath == null) updatePath = StartCoroutine(RerunPath());
     }
 
     private void OnPathComplete(Path p) {
@@ -102,6 +107,12 @@ public class AIController : MonoBehaviour
         if (currentWaypoint >= path.vectorPath.Count) {
             reachedEndOfPath = true;
             character.c2d.StopMoving();
+
+            if (updatePath != null) {
+                StopCoroutine(updatePath);
+                updatePath = null;
+            }
+
             return;
         }
         else {
@@ -140,6 +151,19 @@ public class AIController : MonoBehaviour
     public void ResetPath() {
         StopPath();
         InitPath(character.targetType);
+    }
+
+    private IEnumerator RerunPath() {
+        while (!reachedEndOfPath) {
+            yield return new WaitForSeconds(pathUpdateRate);
+
+            path = null;
+            InitPath(character.targetType);
+        }
+
+        updatePath = null;
+
+        yield return 0;
     }
 
 }

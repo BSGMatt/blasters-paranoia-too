@@ -16,10 +16,12 @@ MonoBehaviour:
   name: Wild Dude
   prefab: {fileID: 3390347684773250951, guid: 62a47a1692fc6d84282a14fda397aa7b, type: 3}
   sprite: {fileID: 0}
-  speed: 7
-  maxHP: 175
+  speed: 8
+  maxHP: 200
   difficulty: 15
   weapon: {fileID: 11400000, guid: 3e3bdd5b787890b42b130724997a197b, type: 2}
   approach: 2
-  targetType: 0
+  targetType: 1
   color: {r: 0, g: 1, b: 0, a: 1}
+  minDistanceFromTarget: 4
+  maxDistanceFromTarget: 6

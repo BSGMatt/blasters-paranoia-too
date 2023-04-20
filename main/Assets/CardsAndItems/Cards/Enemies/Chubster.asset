@@ -16,10 +16,12 @@ MonoBehaviour:
   name: Chubster
   prefab: {fileID: 3390347684773250951, guid: 62a47a1692fc6d84282a14fda397aa7b, type: 3}
   sprite: {fileID: 0}
-  speed: 5
-  maxHP: 350
+  speed: 6.5
+  maxHP: 300
   difficulty: 19
   weapon: {fileID: 11400000, guid: a9426e8a4f9eb184e8958089048b2ef9, type: 2}
   approach: 1
   targetType: 1
   color: {r: 1, g: 0, b: 1, a: 1}
+  minDistanceFromTarget: 4
+  maxDistanceFromTarget: 6

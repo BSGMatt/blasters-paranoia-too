@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 3557481334030994502}
   - component: {fileID: 8984571559080742674}
   - component: {fileID: 9035754415825402283}
+  - component: {fileID: 3971881212016237628}
   m_Layer: 0
   m_Name: GoldMine
   m_TagString: Character
@@ -376,7 +377,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 1}
+    oldSize: {x: 1.5, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -418,7 +419,8 @@ MonoBehaviour:
   rb: {fileID: 3557481334030994496}
   surfaceCollider: {fileID: 3557481334030994497}
   nonSurfaceCollider: {fileID: 3557481334030994502}
-  statsManager: {fileID: 0}
+  statsManager: {fileID: 9035754415825402283}
+  audioManager: {fileID: 3971881212016237628}
   xp: 0
   stamina: 0
   level: 0
@@ -468,6 +470,27 @@ MonoBehaviour:
   playerLevel: 0
   healSpeed: 2
   staminaSpeed: 1
+  passiveHealEnabled: 1
+--- !u!114 &3971881212016237628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557481334030994503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2800b1e24f0cc0447b90dac2c7f75d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Fire
+    clip: {fileID: 8300000, guid: dc5d66dbb5b99ea478baf7a38229fa3b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  spatialBlend: 1
 --- !u!1 &3823866320221231107
 GameObject:
   m_ObjectHideFlags: 0

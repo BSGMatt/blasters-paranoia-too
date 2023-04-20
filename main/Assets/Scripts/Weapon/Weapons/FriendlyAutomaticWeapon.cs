@@ -25,7 +25,7 @@ public class FriendlyAutomaticWeapon : Weapon
             firing = StartCoroutine(FireCoroutine());
         }
 
-        if (!canFire) {
+        if (!canFire && firing != null) {
             StopCoroutine(firing);
             firing = null;
         }

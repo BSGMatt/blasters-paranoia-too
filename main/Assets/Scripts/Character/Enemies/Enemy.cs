@@ -77,6 +77,11 @@ public class Enemy : Character, IComparable<Enemy>
         if (aiController.reachedEndOfPath)
         {
             currentWeapon.canFire = true;
+
+            //Reload if neccessary
+            if (currentWeapon.ammo <= 0)
+                currentWeapon.ammo = currentWeapon.card.maxAmmo;
+
             state = Character.s_attack;
 
             if (Vector2.Distance(transform.position, aiController.target.position) >= aiController.maxDistance)

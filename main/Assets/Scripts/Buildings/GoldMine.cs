@@ -33,7 +33,7 @@ public class GoldMine : Building
     }
 
     public override void Die() {
-        Destroy(gameObject);
+        CommonDieMethod();
     }
 
     public IEnumerator Mine() {

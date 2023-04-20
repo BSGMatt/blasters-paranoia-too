@@ -75,14 +75,14 @@ public class Minimap : MonoBehaviour
         nIComp.icon.anchorMin = new Vector2(0, 1);
         nIComp.icon.anchorMax = new Vector2(0, 1);
 
-        Debug.Log(c + ": isBuilding: " + isBuilding);
+        //Debug.Log(c + ": isBuilding: " + isBuilding);
 
         if (isBuilding) {
             nIComp.imageColor = buildingIconColor;
             buildingIcons.Add(nIComp);
         }    
         else {
-            Debug.Log(enemyIconColor);
+            //Debug.Log(enemyIconColor);
             nIComp.imageColor = enemyIconColor;
             enemyIcons.Add(nIComp);
         }

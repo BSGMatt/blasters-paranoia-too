@@ -21,11 +21,13 @@ public class Turret : Building
         currentWeapon = GameObject.Instantiate(card.weaponCard.prefab, transform).GetComponent<Weapon>();
         currentWeapon.host = this;
         currentWeapon.card = card.weaponCard;
+        isEnemy = false;
     }
 
     // Update is called once per frame
     void Update() {
-        
+
+        if (currentWeapon.target == null) currentWeapon.canFire = false;
     }
 
     public override void Die() {
@@ -39,6 +41,9 @@ public class Turret : Building
     /// </summary>
     private void UpdateWeaponTarget() {
         currentWeapon.GetClosestTargetInList(rangeDetectionTrigger.characterList);
+
+        if (currentWeapon.target != null) currentWeapon.canFire = true;
+        Debug.Log("Turret's new target: " + currentWeapon.target);
     }
 
     public override void DisableMovement() {

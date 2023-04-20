@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3557481334030994496}
   - component: {fileID: 3557481334030994497}
   - component: {fileID: 3557481334030994502}
+  - component: {fileID: -6158056366043795201}
   m_Layer: 0
   m_Name: TestBuilding
   m_TagString: Character
@@ -104,6 +105,7 @@ MonoBehaviour:
   surfaceCollider: {fileID: 3557481334030994497}
   nonSurfaceCollider: {fileID: 3557481334030994502}
   statsManager: {fileID: 0}
+  audioManager: {fileID: 0}
   xp: 0
   stamina: 0
   level: 0
@@ -194,3 +196,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &-6158056366043795201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557481334030994503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2800b1e24f0cc0447b90dac2c7f75d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Fire
+    clip: {fileID: 8300000, guid: dc5d66dbb5b99ea478baf7a38229fa3b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  spatialBlend: 1

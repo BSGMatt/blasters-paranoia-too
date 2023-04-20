@@ -26,6 +26,8 @@ public abstract class Character : MonoBehaviour
     public BoxCollider2D surfaceCollider;
     public CircleCollider2D nonSurfaceCollider;
     public StatsManager statsManager;
+
+    public AudioManager audioManager;
     
 
     //These values are only used by BB, the player character, but since weapons have references
@@ -128,7 +130,7 @@ public abstract class Character : MonoBehaviour
 
         takenDamage.Invoke();
 
-        Debug.Log("Damage Dealt: " + damage);
+        //Debug.Log("Damage Dealt: " + damage);
 
         if (sheilds > 0) {
             sheilds -= damage;

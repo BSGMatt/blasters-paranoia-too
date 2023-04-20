@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 3390347684773251065}
   - component: {fileID: 3390347684773251064}
   - component: {fileID: 2690327473997335590}
+  - component: {fileID: -7555432734995335782}
   m_Layer: 3
   m_Name: TEST_DEF_EASY
   m_TagString: Character
@@ -312,6 +313,7 @@ MonoBehaviour:
   reachedEndOfPath: 0
   minDistance: 4
   maxDistance: 6
+  pathUpdateRate: 0.5
 --- !u!114 &3390347684773251067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +332,7 @@ MonoBehaviour:
   surfaceCollider: {fileID: 3390347684773251065}
   nonSurfaceCollider: {fileID: 3390347684773251064}
   statsManager: {fileID: 2690327473997335590}
+  audioManager: {fileID: -7555432734995335782}
   xp: 0
   stamina: 0
   level: 0
@@ -347,7 +350,7 @@ MonoBehaviour:
   maxStamina: 100
   maxHP: 200
   sheilds: 0
-  hp: 0
+  hp: 200
   invincible: 0
   isLevelable: 1
   onlyHasHealth: 1
@@ -356,9 +359,9 @@ MonoBehaviour:
   hbar: {fileID: 0}
   state: 0
   difficulty: 1
-  approach: 0
+  approach: 2
   weaponCard: {fileID: 11400000, guid: a9426e8a4f9eb184e8958089048b2ef9, type: 2}
-  enemyCard: {fileID: 0}
+  enemyCard: {fileID: 11400000, guid: 1a99bfbeea32a7f44829e1d141fe9201, type: 2}
 --- !u!114 &3390347684773251071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +472,32 @@ MonoBehaviour:
   playerLevel: 0
   healSpeed: 2
   staminaSpeed: 1
+  passiveHealEnabled: 1
+--- !u!114 &-7555432734995335782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390347684773250951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2800b1e24f0cc0447b90dac2c7f75d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Fire
+    clip: {fileID: 8300000, guid: dc5d66dbb5b99ea478baf7a38229fa3b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HitTaken
+    clip: {fileID: 8300000, guid: d3752a7c4c289ed478e323b7507a4c4a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &3390347686175346123
 GameObject:
   m_ObjectHideFlags: 0

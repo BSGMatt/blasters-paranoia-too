@@ -49,6 +49,12 @@ MonoBehaviour:
   listUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
+  listAddEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  listRemoveEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &498555078429332265
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -180,6 +186,7 @@ GameObject:
   - component: {fileID: 3557481334030994502}
   - component: {fileID: 2326440907480961542}
   - component: {fileID: 9120539710398529106}
+  - component: {fileID: 7622260259658652978}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Character
@@ -292,7 +299,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -334,7 +341,8 @@ MonoBehaviour:
   rb: {fileID: 3557481334030994496}
   surfaceCollider: {fileID: 3557481334030994497}
   nonSurfaceCollider: {fileID: 3557481334030994502}
-  statsManager: {fileID: 0}
+  statsManager: {fileID: 9120539710398529106}
+  audioManager: {fileID: 7622260259658652978}
   xp: 0
   stamina: 0
   level: 0
@@ -355,7 +363,7 @@ MonoBehaviour:
   hp: 0
   invincible: 0
   isLevelable: 1
-  onlyHasHealth: 0
+  onlyHasHealth: 1
   currentSpeedModValue: 1
   currentDmgDealtModValue: 1
   card: {fileID: 0}
@@ -385,6 +393,27 @@ MonoBehaviour:
   playerLevel: 0
   healSpeed: 2
   staminaSpeed: 1
+  passiveHealEnabled: 0
+--- !u!114 &7622260259658652978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557481334030994503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2800b1e24f0cc0447b90dac2c7f75d26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Fire
+    clip: {fileID: 8300000, guid: dc5d66dbb5b99ea478baf7a38229fa3b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  spatialBlend: 1
 --- !u!1 &4605957221368567929
 GameObject:
   m_ObjectHideFlags: 0

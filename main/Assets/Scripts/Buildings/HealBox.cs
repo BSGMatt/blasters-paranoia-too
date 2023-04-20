@@ -40,6 +40,7 @@ public class HealBox : Building
 
         trigger.listAddEvent.RemoveListener(ApplyHealingEffect);
         trigger.listRemoveEvent.RemoveListener(RemoveHealingEffect);
+        Destroy(gameObject);
     }
 
     public override void DisableMovement()

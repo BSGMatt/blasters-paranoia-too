@@ -37,10 +37,9 @@ public class FirstBoss : Boss
     public override void CalmState() {
 
         if (!movementEnabled) EnableMovement();
-        if (aiController.target == null) aiController.ResetPath();
 
         //Keep following path until the end has been reached. 
-        if (!aiController.reachedEndOfPath && movementEnabled) {
+        if (!aiController.reachedEndOfPath) {
             aiController.RunPath();
         }
 
@@ -64,6 +63,7 @@ public class FirstBoss : Boss
             currentWeapon.canFire = true;
             currentWeapon.ammo = currentWeapon.card.maxAmmo;
             Debug.Log(currentWeapon.target);
+            chargingInit = false;
             prevState = -1;
         }
     }

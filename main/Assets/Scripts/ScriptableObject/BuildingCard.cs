@@ -55,7 +55,7 @@ public class BuildingCard : Card
         sb.Append("Max Health: " + maxHealth + "\n");
 
         if (!resource.Equals(""))
-            sb.Append("Increases " + resource + "by " + resourceAmount + "per second.\n");
+            sb.Append("Increases " + resource + "by " + resourceAmount + " per second.\n");
 
         //If this building has a weapon, show its stats. 
         if (weaponCard != null)

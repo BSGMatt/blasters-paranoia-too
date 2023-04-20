@@ -107,6 +107,11 @@ public abstract class Weapon : MonoBehaviour
         Transform ret = null;
 
         foreach (Character c in characters) {
+
+            //Ignore characters with the same affiliation. 
+            if (host.IsEnemy() == c.IsEnemy()) continue;
+            if (c.dead) continue;
+
             float dist = Vector2.Distance(transform.position, c.transform.position);
             if (dist < minDist) {
                 ret = c.transform;
@@ -134,6 +139,8 @@ public abstract class Weapon : MonoBehaviour
         pellet.GetComponent<Pellet>().isEnemy = isEnemy;
         pellet.GetComponent<Pellet>().Init(new Vector2(card.pelletSpeed * Mathf.Cos(trajectory * Mathf.Deg2Rad),
             card.pelletSpeed * Mathf.Sin(trajectory * Mathf.Deg2Rad)), rb.position);
+
+        host.audioManager.SinglePlay("Fire");
     }
 
     /// <summary>
@@ -276,6 +283,8 @@ public abstract class Weapon : MonoBehaviour
         }
 
         //Reload Ammo
+
+        Debug.Log("Reloading");
 
         yield return new WaitForSeconds(card.reloadSpeed);
 
