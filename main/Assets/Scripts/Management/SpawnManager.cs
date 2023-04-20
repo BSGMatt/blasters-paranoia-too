@@ -121,7 +121,15 @@ public class SpawnManager : MonoBehaviour
 
     public Boss SpawnBoss() {
         GameObject boss = Instantiate<GameObject>(bosses[currentBoss], bossSpawnpoint.position, Quaternion.identity);
-        currentBoss++;
+
+        RaycastHit2D[] hits = new RaycastHit2D[10];
+        int x = 0;
+        while (x < 5 && Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits) != 0) {
+            boss.transform.position += new Vector3(-Mathf.Sign(boss.transform.position.x), 1, 0);    
+            x++;
+        }
+
+        currentBoss = (currentBoss + 1) % bosses.Count;
         return boss.GetComponent<Boss>();
     }
 
@@ -203,8 +211,10 @@ public class SpawnManager : MonoBehaviour
 
             //Keep moving the enemy to the right in case it's on top of a building. 
             RaycastHit2D[] hits = new RaycastHit2D[10];
-            while (Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits) != 0) {
-                enemy.transform.position += new Vector3(4, 0, 0);    
+            int x = 0;
+            while (x < 5 && Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits) != 0) {
+                enemy.transform.position += new Vector3(-Mathf.Sign(enemy.transform.position.x), 0, 0);    
+                x++;
             }
 
 

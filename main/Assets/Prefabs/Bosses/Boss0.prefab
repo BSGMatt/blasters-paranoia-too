@@ -469,7 +469,7 @@ MonoBehaviour:
   targetType: 0
   maxSpeed: 5
   maxStamina: 100
-  maxHP: 750
+  maxHP: 1500
   sheilds: 0
   hp: 0
   invincible: 0

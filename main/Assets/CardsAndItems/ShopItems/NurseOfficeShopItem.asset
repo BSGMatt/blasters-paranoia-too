@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4aea3f141a7f354da84246e6272e060, type: 3}
   m_Name: NurseOfficeShopItem
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 88b1c515912772a4c84cc6132453b416, type: 2}
+  card: {fileID: 11400000, guid: b1f1ebaf937f796458309a4f616cbfba, type: 2}
   displaySprite: {fileID: 21300000, guid: adb3c57a9e7e5d143bedf77e8a69234c, type: 3}
   displayTextColor: {r: 0, g: 0, b: 0, a: 1}
   description: 'The Nurse''s office will have you fixed up in no time. Be careful
     though, your enemies hate free health care almost as much as they hate you. '
-  sold: 0
+  sold: 1

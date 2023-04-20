@@ -21,7 +21,7 @@ MonoBehaviour:
   difficulty: 19
   weapon: {fileID: 11400000, guid: a9426e8a4f9eb184e8958089048b2ef9, type: 2}
   approach: 1
-  targetType: 1
+  targetType: 0
   color: {r: 1, g: 0, b: 1, a: 1}
   minDistanceFromTarget: 4
   maxDistanceFromTarget: 6

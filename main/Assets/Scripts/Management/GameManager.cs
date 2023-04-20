@@ -230,6 +230,15 @@ public class GameManager : MonoBehaviour
         waveText.text = "";
         timerDisplay.text = "TIME: " + preptime;
         if (wave > 0) {
+
+            //Destroy any active projectiles 
+            foreach (Pellet p in FindObjectsOfType<Pellet>()) {
+                Destroy(p.gameObject);
+            }
+            foreach (Hazard p in FindObjectsOfType<Hazard>()) {
+                Destroy(p.gameObject);
+            }
+
             FindObjectOfType<XPBonusManager>().ApplyXPBonuses();
             cash += cashRewardPerWave;
             ReviveAllCrystals();

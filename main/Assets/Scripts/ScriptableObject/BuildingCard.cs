@@ -43,9 +43,25 @@ public class BuildingCard : Card
     public float range;
 
     /// <summary>
+    /// Should this buildings effect be applied to enemies?
+    /// </summary>
+    public bool applyEffectToEnemies;
+
+    /// <summary>
+    /// Should this buildings effect be applied to allies?
+    /// </summary>
+    public bool applyEffectToAllies;
+
+    /// <summary>
     /// The weapon it will create when deployed, if applicable. 
     /// </summary>
     public WeaponCard weaponCard;
+
+    /// <summary>
+    /// The type of effect this buildings applies when a character is near it.  
+    /// </summary>
+    public PowerUpCard effectCard;
+
 
     public override string infoText() {
         StringBuilder sb = new StringBuilder();
@@ -55,7 +71,7 @@ public class BuildingCard : Card
         sb.Append("Max Health: " + maxHealth + "\n");
 
         if (!resource.Equals(""))
-            sb.Append("Increases " + resource + "by " + resourceAmount + " per second.\n");
+            sb.Append("Increases " + resource + " by " + resourceAmount + " per second.\n");
 
         //If this building has a weapon, show its stats. 
         if (weaponCard != null)

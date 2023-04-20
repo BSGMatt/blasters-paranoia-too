@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73483e073b1806c4abe00e6c3fd74848, type: 3}
+  m_Name: Statue
+  m_EditorClassIdentifier: 
+  unlockPrice: 400
+  name: Statue
+  prefab: {fileID: 3557481334030994503, guid: 8c14580e26431ac42b740b43ed772327, type: 3}
+  sprite: {fileID: 21300000, guid: 849ad880c90b2f445a0b82293fe5b849, type: 3}
+  buildPrice: 200
+  maxHealth: 250
+  importance: 100
+  modifierValue: 0
+  resourceAmount: 0
+  resource: health
+  range: 7
+  applyEffectToEnemies: 1
+  applyEffectToAllies: 0
+  weaponCard: {fileID: 0}
+  effectCard: {fileID: 11400000, guid: 01f25673edf4f6c44b708891d7bcd2a0, type: 2}

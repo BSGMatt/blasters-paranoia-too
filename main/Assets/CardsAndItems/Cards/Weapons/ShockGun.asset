@@ -20,8 +20,8 @@ MonoBehaviour:
   maxAmmo: 8
   dmgPerPellet: 25
   pelletCount: 3
-  minSpread: 180
-  maxSpread: 180
+  minSpread: 60
+  maxSpread: 90
   pelletSpeed: 5
-  fireRate: 5
-  reloadSpeed: 0.5
+  fireRate: 1
+  reloadSpeed: 1

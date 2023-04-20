@@ -15,15 +15,18 @@ public class HealBox : Building
 
     public new void Awake() {
         base.Awake();
-        trigger.listAddEvent.AddListener(ApplyHealingEffect);
-        trigger.listRemoveEvent.AddListener(RemoveHealingEffect);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         BaseInit();
+        trigger.listAddEvent.AddListener(ApplyHealingEffect);
+        trigger.listRemoveEvent.AddListener(RemoveHealingEffect);
         effectList = new List<StatusEffectInfo>();
+        applyToAllies = card.applyEffectToAllies;
+        applyToEnemies = card.applyEffectToEnemies;
+        healBoxCard = card.effectCard;
     }
 
     // Update is called once per frame
