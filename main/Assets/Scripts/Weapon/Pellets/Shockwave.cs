@@ -34,4 +34,5 @@ public class Shockwave : Pellet
             yield return new WaitForSeconds(timeBetweenShocks);
         }
     }
+    
 }

@@ -51,7 +51,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -61,7 +60,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
@@ -69,8 +67,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
-    Unity.Timeline.Editor.dll:
-    - TimelineProjectSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -121,103 +117,103 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1684}
     - Class: 114
-      Script: {instanceID: 1756}
+      Script: {instanceID: 1758}
     - Class: 114
-      Script: {instanceID: 1802}
+      Script: {instanceID: 1804}
     - Class: 114
-      Script: {instanceID: 1844}
+      Script: {instanceID: 1846}
     - Class: 114
-      Script: {instanceID: 1854}
-    - Class: 114
-      Script: {instanceID: 1860}
+      Script: {instanceID: 1856}
     - Class: 114
       Script: {instanceID: 1862}
     - Class: 114
-      Script: {instanceID: 1922}
+      Script: {instanceID: 1864}
     - Class: 114
-      Script: {instanceID: 1998}
+      Script: {instanceID: 1924}
     - Class: 114
-      Script: {instanceID: 2062}
+      Script: {instanceID: 2000}
     - Class: 114
-      Script: {instanceID: 2166}
+      Script: {instanceID: 2064}
     - Class: 114
-      Script: {instanceID: 2216}
+      Script: {instanceID: 2168}
     - Class: 114
-      Script: {instanceID: 2260}
+      Script: {instanceID: 2210}
     - Class: 114
-      Script: {instanceID: 2348}
+      Script: {instanceID: 2218}
     - Class: 114
-      Script: {instanceID: 2408}
+      Script: {instanceID: 2264}
     - Class: 114
-      Script: {instanceID: 2512}
+      Script: {instanceID: 2352}
     - Class: 114
-      Script: {instanceID: 2526}
+      Script: {instanceID: 2412}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2516}
     - Class: 114
-      Script: {instanceID: 2580}
+      Script: {instanceID: 2530}
     - Class: 114
-      Script: {instanceID: 2624}
+      Script: {instanceID: 2576}
     - Class: 114
-      Script: {instanceID: 2746}
+      Script: {instanceID: 2584}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2628}
     - Class: 114
-      Script: {instanceID: 2912}
+      Script: {instanceID: 2750}
     - Class: 114
-      Script: {instanceID: 2952}
+      Script: {instanceID: 2790}
     - Class: 114
-      Script: {instanceID: 3078}
+      Script: {instanceID: 2916}
     - Class: 114
-      Script: {instanceID: 3122}
+      Script: {instanceID: 2956}
     - Class: 114
-      Script: {instanceID: 3136}
+      Script: {instanceID: 3082}
     - Class: 114
-      Script: {instanceID: 3180}
+      Script: {instanceID: 3126}
     - Class: 114
-      Script: {instanceID: 3290}
+      Script: {instanceID: 3140}
     - Class: 114
-      Script: {instanceID: 3312}
+      Script: {instanceID: 3184}
     - Class: 114
-      Script: {instanceID: 3334}
+      Script: {instanceID: 3294}
     - Class: 114
-      Script: {instanceID: 3444}
+      Script: {instanceID: 3316}
     - Class: 114
-      Script: {instanceID: 3624}
+      Script: {instanceID: 3338}
     - Class: 114
-      Script: {instanceID: 3732}
+      Script: {instanceID: 3448}
     - Class: 114
-      Script: {instanceID: 3792}
+      Script: {instanceID: 3628}
     - Class: 114
-      Script: {instanceID: 4138}
+      Script: {instanceID: 3736}
     - Class: 114
-      Script: {instanceID: 4320}
+      Script: {instanceID: 3796}
     - Class: 114
-      Script: {instanceID: 4520}
+      Script: {instanceID: 4142}
     - Class: 114
-      Script: {instanceID: 4716}
+      Script: {instanceID: 4324}
     - Class: 114
-      Script: {instanceID: 4742}
+      Script: {instanceID: 4524}
     - Class: 114
-      Script: {instanceID: 4786}
+      Script: {instanceID: 4720}
     - Class: 114
-      Script: {instanceID: 4940}
+      Script: {instanceID: 4746}
     - Class: 114
-      Script: {instanceID: 4992}
+      Script: {instanceID: 4790}
     - Class: 114
-      Script: {instanceID: 5144}
+      Script: {instanceID: 4944}
     - Class: 114
-      Script: {instanceID: 5152}
+      Script: {instanceID: 4996}
     - Class: 114
-      Script: {instanceID: 5178}
+      Script: {instanceID: 5148}
     - Class: 114
-      Script: {instanceID: 5194}
+      Script: {instanceID: 5156}
     - Class: 114
-      Script: {instanceID: 5270}
+      Script: {instanceID: 5182}
     - Class: 114
-      Script: {instanceID: 5360}
+      Script: {instanceID: 5198}
     - Class: 114
-      Script: {instanceID: 19978}
+      Script: {instanceID: 5274}
+    - Class: 114
+      Script: {instanceID: 5364}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -417,7 +413,7 @@ ScriptsOnlyBuild:
     className: SimpleSmoothModifier
   - hash:
       serializedVersion: 2
-      Hash: 3a90fae9b65da4ca3612398a0a408bcc
+      Hash: 087f5fc7f77b54feb1c6aec966486836
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyCard
@@ -457,6 +453,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Text
+  - hash:
+      serializedVersion: 2
+      Hash: b7dc13f6e4f66486507c3131f9597dd0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
   - hash:
       serializedVersion: 2
       Hash: dafb59dbf53260e46882ef5529a0e393
@@ -567,7 +569,7 @@ ScriptsOnlyBuild:
     className: NodeLink3
   - hash:
       serializedVersion: 2
-      Hash: 59759853ee212816eaa35b0234db6c71
+      Hash: 6b15ab3a68b071aeaacf25d24f46dd17
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnManager
@@ -1101,7 +1103,7 @@ ScriptsOnlyBuild:
     className: SpriteLibraryAsset
   - hash:
       serializedVersion: 2
-      Hash: afbd0d4db97994e6f1325f832d014245
+      Hash: 95e3684332250efae96e413480295b8d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BuildingCard
@@ -1221,7 +1223,7 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
-      Hash: c06951f6cbcea5b55d6e7b9927e85aba
+      Hash: b738bef3abc0cf4d9ea4a9d892d1366b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AIController
@@ -1243,13 +1245,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SecondaryTarget
-  - hash:
-      serializedVersion: 2
-      Hash: 66056c2209ff8e6b238f8b056c7eb331
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: AudioManager
   platform: 5
   scenePathNames:
   - Assets/Scenes/mvp.unity
-  playerPath: G:/Projects/Games/Blasters Pandemonium Plus/Builds/PCStandalone/V1/main.exe
+  playerPath: G:/Projects/Games/Blasters Pandemonium Plus/Builds/PCStandalone/V2/main.exe

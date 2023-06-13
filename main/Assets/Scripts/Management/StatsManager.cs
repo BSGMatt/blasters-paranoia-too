@@ -96,6 +96,7 @@ public class StatsManager : MonoBehaviour {
     public void LevelUp() {
 
         Debug.Log("Level Up! You're Winner!");
+        FindObjectOfType<GameManager>().audioManager.Play("LevelUp");
 
         currentXPThreshold = lm.NextLevel();
 

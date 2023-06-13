@@ -21,8 +21,7 @@ public class Sound {
     [HideInInspector]
     public AudioSource source;
 
-    public string ToString() {
-
+    public override string ToString() {
         return name + ": " + clip.ToString() + ", Source: " + source.ToString();
     }
 }

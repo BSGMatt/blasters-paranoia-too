@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public AudioManager audioManager;
     public SpawnManager spawnManager;
+    public ShopManager shopManager;
     public InventoryManager im;
     public Crystal[] crystals;
     public Boss boss;
@@ -77,7 +78,8 @@ public class GameManager : MonoBehaviour
 
     private void CheckForLoseCondition() {
         if (player.dead && playerWaitingToSpawn == null) {
-            //Check to see if at least one of the crystals are alive.
+
+            //Check to see if at least one of the crystals is alive.
             bool allCrystalsDead = true;
             foreach (Crystal c in crystals) {
                 if (!c.dead) {
@@ -106,10 +108,10 @@ public class GameManager : MonoBehaviour
         player.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         player.DisableMovement();
 
+        //Display the respawn timer. 
         timePast = seconds;
         while (timePast > 0) {
             StartCoroutine(ShowEventText("RESPAWNING IN: " + timePast, 1f));
-
             timePast--;
             yield return new WaitForSeconds(1f);
         }
@@ -151,16 +153,6 @@ public class GameManager : MonoBehaviour
 
         //Press the enter key to go to next phase. 
         if (Input.GetKeyDown(KeyCode.Return)) {
-
-            //Don't let player continue to next phase unless they have a weapon.
-            if (im.weaponCards.Count == 0) {
-                StartCoroutine(ShowEventText("GET A WEAPON FIRST!!", 2f));
-                return;
-            }
-
-            if (shopEnabled) ToggleShop();
-            if (builderEnabled) ToggleBuilder();
-
             StopCoroutine(timer);
             timer = null;
         }
@@ -168,7 +160,21 @@ public class GameManager : MonoBehaviour
 
     private void ToSwarmPhase() {
         audioManager.StopAll();
-        audioManager.Play("Attack");    
+        audioManager.Play("Attack");
+
+        if (shopEnabled) ToggleShop();
+        if (builderEnabled) ToggleBuilder();
+
+        //Check if the player does not have any weapons
+        if (im.weaponCards.Count == 0) {
+            
+            //If not, then add the first weapon to its inventory. (this will be the pew-pew.)
+            shopManager.selectedItem = shopManager.weaponsForSale[0];
+            shopManager.PurchaseItem();
+
+            return;
+        }
+
         spawnManager.ActivateSpawner();
         phase = Phase.SWARM;
     }
