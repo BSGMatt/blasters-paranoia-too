@@ -59,7 +59,8 @@ public class SpawnManager : MonoBehaviour
 
     public int numWavesBeforeEnemyCountIncrease = 3;
 
-    private int currentLevel;
+    public int currentLevel;
+    
     private GameManager gm;
     private Minimap minimap;
     private Coroutine spawning;
@@ -200,25 +201,8 @@ public class SpawnManager : MonoBehaviour
         enemiesInSpawnQueue = enemySpawnOrder.Count;
         while (enemySpawnOrder.Count > 0) {
 
-            EnemyCard ec = waveSpawnPool[enemySpawnOrder.Pop()];
 
-            Debug.Log(ec); //Dispay enemy info to the console. 
-
-            GameObject enemy = Instantiate<GameObject>(ec.prefab, 
-                spawnpoints[i % spawnpoints.Length].position, Quaternion.identity);
-            enemy.GetComponent<Enemy>().enemyCard = ec;
-
-
-            //Keep moving the enemy to the right in case it's on top of a building. 
-            RaycastHit2D[] hits = new RaycastHit2D[10];
-            int x = 0;
-            while (x < 5 && Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits) != 0) {
-                enemy.transform.position += new Vector3(-Mathf.Sign(enemy.transform.position.x), 0, 0);    
-                x++;
-            }
-
-
-            minimap.CreateMinimapIcon(enemy.GetComponent<Enemy>(), false);
+            SpawnEnemy(waveSpawnPool[enemySpawnOrder.Pop()], spawnpoints[i % spawnpoints.Length].position);
 
             enemiesInSpawnQueue--;
 
@@ -230,5 +214,24 @@ public class SpawnManager : MonoBehaviour
         spawning = null;
 
         yield return null;
+    }
+
+    //
+    public void SpawnEnemy(EnemyCard ec, Vector3 position) {
+        Debug.Log(ec); //Dispay enemy info to the console. 
+
+        GameObject enemy = Instantiate<GameObject>(ec.prefab, 
+            position, Quaternion.identity);
+        enemy.GetComponent<Enemy>().enemyCard = ec;
+
+            //Keep moving the enemy to the right in case it's on top of a building. 
+        RaycastHit2D[] hits = new RaycastHit2D[10];
+        int x = 0;
+        while (x < 5 && Physics2D.Raycast(transform.position, Vector2.zero, new ContactFilter2D().NoFilter(), hits) != 0) {
+            enemy.transform.position += new Vector3(-Mathf.Sign(enemy.transform.position.x), 0, 0);    
+            x++;
+        }
+
+        minimap.CreateMinimapIcon(enemy.GetComponent<Enemy>(), false);
     }
 }

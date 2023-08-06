@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/healthbarTest.unity
+- path: Assets/Scenes/mvp.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

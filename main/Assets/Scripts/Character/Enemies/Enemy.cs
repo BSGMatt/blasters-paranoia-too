@@ -13,7 +13,7 @@ public class Enemy : Character, IComparable<Enemy>
     public EnemyCard enemyCard;
 
     // Start is called before the first frame update
-    void Start() {
+    protected void Start() {
 
         LoadValuesFromCard();
 
@@ -62,12 +62,12 @@ public class Enemy : Character, IComparable<Enemy>
     }
 
     // Update is called once per frame
-    void Update() {
+    protected void Update() {
         if (aiController.target == null) aiController.ResetPath();
         if (hp <= 0) Die();
     }
 
-    void FixedUpdate() {
+    protected void FixedUpdate() {
 
         //Keep following path until the end has been reached. 
         if (!aiController.reachedEndOfPath && movementEnabled) {

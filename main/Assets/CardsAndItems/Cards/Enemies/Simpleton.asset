@@ -17,11 +17,14 @@ MonoBehaviour:
   prefab: {fileID: 3390347684773250951, guid: 62a47a1692fc6d84282a14fda397aa7b, type: 3}
   sprite: {fileID: 0}
   speed: 6.5
-  maxHP: 300
+  maxHP: 250
   difficulty: 0
   weapon: {fileID: 11400000, guid: 3e3bdd5b787890b42b130724997a197b, type: 2}
   approach: 1
   targetType: 0
+  child: {fileID: 0}
+  childCount: 0
+  childDistance: 0
   color: {r: 0, g: 0, b: 1, a: 1}
   minDistanceFromTarget: 4
   maxDistanceFromTarget: 6

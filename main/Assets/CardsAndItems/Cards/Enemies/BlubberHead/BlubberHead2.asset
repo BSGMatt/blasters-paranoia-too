@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: daa34f4db5516094aabb2b2b06a844f7, type: 3}
-  m_Name: Chubster
+  m_Name: BlubberHead2
   m_EditorClassIdentifier: 
   unlockPrice: 0
-  name: Chubster
-  prefab: {fileID: 3390347684773250951, guid: 62a47a1692fc6d84282a14fda397aa7b, type: 3}
+  name: Super BlubberHead
+  prefab: {fileID: 3390347684773250951, guid: 495fba393a554724cb214e651d1183ff, type: 3}
   sprite: {fileID: 0}
-  speed: 6.5
-  maxHP: 300
-  difficulty: 19
-  weapon: {fileID: 11400000, guid: a9426e8a4f9eb184e8958089048b2ef9, type: 2}
-  approach: 1
-  targetType: 0
-  color: {r: 1, g: 0, b: 1, a: 1}
+  speed: 5
+  maxHP: 550
+  difficulty: 25
+  weapon: {fileID: 11400000, guid: 3ceccd7ba25a0d9499caf1b6c13b7eb2, type: 2}
+  approach: 2
+  targetType: 2
+  color: {r: 1, g: 1, b: 0.21960786, a: 1}
   minDistanceFromTarget: 4
   maxDistanceFromTarget: 6
