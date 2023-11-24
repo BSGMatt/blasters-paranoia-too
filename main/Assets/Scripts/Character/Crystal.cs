@@ -5,6 +5,8 @@ using UnityEngine;
 public class Crystal : Character
 {
 
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class Crystal : Character
     public override void Die() {
         dead = true;
         GetComponent<SpriteRenderer>().color = Color.black;
+        gameManager.BroadcastEventMessage(3f, characterName + "IS DOWN!", "WATCH OUT!");
     }
 
     public override void DisableMovement() {

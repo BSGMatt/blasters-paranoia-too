@@ -297,6 +297,11 @@ public class GameManager : MonoBehaviour
         yield return 0;
     }
 
+    //A shortcut for calling the ShowEventText coroutine.  
+    public void BroadcastEventMessage(float timePerMessage, params string[] messages) {
+        StartCoroutine(ShowEventText(messages, timePerMessage));
+    }
+
     /// <summary>
     /// Displays a message over the commentary bar for a period of time.
     /// </summary>

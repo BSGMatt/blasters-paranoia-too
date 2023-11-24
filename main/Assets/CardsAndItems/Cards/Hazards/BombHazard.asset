@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b840174b5e872d44481ebcb1afdc1573, type: 3}
-  m_Name: Boss0Hazard
+  m_Name: BombHazard
   m_EditorClassIdentifier: 
   unlockPrice: 0
-  name: Boss 0 Hazard
+  name: 
   prefab: {fileID: 3656596863788611569, guid: 9fd9a1cd99f41c042a4903720c176003, type: 3}
   sprite: {fileID: 0}
-  minDamage: 50
-  maxDamage: 50
-  minSize: 0.5
-  maxSize: 2
-  duration: 4
+  minDamage: 80
+  maxDamage: 80
+  minSize: 3
+  maxSize: 3
+  duration: 0.5
   isEnemy: 1

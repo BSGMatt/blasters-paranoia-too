@@ -15,7 +15,9 @@ MonoBehaviour:
   unlockPrice: 0
   name: Standard Hazard
   prefab: {fileID: 3656596863788611569, guid: 9fd9a1cd99f41c042a4903720c176003, type: 3}
-  damage: 20
+  sprite: {fileID: 0}
+  minDamage: 50
+  maxDamage: 50
   minSize: 1
   maxSize: 2
   duration: 2

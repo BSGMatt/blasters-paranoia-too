@@ -69,6 +69,7 @@ public class StatsManager : MonoBehaviour {
         }
 
         player.takenDamage.AddListener(StopHealingPassive);
+        player.characterDied.AddListener(StopAllHeals);
         if (passiveHealEnabled) waitToHeal = StartCoroutine(WaitToPassivelyHeal());
 
     }
@@ -84,6 +85,7 @@ public class StatsManager : MonoBehaviour {
     public void UpdateStatusBars() {
         //Debug.Log(player);
         healthBar.value = player.hp;
+        healthBar.maxValue = player.maxHP;
 
         if (player.onlyHasHealth) return;
 
@@ -291,6 +293,12 @@ public class StatsManager : MonoBehaviour {
 
     private IEnumerator WaitToPassivelyHeal() {
 
+        //If character is supposed to be dead, then don't activate passive heal. 
+        if (player.dead) {
+            Debug.Log(player.characterName + " is dead");
+            yield return 0;
+        }
+
         bool ok = false;
         while (!ok) {
             
@@ -307,16 +315,37 @@ public class StatsManager : MonoBehaviour {
 
     private IEnumerator PassiveHeal() {
 
+        //If character is supposed to be dead, then don't activate passive heal. 
+        if (player.dead) {
+            Debug.Log(player.characterName + " is dead");
+            yield return 0;
+        }
+
         while (player.hp < player.maxHP) {
 
             player.hp += healSpeed;
 
             yield return new WaitForSeconds(Character.tickRate);
         }
+        
+        player.hp = player.maxHP;
 
         passiveHeal = null;
 
         yield return 0;
+    }
+
+    private void StopAllHeals() {
+
+        if (passiveHeal != null) {
+            StopCoroutine(passiveHeal);
+        }
+        if (waitToHeal != null) {
+            StopCoroutine(waitToHeal);
+        }
+
+        passiveHeal = null;
+        waitToHeal = null;
     }
 
 
@@ -355,6 +384,7 @@ public class StatsManager : MonoBehaviour {
     /// Stops the current healing passive and starts the timer that waits to start healing again. 
     /// </summary>
     public void StopHealingPassive() {
+
         if (passiveHeal != null) {
             StopCoroutine(passiveHeal);
             passiveHeal = null;
@@ -364,6 +394,8 @@ public class StatsManager : MonoBehaviour {
             StopCoroutine(waitToHeal);
             waitToHeal = null;
         }
+
+        if (player.dead) return;
 
         waitToHeal = StartCoroutine(WaitToPassivelyHeal());
     }

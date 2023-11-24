@@ -36,10 +36,14 @@ public abstract class Character : MonoBehaviour
     public int stamina;
     public int level;
 
+    public string characterName;
+
 
 
     public UnityEvent takenDamage;
     public UnityEvent startedMoving;
+
+    public UnityEvent characterDied;
 
     public MinimapIcon minimapIcon;
     public AIController aiController;
@@ -112,6 +116,7 @@ public abstract class Character : MonoBehaviour
     public void Awake() {
         takenDamage = new UnityEvent();
         startedMoving = new UnityEvent();
+        characterDied = new UnityEvent();
     }
 
     // Start is called before the first frame update
@@ -128,6 +133,8 @@ public abstract class Character : MonoBehaviour
 
     public void TakeDamage(int damage) {
 
+        if (dead) return;
+
         takenDamage.Invoke();
 
         //Debug.Log("Damage Dealt: " + damage);
@@ -143,6 +150,7 @@ public abstract class Character : MonoBehaviour
 
         //Debug.Log("Current HP: " + hp);
         if (hp <= 0) {
+            characterDied.Invoke();
             Die();
         }
     }

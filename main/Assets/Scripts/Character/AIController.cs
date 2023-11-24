@@ -89,6 +89,11 @@ public class AIController : MonoBehaviour
         seeker = GetComponent<Seeker>();
         target = FindTargetOfType((int) type);
 
+        //Update the weapon's target so they don't desync. 
+        if (character.currentWeapon != null) {
+            character.currentWeapon.target = target;
+        }
+
         seeker.StartPath(character.GetRigidBody().position, target.position, OnPathComplete);
         reachedEndOfPath = false;
         if (updatePath == null) updatePath = StartCoroutine(RerunPath());

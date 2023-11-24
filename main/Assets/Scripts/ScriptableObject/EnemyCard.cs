@@ -12,8 +12,14 @@ public class EnemyCard : Card
     public Approach approach;
     public TargetType targetType;
 
-    //The GameObject to spawn upon death. 
+    //The enemy to spawn upon death. 
     public EnemyCard child;
+
+    //The delay between when an enemy dies and when the child is spawned. 
+    public float spawnDelay;
+
+    //The hazard that this enemy may spawn. 
+    public HazardCard hazard;
 
     //The number of instances of the gameObject to spawn. 
     public int childCount;

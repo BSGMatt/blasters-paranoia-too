@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngineInternal;
 
 public class Enemy : Character, IComparable<Enemy>
 {
@@ -63,8 +64,26 @@ public class Enemy : Character, IComparable<Enemy>
 
     // Update is called once per frame
     protected void Update() {
-        if (aiController.target == null) aiController.ResetPath();
+        //If there is no target, start a new path. 
+        if (aiController.target == null) MoveToNextTarget();
+
+        //Check if the current target is a character that is dead. 
+        Character targetChar = aiController.target.gameObject.GetComponent<Character>();
+        if (targetChar != null && targetChar.dead) {
+            MoveToNextTarget();
+        }
+
         if (hp <= 0) Die();
+    }
+
+    //Helper method for changing the target and creating a new path. 
+    private void MoveToNextTarget() {
+
+        if (approach == Approach.PASSIVE) {
+            if (currentWeapon != null) currentWeapon.canFire = false;
+        }
+
+        aiController.ResetPath();
     }
 
     protected void FixedUpdate() {
@@ -82,8 +101,10 @@ public class Enemy : Character, IComparable<Enemy>
             if (currentWeapon.ammo <= 0)
                 currentWeapon.ammo = currentWeapon.card.maxAmmo;
 
+
             state = Character.s_attack;
 
+            //Check if the target is moving away from us, if so, start moving. 
             if (Vector2.Distance(transform.position, aiController.target.position) >= aiController.maxDistance)
             {
                 aiController.InitPath(targetType);

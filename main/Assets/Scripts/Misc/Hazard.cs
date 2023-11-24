@@ -6,23 +6,28 @@ public class Hazard : MonoBehaviour
 {
     public HazardCard card;
 
+    private float damage;
+
+
     /// <summary>
     /// This value controls how smooth the increase in size should be. 
     /// </summary>
-    public float growthSmoothing = 1;
+    public float growthSmoothing = 4;
 
 
     public void Start() {
-
+        damage = card.minDamage;
         StartCoroutine(Exist());
     }
 
     public IEnumerator Exist() {
         float radiInc = (card.maxSize - card.minSize) / card.duration / growthSmoothing;
+        float damageInc = (card.maxDamage - card.minDamage) / card.duration / growthSmoothing;
         float t = 0;
         while (t < card.duration && transform.localScale.x < card.maxSize) {
             transform.localScale = new Vector3(transform.localScale.x + radiInc, transform.localScale.y + radiInc, 1);
             t += 1f/ growthSmoothing;
+            damage += damageInc;
             yield return new WaitForSeconds(1f / growthSmoothing);
         }
 
@@ -39,7 +44,7 @@ public class Hazard : MonoBehaviour
 
             //Have the character take damage if the hazard has the opposite affiliation
             if (card.isEnemy != c.IsEnemy()) {
-                c.TakeDamage(card.damage);
+                c.TakeDamage((int) damage);
                 Destroy(gameObject);
             }
         }

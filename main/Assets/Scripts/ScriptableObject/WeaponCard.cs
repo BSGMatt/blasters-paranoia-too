@@ -31,20 +31,21 @@ public class WeaponCard : Card
 
         StringBuilder sb = new StringBuilder();
 
-        sb.Append("Max Ammo: " + maxAmmo + "\n");
-        sb.Append("Damage/Pellet: " + dmgPerPellet + "\n");
+        sb.Append("Max Ammo: " + maxAmmo + " pellets\n");
+        sb.Append("Damage per Pellet: " + dmgPerPellet + "\n");
         sb.Append("Pellet Count: " + pelletCount + "\n");
-        sb.Append("Fire Rate: " + fireRate + "\n");
+
+        sb.Append(string.Format("Fire Rate: {0:f2} pellets per second\n", (1/fireRate)));
 
         if (minSpread == maxSpread) {
-            sb.Append("Spread: " + minSpread + "\n");
+            sb.Append("Spread: " + minSpread + "°\n");
         }
         else {
-            sb.Append("Spread Range: " + minSpread + " - " + maxSpread + "\n");
+            sb.Append("Spread Range: " + minSpread + "° - " + maxSpread + "°\n");
         }
 
-        sb.Append("Pellet Speed: " + pelletSpeed + "\n");
-        sb.Append("Reload Speed: " + reloadSpeed + "\n");
+        sb.Append("Pellet Speed: " + pelletSpeed + " units per second\n");
+        sb.Append("Reload Speed: " + reloadSpeed + " units per second\n");
 
         return sb.ToString();
     }
