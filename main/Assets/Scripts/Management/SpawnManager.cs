@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -79,6 +80,11 @@ public class SpawnManager : MonoBehaviour
 
         //Sort enemy pool by difficulty
         globalSpawnPool.Sort(SortByDifficulty);
+
+        foreach(EnemyCard e in globalSpawnPool) {
+            Debug.Log(e);
+        }
+
         UpdateSpawnSelectionRange();
     }
 
@@ -111,13 +117,15 @@ public class SpawnManager : MonoBehaviour
         minIdx = 0;
         while (minIdx < globalSpawnPool.Count &&
             globalSpawnPool[minIdx].difficulty < diffRangeAtLevel[currentLevel, 0]) {
-            //Debug.Log(globalSpawnPool[i]);
+            Debug.Log(globalSpawnPool[minIdx]);
             minIdx++;
         }
 
         //Get the highest index that contains an enemy within the current difficulty range. 
         for (maxIdx = minIdx; maxIdx < globalSpawnPool.Count
             && globalSpawnPool[maxIdx].difficulty < diffRangeAtLevel[currentLevel, 1]; maxIdx++) ;
+
+        Debug.Log("MinIdx: " + minIdx + ", MaxIdx: " + maxIdx);
     }
 
     public Boss SpawnBoss() {
@@ -174,15 +182,12 @@ public class SpawnManager : MonoBehaviour
 
     private static int SortByDifficulty(EnemyCard x, EnemyCard y) {
 
-        Enemy ex = x.prefab.GetComponent<Enemy>();
-        Enemy ey = y.prefab.GetComponent<Enemy>();
-
-        if (ex == null || ey == null) {
+        if (x == null || y == null) {
             Debug.LogError("Spawn list sorting error: object does not have enemy component");
             throw new System.ArgumentException();
         }
 
-        return (int) Mathf.Sign(ex.difficulty - ey.difficulty);
+        return (int) Mathf.Sign(x.difficulty - y.difficulty);
     }
 
     public void Reset() {
